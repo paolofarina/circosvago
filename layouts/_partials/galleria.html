@@ -1,0 +1,22 @@
+{{- /*
+Galleria di foto con lightbox.
+@param immagini slice di resource
+@param titolo   titolo opzionale (h2)
+*/ -}}
+{{- with .immagini }}
+<section class="galleria" aria-label="{{ $.titolo | default "Galleria fotografica" }}">
+  {{- with $.titolo }}<h2 class="galleria__titolo">{{ . }}</h2>{{ end }}
+  <ul class="galleria__griglia">
+    {{- range . }}
+      {{- $alt := cond (eq .Title .Name) "" .Title }}
+      {{- $grande := .Resize "1600x webp q80" }}
+      {{- if lt .Width 1600 }}{{ $grande = .Resize (printf "%dx webp q80" .Width) }}{{ end }}
+      <li>
+        <a class="galleria__link" href="{{ $grande.RelPermalink }}" data-lightbox-src="{{ $grande.RelPermalink }}" data-lightbox-alt="{{ $alt }}">
+          {{ partial "img.html" (dict "res" . "alt" $alt "ratio" "1:1" "widths" (slice 240 400 600) "sizes" "(min-width: 64rem) 16rem, (min-width: 40rem) 30vw, 45vw") }}
+        </a>
+      </li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}

@@ -1,0 +1,16 @@
+/* Circo Svago — punto d'ingresso CSS. Regole in DESIGN.md. */
+@import "tokens.css";
+@import "base.css";
+@import "componenti/bottoni.css";
+@import "componenti/header.css";
+@import "componenti/footer.css";
+@import "componenti/hero.css";
+@import "componenti/testata.css";
+@import "componenti/card.css";
+@import "componenti/blocchi.css";
+@import "componenti/nastro.css";
+@import "componenti/corsi.css";
+@import "componenti/galleria.css";
+@import "componenti/contatti.css";
+@import "componenti/da-scrivere.css";
+@import "componenti/styleguide.css";

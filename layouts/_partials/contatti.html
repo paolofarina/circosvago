@@ -1,0 +1,31 @@
+{{- /* Fascia contatti (home e fondo pagine). */ -}}
+{{- $c := site.Params.contatti }}
+<section class="fascia-contatti" data-colore="malva">
+  <div class="contenitore">
+    <div class="fascia-contatti__blocco">
+      <div class="fascia-contatti__intro">
+        <h2>Vuoi provare? Scrivici</h2>
+        <p>Per corsi, eventi e progetti siamo a un messaggio di distanza.</p>
+        <a class="btn btn--chiaro" href="{{ "/contatti/" | relURL }}">Tutti i contatti</a>
+      </div>
+      <ul class="fascia-contatti__lista">
+        <li>
+          <span class="etichetta">Segreteria e corsi</span>
+          <a href="mailto:{{ $c.email_segreteria }}">{{ $c.email_segreteria }}</a>
+        </li>
+        <li>
+          <span class="etichetta">Eventi e feste</span>
+          <a href="mailto:{{ $c.email_eventi }}">{{ $c.email_eventi }}</a>
+        </li>
+        <li>
+          <span class="etichetta">Telefono</span>
+          <a href="tel:{{ replace $c.telefono " " "" }}">{{ $c.telefono }}</a>
+        </li>
+        <li>
+          <span class="etichetta">Dove siamo</span>
+          {{ $c.indirizzo }}, {{ $c.cap_citta }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

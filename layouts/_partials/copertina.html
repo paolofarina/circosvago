@@ -1,0 +1,32 @@
+{{- /*
+Trova l'immagine di copertina di una pagina.
+Ordine: param `copertina` (nome file nel bundle, oppure "/percorso/pagina/file.jpg"),
+param `illustrazione` (nome in assets/img/illustrazioni/), prima immagine del bundle.
+Restituisce dict { res, illustrazione: bool, alt } oppure nil.
+*/ -}}
+{{- $res := false }}
+{{- $illu := false }}
+{{- $alt := "" }}
+{{- with .Params.copertina }}
+  {{- if strings.HasPrefix . "/" }}
+    {{- with site.GetPage (path.Dir .) }}
+      {{- $res = .Resources.Get (path.Base $.Params.copertina) }}
+    {{- end }}
+  {{- else }}
+    {{- $res = $.Resources.Get . }}
+  {{- end }}
+{{- end }}
+{{- if and (not $res) .Params.illustrazione }}
+  {{- $res = resources.Get (printf "img/illustrazioni/%s" .Params.illustrazione) }}
+  {{- $illu = true }}
+{{- end }}
+{{- if not $res }}
+  {{- $res = .Resources.GetMatch "*.jpg" }}
+{{- end }}
+{{- $out := false }}
+{{- with $res }}
+  {{- $alt = or .Title "" }}
+  {{- if eq $alt .Name }}{{ $alt = "" }}{{ end }}
+  {{- $out = dict "res" . "illustrazione" $illu "alt" $alt }}
+{{- end }}
+{{- return $out }}

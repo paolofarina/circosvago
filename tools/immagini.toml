@@ -1,0 +1,176 @@
+# Mappa: immagine sorgente → destinazione nel sito.
+# "src" è relativo a "CIRCO SVAGO SITO/", "dest" alla radice del progetto.
+# Lanciare: python tools/prepara_immagini.py
+# Le immagini già presenti e più recenti della sorgente non vengono rigenerate.
+
+# --- Illustrazioni (condivise) ---
+[[img]]
+src = "SITO/Immagine_Home_Page.jpg"
+dest = "assets/img/illustrazioni/balena.jpg"
+[[img]]
+src = "SITO/Aerea cerchio.jpg"
+dest = "assets/img/illustrazioni/aerea-cerchio.jpg"
+[[img]]
+src = "SITO/Aerea trapezio.jpg"
+dest = "assets/img/illustrazioni/aerea-trapezio.jpg"
+[[img]]
+src = "SITO/Giocoliere.jpg"
+dest = "assets/img/illustrazioni/giocoliere.jpg"
+[[img]]
+src = "SITO/Hip Hop.jpg"
+dest = "assets/img/illustrazioni/hip-hop.jpg"
+[[img]]
+src = "SITO/swing.jpg"
+dest = "assets/img/illustrazioni/swing.jpg"
+
+# --- Loghi ---
+[[img]]
+src = "media e foto/LOGHI_circosvago/Logo Cico Svago 2025.png"
+dest = "assets/img/logo/logo.png"
+max = 1200
+[[img]]
+src = "media e foto/LOGHI_circosvago/Logo Circo Svago Scritta Bianca 2025.png"
+dest = "assets/img/logo/logo-bianco.png"
+max = 1200
+
+# --- Scuola: acrobatica aerea ---
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Aerea_05.jpg"
+dest = "content/scuola/acrobatica-aerea/aerea-05.jpg"
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Aerea_00.jpg"
+dest = "content/scuola/acrobatica-aerea/aerea-00.jpg"
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Aerea_01.jpg"
+dest = "content/scuola/acrobatica-aerea/aerea-01.jpg"
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Aerea_02.jpg"
+dest = "content/scuola/acrobatica-aerea/aerea-02.jpg"
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Aerea_03.jpg"
+dest = "content/scuola/acrobatica-aerea/aerea-03.jpg"
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Aerea_04.jpg"
+dest = "content/scuola/acrobatica-aerea/aerea-04.jpg"
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Aerea_06.jpg"
+dest = "content/scuola/acrobatica-aerea/aerea-06.jpg"
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Aerea_07.jpg"
+dest = "content/scuola/acrobatica-aerea/aerea-07.jpg"
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Aerea_08.jpg"
+dest = "content/scuola/acrobatica-aerea/aerea-08.jpg"
+
+# --- Scuola: giocoleria ed equilibrismo ---
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Giocoleria_04.jpg"
+dest = "content/scuola/giocoleria-equilibrismo/giocoleria-04.jpg"
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Giocoleria_00.jpg"
+dest = "content/scuola/giocoleria-equilibrismo/giocoleria-00.jpg"
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Giocoleria_01.jpg"
+dest = "content/scuola/giocoleria-equilibrismo/giocoleria-01.jpg"
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Giocoleria_02.jpg"
+dest = "content/scuola/giocoleria-equilibrismo/giocoleria-02.jpg"
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Giocoleria_03.jpg"
+dest = "content/scuola/giocoleria-equilibrismo/giocoleria-03.jpg"
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Equilibrismo.jpg"
+dest = "content/scuola/giocoleria-equilibrismo/equilibrismo.jpg"
+
+# --- Scuola: corpo e movimento (acrobatica di coppia) ---
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Acrobatica_di_coppia_02.jpg"
+dest = "content/scuola/corpo-e-movimento/acrobatica-coppia-02.jpg"
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Acrobatica_di_coppia_00.jpg"
+dest = "content/scuola/corpo-e-movimento/acrobatica-coppia-00.jpg"
+[[img]]
+src = "media e foto/FOTO DISCIPLINE/Acrobatiaca_di _coppia_01.jpg"
+dest = "content/scuola/corpo-e-movimento/acrobatica-coppia-01.jpg"
+
+# --- Eventi: spettacoli ---
+[[img]]
+src = "media e foto/Eventi/IMG_20250608_184912.jpg"
+dest = "content/eventi/spettacoli/piazza-giorno.jpg"
+[[img]]
+src = "media e foto/Eventi/IMG20220804233512.jpg"
+dest = "content/eventi/spettacoli/piazza-notte.jpg"
+[[img]]
+src = "media e foto/Eventi/IMG_20250304_182745.jpg"
+dest = "content/eventi/spettacoli/aerea-in-strada.jpg"
+[[img]]
+src = "media e foto/Eventi/FB_IMG_1663832810818.jpg"
+dest = "content/eventi/spettacoli/trampolieri-luminosi.jpg"
+[[img]]
+src = "media e foto/Eventi/FB_IMG_1661768804498.jpg"
+dest = "content/eventi/spettacoli/aerea-palco.jpg"
+[[img]]
+src = "media e foto/Eventi/FB_IMG_1677019421313.jpg"
+dest = "content/eventi/spettacoli/cerchi-in-piazza.jpg"
+[[img]]
+src = "media e foto/Eventi/FB_IMG_1646217390409.jpg"
+dest = "content/eventi/spettacoli/clown-in-piazza.jpg"
+
+# --- Eventi: Circus Playground ---
+[[img]]
+src = "media e foto/Giochi_di_legno/WhatsApp Image 2026-07-30 at 18.57.22.jpeg"
+dest = "content/eventi/circus-playground/gioco-01.jpg"
+[[img]]
+src = "media e foto/Giochi_di_legno/WhatsApp Image 2026-07-30 at 18.57.21.jpeg"
+dest = "content/eventi/circus-playground/gioco-02.jpg"
+[[img]]
+src = "media e foto/Giochi_di_legno/WhatsApp Image 2026-07-30 at 18.57.21 (1).jpeg"
+dest = "content/eventi/circus-playground/gioco-03.jpg"
+[[img]]
+src = "media e foto/Giochi_di_legno/WhatsApp Image 2026-07-30 at 18.57.22 (1).jpeg"
+dest = "content/eventi/circus-playground/gioco-04.jpg"
+[[img]]
+src = "media e foto/Giochi_di_legno/WhatsApp Image 2026-07-30 at 18.57.22 (2).jpeg"
+dest = "content/eventi/circus-playground/gioco-05.jpg"
+[[img]]
+src = "media e foto/Giochi_di_legno/WhatsApp Image 2026-07-30 at 18.57.22 (3).jpeg"
+dest = "content/eventi/circus-playground/gioco-06.jpg"
+[[img]]
+src = "media e foto/Giochi_di_legno/WhatsApp Image 2026-07-30 at 18.57.23.jpeg"
+dest = "content/eventi/circus-playground/gioco-07.jpg"
+[[img]]
+src = "media e foto/Giochi_di_legno/WhatsApp Image 2026-07-20 at 18.46.41 (1).jpeg"
+dest = "content/eventi/circus-playground/gioco-08.jpg"
+[[img]]
+src = "media e foto/Giochi_di_legno/WhatsApp Image 2026-07-20 at 18.46.41 (2).jpeg"
+dest = "content/eventi/circus-playground/gioco-09.jpg"
+[[img]]
+src = "media e foto/Giochi_di_legno/WhatsApp Image 2026-07-20 at 18.46.41.jpeg"
+dest = "content/eventi/circus-playground/gioco-10.jpg"
+[[img]]
+src = "media e foto/Giochi_di_legno/WhatsApp Image 2026-07-20 at 18.46.41 (3).jpeg"
+dest = "content/eventi/circus-playground/costruzioni-01.jpg"
+[[img]]
+src = "media e foto/Giochi_di_legno/WhatsApp Image 2026-07-20 at 18.46.41 (5).jpeg"
+dest = "content/eventi/circus-playground/costruzioni-02.jpg"
+[[img]]
+src = "media e foto/Eventi/Circo svago 8.jpg"
+dest = "content/eventi/circus-playground/costruzioni-03.jpg"
+
+# --- Eventi: laboratori di circo ludico ---
+[[img]]
+src = "media e foto/Eventi/Circo svago 2.jpg"
+dest = "content/eventi/laboratori-circo-ludico/piatti-cinesi.jpg"
+
+# --- Eventi: LabBOLLA ---
+[[img]]
+src = "media e foto/Eventi/FB_IMG_1677096129714.jpg"
+dest = "content/eventi/labbolla/bolle-in-piazza.jpg"
+[[img]]
+src = "media e foto/Eventi/IMG_20250303_185959.jpg"
+dest = "content/eventi/labbolla/bolle-al-tramonto.jpg"
+
+# --- Progetti: Città Circenz(s)e ---
+[[img]]
+src = "media e foto/Eventi/IMG_20250303_191111.jpg"
+dest = "content/progetti/citta-circenzse/giocoliere-bolla.jpg"

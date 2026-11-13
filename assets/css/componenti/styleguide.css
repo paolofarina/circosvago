@@ -1,0 +1,27 @@
+/* Solo per la pagina /styleguide/ */
+.sg section { margin-bottom: var(--s-9); }
+.sg h2 { padding-bottom: var(--s-2); border-bottom: 3px solid var(--c-linea); }
+.sg__nota { color: var(--c-inchiostro-soft); max-width: var(--w-testo); }
+
+.sg__campioni {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: var(--s-4);
+}
+.sg__campione {
+  overflow: hidden;
+  background: var(--c-bianco);
+  border-radius: var(--r-md);
+  box-shadow: var(--ombra-1);
+  font-size: var(--t-sm);
+}
+.sg__colore { height: 5rem; border-bottom: 1px solid var(--c-linea); }
+.sg__campione p { margin: 0; padding: var(--s-2) var(--s-3) 0; }
+.sg__campione code { display: block; padding: 0 var(--s-3) var(--s-3); color: var(--c-inchiostro-soft); }
+
+.sg__riga { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4); margin-bottom: var(--s-5); }
+.sg__campitura { padding: var(--s-6); border-radius: var(--r-lg); background: var(--c-sezione); color: var(--c-bianco); }
+.sg__tipo { display: grid; gap: var(--s-2); margin-bottom: var(--s-5); }
+.sg__tipo code { font-size: var(--t-sm); color: var(--c-inchiostro-soft); }
+.sg__spazio { display: flex; align-items: center; gap: var(--s-3); font-size: var(--t-sm); }
+.sg__spazio span { display: block; height: 1rem; background: var(--c-corallo); border-radius: 2px; }

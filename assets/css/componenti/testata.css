@@ -1,0 +1,52 @@
+.testata {
+  position: relative;
+  padding-block: var(--s-7) var(--s-8);
+  background: var(--c-sezione);
+  color: var(--c-bianco);
+}
+.testata__griglia { display: grid; gap: var(--s-6); align-items: center; }
+@media (min-width: 48rem) {
+  .testata--illustrata .testata__griglia { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+}
+.testata__titolo {
+  color: var(--c-bianco);
+  margin-bottom: var(--s-4);
+}
+.testata__lead {
+  max-width: 52ch;
+  margin: 0;
+  font-size: var(--t-lg);
+}
+.testata__illustrazione {
+  justify-self: center;
+  padding: var(--s-4);
+  background: var(--c-bianco);
+  border-radius: var(--r-lg);
+  box-shadow: var(--ombra-2);
+  transform: rotate(-2deg);
+}
+.testata__illustrazione img { max-height: 18rem; width: auto; margin-inline: auto; }
+
+.testata__onda {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  color: var(--c-carta);
+}
+
+/* Briciole */
+.briciole ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-2);
+  margin: 0 0 var(--s-4);
+  padding: 0;
+  font-family: var(--f-titolo);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-maiuscolo);
+  text-transform: uppercase;
+}
+.briciole li + li::before { content: "·"; margin-right: var(--s-2); }
+.briciole a { color: var(--c-bianco); }

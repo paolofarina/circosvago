@@ -1,0 +1,5 @@
+{{- /* Segnaposto per contenuti mancanti. In produzione resta visibile apposta: va rimosso scrivendo il testo. */ -}}
+<aside class="da-scrivere" role="note">
+  <span class="etichetta">Da scrivere</span>
+  <div>{{ .testo | markdownify }}</div>
+</aside>

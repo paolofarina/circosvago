@@ -1,0 +1,127 @@
+/* =====================================================================
+   Circo Svago — design token
+   UNICA fonte di colori, font, misure. Vedi DESIGN.md.
+   Nessun altro file può contenere valori esadecimali, rgb() o hsl().
+   ===================================================================== */
+
+@font-face {
+  font-family: "Yellowtail";
+  src: url("/fonts/yellowtail-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("/fonts/josefin-sans-600_700-normal.woff2") format("woff2");
+  font-weight: 600 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url("/fonts/nunito-400_800-normal.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url("/fonts/nunito-400-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* --- Colori base --- */
+  --c-inchiostro: #2A2238;
+  --c-inchiostro-soft: #5A5068;
+  --c-carta: #FFF8EF;
+  --c-bianco: #FFFFFF;
+  --c-linea: #EADFD2;
+  --c-link: #B04535;
+
+  /* --- Colori di sezione (brochure) — testo sopra: bianco --- */
+  --c-corallo: #C2513F;
+  --c-malva: #9C4A8A;
+  --c-blu: #3C68B0;
+
+  /* --- Varianti chiare — testo sopra: inchiostro --- */
+  --c-corallo-chiaro: #FBE4DF;
+  --c-malva-chiaro: #F4E3EF;
+  --c-blu-chiaro: #E2ECF8;
+  --c-giallo-chiaro: #FFF2C2;
+
+  /* --- Accenti (logo) — SOLO decorazione, mai testo --- */
+  --c-giallo: #F2C200;
+  --c-arancio: #E5561A;
+  --c-verde: #92C11B;
+  --c-ciano: #0DB4D9;
+  --c-viola: #906CA8;
+  --c-rosa: #DA609E;
+
+  /* --- Ombre (calde) --- */
+  --ombra-colore: 42 34 56; /* inchiostro in canali RGB, per le ombre */
+  --ombra-1: 0 2px 6px rgb(var(--ombra-colore) / .06), 0 8px 24px rgb(var(--ombra-colore) / .08);
+  --ombra-2: 0 4px 10px rgb(var(--ombra-colore) / .08), 0 16px 40px rgb(var(--ombra-colore) / .14);
+  --velo: rgb(var(--ombra-colore) / .82); /* fondo lightbox */
+
+  /* --- Colore di sezione corrente (sovrascritto per pagina) --- */
+  --c-sezione: var(--c-corallo);
+  --c-sezione-chiaro: var(--c-corallo-chiaro);
+
+  /* --- Font --- */
+  --f-script: "Yellowtail", "Brush Script MT", cursive;
+  --f-titolo: "Josefin Sans", "Century Gothic", "Avenir Next", sans-serif;
+  --f-testo: "Nunito", "Segoe UI", system-ui, sans-serif;
+
+  /* --- Scala tipografica --- */
+  --t-sm: 0.875rem;
+  --t-base: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem);
+  --t-lg: 1.25rem;
+  --t-xl: clamp(1.5rem, 1.35rem + 0.6vw, 1.75rem);
+  --t-2xl: clamp(1.875rem, 1.5rem + 1.6vw, 2.5rem);
+  --t-3xl: clamp(2.5rem, 1.9rem + 2.8vw, 4rem);
+  --t-4xl: clamp(3rem, 2rem + 4.5vw, 5.5rem);
+
+  --lh-testo: 1.65;
+  --lh-titolo: 1.15;
+  --tracking-maiuscolo: .06em;
+
+  /* --- Spazi (base 4px) --- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 8rem;
+  --s-sezione: clamp(4rem, 3rem + 4vw, 7rem);
+  --s-gutter: clamp(1rem, 0.5rem + 2vw, 2rem);
+
+  /* --- Larghezze --- */
+  --w-max: 75rem;
+  --w-testo: 68ch;
+
+  /* --- Raggi --- */
+  --r-sm: 8px;
+  --r-md: 16px;
+  --r-lg: 28px;
+  --r-pill: 999px;
+
+  /* --- Movimento --- */
+  --durata: 200ms;
+  --curva: cubic-bezier(.2, .7, .3, 1);
+
+  /* --- Altezza header --- */
+  --h-header: 6rem;
+}
+
+/* Colore di sezione: impostato su <body data-colore="..."> */
+[data-colore="corallo"] { --c-sezione: var(--c-corallo); --c-sezione-chiaro: var(--c-corallo-chiaro); }
+[data-colore="malva"]   { --c-sezione: var(--c-malva);   --c-sezione-chiaro: var(--c-malva-chiaro); }
+[data-colore="blu"]     { --c-sezione: var(--c-blu);     --c-sezione-chiaro: var(--c-blu-chiaro); }

@@ -1,0 +1,168 @@
+baseURL = 'https://www.circosvago.it/'
+locale = 'it-IT'
+title = 'Circo Svago — Scuola di circo'
+enableRobotsTXT = true
+disableKinds = ['taxonomy', 'term']
+
+[params]
+  description = "Circo Svago è una scuola di circo educativo e sociale ad Albano Laziale, nei Castelli Romani: corsi, spettacoli, centri estivi e progetti per tutte le età."
+  motto = "Be a rebel. Join the circus."
+  fondazione = 2015
+
+  [params.contatti]
+    indirizzo = "Piazza A. Moro, 45"
+    cap_citta = "00041 Albano Laziale (RM)"
+    telefono = "+39 331 868 1147"
+    telefono_nome = "Jacopo"
+    email_info = "info@circosvago.it"
+    email_segreteria = "segreteria@circosvago.it"
+    email_eventi = "eventi@circosvago.it"
+    # Link ai profili social: da completare (vuoto = il link non viene mostrato)
+    instagram = ""
+    facebook = ""
+
+  # Modulo contatti: un sito statico ha bisogno di un servizio esterno (Netlify Forms, Formspree...).
+  # Finché "azione" è vuota, al posto del modulo si mostrano i link email.
+  [params.modulo]
+    azione = ""
+
+[menus]
+  [[menus.main]]
+    identifier = 'chi-siamo'
+    name = 'Chi siamo'
+    pageRef = '/chi-siamo'
+    weight = 10
+  [[menus.main]]
+    name = 'La nostra storia'
+    pageRef = '/chi-siamo'
+    parent = 'chi-siamo'
+    weight = 11
+  [[menus.main]]
+    name = 'Lo staff'
+    pageRef = '/chi-siamo/staff'
+    parent = 'chi-siamo'
+    weight = 12
+
+  [[menus.main]]
+    identifier = 'scuola'
+    name = 'Scuola di circo'
+    pageRef = '/scuola'
+    weight = 20
+  [[menus.main]]
+    name = 'Acrobatica aerea'
+    pageRef = '/scuola/acrobatica-aerea'
+    parent = 'scuola'
+    weight = 21
+  [[menus.main]]
+    name = 'Giocoleria ed equilibrismo'
+    pageRef = '/scuola/giocoleria-equilibrismo'
+    parent = 'scuola'
+    weight = 22
+  [[menus.main]]
+    name = 'Swing'
+    pageRef = '/scuola/swing'
+    parent = 'scuola'
+    weight = 23
+  [[menus.main]]
+    name = 'Hip hop'
+    pageRef = '/scuola/hip-hop'
+    parent = 'scuola'
+    weight = 24
+  [[menus.main]]
+    name = 'Corpo e movimento'
+    pageRef = '/scuola/corpo-e-movimento'
+    parent = 'scuola'
+    weight = 25
+
+  [[menus.main]]
+    identifier = 'eventi'
+    name = 'Eventi e feste'
+    pageRef = '/eventi'
+    weight = 30
+  [[menus.main]]
+    name = 'Spettacoli'
+    pageRef = '/eventi/spettacoli'
+    parent = 'eventi'
+    weight = 31
+  [[menus.main]]
+    name = 'Circus Playground'
+    pageRef = '/eventi/circus-playground'
+    parent = 'eventi'
+    weight = 32
+  [[menus.main]]
+    name = 'Laboratori di circo ludico'
+    pageRef = '/eventi/laboratori-circo-ludico'
+    parent = 'eventi'
+    weight = 33
+  [[menus.main]]
+    name = 'LabBOLLA'
+    pageRef = '/eventi/labbolla'
+    parent = 'eventi'
+    weight = 34
+  [[menus.main]]
+    name = 'Costruire la Repubblica'
+    pageRef = '/eventi/costruire-la-repubblica'
+    parent = 'eventi'
+    weight = 35
+  [[menus.main]]
+    name = 'Ciclostile'
+    pageRef = '/eventi/ciclostile'
+    parent = 'eventi'
+    weight = 36
+  [[menus.main]]
+    name = 'Centri estivi'
+    pageRef = '/eventi/centri-estivi'
+    parent = 'eventi'
+    weight = 37
+
+  [[menus.main]]
+    identifier = 'progetti'
+    name = 'Progetti'
+    pageRef = '/progetti'
+    weight = 40
+  [[menus.main]]
+    name = 'Circo a scuola'
+    pageRef = '/progetti/circo-a-scuola'
+    parent = 'progetti'
+    weight = 41
+  [[menus.main]]
+    name = 'Circo sociale'
+    pageRef = '/progetti/circo-sociale'
+    parent = 'progetti'
+    weight = 42
+  [[menus.main]]
+    name = 'Città Circenz(s)e'
+    pageRef = '/progetti/citta-circenzse'
+    parent = 'progetti'
+    weight = 43
+  [[menus.main]]
+    name = 'Re-Play'
+    pageRef = '/progetti/re-play'
+    parent = 'progetti'
+    weight = 44
+
+  [[menus.main]]
+    identifier = 'contatti'
+    name = 'Contatti'
+    pageRef = '/contatti'
+    weight = 50
+
+[imaging]
+  resampleFilter = 'Lanczos'
+  [imaging.jpeg]
+    quality = 80
+  [imaging.webp]
+    quality = 78
+  [imaging.exif]
+    disableDate = true
+    disableLatLong = true
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[sitemap]
+  changeFreq = 'monthly'
+
+[module.hugoVersion]
+  extended = true
+  min = '0.146.0'

@@ -1,0 +1,21 @@
+{{- /* Card di una pagina: copertina 4:3 (o illustrazione), titolo, descrizione. Contesto: la pagina. */ -}}
+{{- $colore := partial "colore.html" . }}
+{{- $cop := partial "copertina.html" . }}
+<article class="card" data-colore="{{ $colore }}">
+  <div class="card__media{{ if and $cop $cop.illustrazione }} card__media--illustrazione{{ end }}">
+    {{- with $cop }}
+      {{- if .illustrazione }}
+        {{ partial "img.html" (dict "res" .res "alt" "" "widths" (slice 320 640) "sizes" "(min-width: 64rem) 18rem, (min-width: 40rem) 45vw, 90vw" "class" "illustrazione") }}
+      {{- else }}
+        {{ partial "img.html" (dict "res" .res "alt" .alt "ratio" "4:3" "widths" (slice 400 640 900) "sizes" "(min-width: 64rem) 22rem, (min-width: 40rem) 45vw, 90vw") }}
+      {{- end }}
+    {{- else }}
+      <span class="card__segnaposto" aria-hidden="true"></span>
+    {{- end }}
+  </div>
+  <div class="card__corpo">
+    <h3 class="card__titolo"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
+    {{- with .Description }}<p class="card__testo">{{ . }}</p>{{ end }}
+    <span class="card__cta" aria-hidden="true">Scopri →</span>
+  </div>
+</article>

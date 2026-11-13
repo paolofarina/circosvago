@@ -1,0 +1,29 @@
+{{- /* Testata di pagina: campitura nel colore di sezione, titolo script, briciole, lead, illustrazione opzionale. */ -}}
+{{- $illu := false }}
+{{- with .Params.illustrazione }}{{ $illu = resources.Get (printf "img/illustrazioni/%s" .) }}{{ end }}
+<section class="testata{{ if $illu }} testata--illustrata{{ end }}">
+  <div class="contenitore testata__griglia">
+    <div class="testata__testo">
+      {{- if not .IsHome }}
+      <nav class="briciole" aria-label="Sei qui">
+        <ol>
+          {{- range .Ancestors.Reverse }}
+            <li><a href="{{ .RelPermalink }}">{{ if .IsHome }}Home{{ else }}{{ .LinkTitle }}{{ end }}</a></li>
+          {{- end }}
+          <li aria-current="page">{{ .LinkTitle }}</li>
+        </ol>
+      </nav>
+      {{- end }}
+      <h1 class="testata__titolo">{{ .Title }}</h1>
+      {{- with .Description }}
+        <p class="testata__lead">{{ . }}</p>
+      {{- end }}
+    </div>
+    {{- with $illu }}
+      <div class="testata__illustrazione">
+        {{ partial "img.html" (dict "res" . "alt" "" "widths" (slice 320 640) "sizes" "(min-width: 48rem) 20rem, 60vw" "class" "illustrazione" "eager" true) }}
+      </div>
+    {{- end }}
+  </div>
+  {{ partial "onda.html" (dict "classe" "testata__onda") }}
+</section>

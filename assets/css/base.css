@@ -1,0 +1,199 @@
+/* ---------- Reset essenziale ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--h-header) + var(--s-4));
+}
+
+body {
+  margin: 0;
+  background: var(--c-carta);
+  color: var(--c-inchiostro);
+  font-family: var(--f-testo);
+  font-size: var(--t-base);
+  line-height: var(--lh-testo);
+  overflow-x: clip;
+}
+
+img, svg { display: block; max-width: 100%; }
+img { height: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Tipografia ---------- */
+h1, h2, h3, h4 {
+  margin: 0 0 var(--s-4);
+  font-family: var(--f-titolo);
+  font-weight: 700;
+  line-height: var(--lh-titolo);
+  text-wrap: balance;
+}
+h1 {
+  font-family: var(--f-script);
+  font-weight: 400;
+  font-size: var(--t-3xl);
+}
+h2 { font-size: var(--t-2xl); }
+h3 { font-size: var(--t-xl); }
+h4 { font-size: var(--t-lg); }
+
+p { margin: 0 0 var(--s-4); }
+
+a {
+  color: var(--c-link);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+a:hover { text-decoration-thickness: 3px; }
+
+:focus-visible {
+  outline: 3px solid var(--c-blu);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+.etichetta {
+  display: block;
+  margin: 0 0 var(--s-2);
+  font-family: var(--f-titolo);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  letter-spacing: var(--tracking-maiuscolo);
+  text-transform: uppercase;
+}
+
+.illustrazione { mix-blend-mode: multiply; }
+
+.salta {
+  position: absolute;
+  left: var(--s-4);
+  top: calc(-1 * var(--s-9));
+  z-index: 100;
+  padding: var(--s-2) var(--s-4);
+  background: var(--c-inchiostro);
+  color: var(--c-bianco);
+  border-radius: var(--r-sm);
+}
+.salta:focus { top: var(--s-4); }
+
+/* ---------- Layout ---------- */
+.contenitore {
+  width: 100%;
+  max-width: var(--w-max);
+  margin-inline: auto;
+  padding-inline: var(--s-gutter);
+}
+
+.sezione { padding-block: var(--s-sezione); }
+.sezione--stretta { padding-block: var(--s-8); }
+.sezione--chiara { background: var(--c-sezione-chiaro); }
+
+.sezione__titolo { font-size: var(--t-2xl); margin-bottom: var(--s-5); }
+.sezione__lead {
+  max-width: var(--w-testo);
+  margin-bottom: var(--s-6);
+  font-size: var(--t-lg);
+  color: var(--c-inchiostro-soft);
+}
+
+.griglia-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  gap: var(--s-5);
+}
+/* Quattro card: 1 → 2 → 4 colonne, mai una card orfana */
+@media (min-width: 40rem) {
+  .griglia-card--quattro { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 72rem) {
+  .griglia-card--quattro { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* ---------- Testo lungo ---------- */
+.prosa { max-width: var(--w-testo); }
+.prosa > :first-child { margin-top: 0; }
+.prosa h2 { margin-top: var(--s-7); }
+.prosa h3 { margin-top: var(--s-6); }
+.prosa ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--s-5);
+}
+.prosa ul > li {
+  position: relative;
+  padding-left: var(--s-6);
+  margin-bottom: var(--s-2);
+}
+.prosa ul > li::before {
+  content: "";
+  position: absolute;
+  left: var(--s-1);
+  top: .55em;
+  width: .7em;
+  height: .7em;
+  border-radius: 50%;
+  background: var(--c-giallo);
+}
+.prosa ul > li:nth-child(6n+2)::before { background: var(--c-arancio); }
+.prosa ul > li:nth-child(6n+3)::before { background: var(--c-verde); }
+.prosa ul > li:nth-child(6n+4)::before { background: var(--c-ciano); }
+.prosa ul > li:nth-child(6n+5)::before { background: var(--c-viola); }
+.prosa ul > li:nth-child(6n+6)::before { background: var(--c-rosa); }
+
+.prosa blockquote {
+  margin: var(--s-6) 0;
+  padding: var(--s-4) var(--s-5);
+  border-left: 6px solid var(--c-sezione);
+  background: var(--c-sezione-chiaro);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-size: var(--t-lg);
+  font-style: italic;
+}
+.prosa blockquote p:last-child { margin-bottom: 0; }
+
+.lead { font-size: var(--t-lg); }
+
+/* ---------- Pagina singola ---------- */
+.pagina { display: grid; gap: var(--s-7); }
+@media (min-width: 56rem) {
+  .pagina--con-foto {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 28rem);
+    align-items: start;
+  }
+  .pagina__foto { position: sticky; top: calc(var(--h-header) + var(--s-5)); }
+}
+.pagina__foto { margin: 0; }
+.pagina__foto img {
+  width: 100%;
+  border-radius: var(--r-lg);
+  box-shadow: var(--ombra-2);
+}
+@media (max-width: 55.99rem) {
+  .pagina__foto { order: -1; }
+}
+
+.pagina-404 { text-align: center; display: grid; justify-items: center; gap: var(--s-4); }
+.pagina-404__figura { width: 14rem; }
+
+/* ---------- Riquadro (contenitore bianco generico) ---------- */
+.riquadro {
+  background: var(--c-bianco);
+  border-radius: var(--r-lg);
+  padding: var(--s-6);
+  box-shadow: var(--ombra-1);
+}
+.riquadro > :last-child { margin-bottom: 0; }
+
+/* ---------- Onda decorativa ---------- */
+.onda {
+  display: block;
+  width: 100%;
+  height: clamp(1.5rem, 3vw, 3rem);
+}

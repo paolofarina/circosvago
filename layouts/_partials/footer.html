@@ -1,0 +1,36 @@
+{{- $c := site.Params.contatti }}
+<footer class="footer">
+  {{ partial "onda.html" (dict "classe" "footer__onda") }}
+  <div class="contenitore footer__griglia">
+    <div class="footer__marchio">
+      {{- with resources.Get "img/logo/logo-bianco.png" }}
+        {{ partial "img.html" (dict "res" . "alt" "Circo Svago — scuola di circo" "widths" (slice 160 320) "sizes" "160px" "formato" "png" "class" "footer__logo") }}
+      {{- end }}
+      <p class="footer__motto">{{ site.Params.motto }}</p>
+      <p>Scuola di circo educativo e sociale ad Albano Laziale, dal {{ site.Params.fondazione }}.</p>
+    </div>
+
+    <nav class="footer__colonna" aria-label="Menu a piè di pagina">
+      <h2 class="etichetta">Esplora</h2>
+      <ul class="footer__lista">
+        {{- range site.Menus.main }}
+          <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+        {{- end }}
+      </ul>
+    </nav>
+
+    <div class="footer__colonna">
+      <h2 class="etichetta">Contatti</h2>
+      <ul class="footer__lista">
+        <li>{{ $c.indirizzo }}<br>{{ $c.cap_citta }}</li>
+        <li><a href="tel:{{ replace $c.telefono " " "" }}">{{ $c.telefono }}</a> ({{ $c.telefono_nome }})</li>
+        <li><a href="mailto:{{ $c.email_segreteria }}">{{ $c.email_segreteria }}</a></li>
+        <li><a href="mailto:{{ $c.email_eventi }}">{{ $c.email_eventi }}</a></li>
+      </ul>
+      {{ partial "social.html" . }}
+    </div>
+  </div>
+  <div class="contenitore footer__fondo">
+    <p>© {{ now.Year }} Circo Svago</p>
+  </div>
+</footer>

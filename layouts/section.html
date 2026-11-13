@@ -1,0 +1,24 @@
+{{ define "main" }}
+{{ partial "testata.html" . }}
+
+{{- with .Content }}
+<section class="sezione sezione--stretta">
+  <div class="contenitore">
+    <div class="prosa">{{ . }}</div>
+  </div>
+</section>
+{{- end }}
+
+{{- with .Pages.ByWeight }}
+<section class="sezione sezione--chiara">
+  <div class="contenitore">
+    {{- with $.Params.titolo_elenco }}<h2 class="sezione__titolo">{{ . }}</h2>{{ end }}
+    <div class="griglia-card">
+      {{- range . }}{{ partial "card.html" . }}{{ end }}
+    </div>
+  </div>
+</section>
+{{- end }}
+
+{{ partial "contatti.html" . }}
+{{ end }}

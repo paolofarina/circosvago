@@ -1,0 +1,34 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{- $titolo := cond .IsHome site.Title (printf "%s | Circo Svago" .Title) }}
+{{- $descr := or .Description .Summary site.Params.description | plainify | strings.TrimSpace | truncate 160 }}
+<title>{{ $titolo }}</title>
+<meta name="description" content="{{ $descr }}">
+<link rel="canonical" href="{{ .Permalink }}">
+{{- if or .Params.noindex hugo.IsDevelopment }}
+<meta name="robots" content="noindex">
+{{- end }}
+<meta name="theme-color" content="#C2513F">{{/* = --c-corallo; i meta tag non possono leggere variabili CSS */}}
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Circo Svago">
+<meta property="og:title" content="{{ $titolo }}">
+<meta property="og:description" content="{{ $descr }}">
+<meta property="og:url" content="{{ .Permalink }}">
+{{- with partial "copertina.html" . }}
+  {{- if not .illustrazione }}
+    {{- with .res.Fill "1200x630 jpg q80 Smart" }}
+<meta property="og:image" content="{{ .Permalink }}">
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- with resources.Get "img/logo/logo.png" }}
+  {{- with .Resize "64x png" }}<link rel="icon" type="image/png" href="{{ .RelPermalink }}">{{ end }}
+  {{- with .Resize "180x png" }}<link rel="apple-touch-icon" href="{{ .RelPermalink }}">{{ end }}
+{{- end }}
+
+<link rel="preload" href="/fonts/nunito-400_800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/yellowtail-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+{{ partialCached "head/css.html" . }}

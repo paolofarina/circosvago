@@ -1,0 +1,5 @@
+{{- /* Uso: {{< bottone link="/contatti/" stile="pieno" >}}Scrivici{{< /bottone >}}  — stile: pieno | bordo */ -}}
+{{- $link := .Get "link" }}
+{{- $stile := .Get "stile" | default "pieno" }}
+{{- $esterno := strings.HasPrefix $link "http" }}
+<a class="btn btn--{{ $stile }}" href="{{ if $esterno }}{{ $link }}{{ else }}{{ relURL $link }}{{ end }}"{{ if $esterno }} rel="noopener"{{ end }}>{{ .Inner | strings.TrimSpace }}</a>

@@ -1,0 +1,2 @@
+{{- /* Uso: {{< da-scrivere >}}Cosa manca e chi lo fornisce{{< /da-scrivere >}} */ -}}
+{{ partial "da-scrivere.html" (dict "testo" (.Inner | strings.TrimSpace)) }}

@@ -1,0 +1,59 @@
+{{- /*
+UNICO modo per mostrare un'immagine raster nel sito (vedi DESIGN.md §6).
+Genera WebP responsive con srcset.
+
+@param res     resource immagine (obbligatorio)
+@param alt     testo alternativo ("" per immagini decorative)
+@param ratio   "4:3", "1:1", "3:4"... ritaglio intelligente; vuoto = proporzioni originali
+@param sizes   attributo sizes (default "100vw")
+@param widths  slice di larghezze (default 480 800 1200 1600)
+@param class   classe CSS opzionale
+@param eager   true per immagini above the fold
+@param formato "webp" (default) o "png" per i loghi
+*/ -}}
+{{- $img := .res }}
+{{- $widths := .widths | default (slice 480 800 1200 1600) }}
+{{- $formato := .formato | default "webp" }}
+{{- $rw := 0 }}{{ $rh := 0 }}
+{{- with .ratio }}
+  {{- $p := split . ":" }}
+  {{- $rw = int (index $p 0) }}{{ $rh = int (index $p 1) }}
+{{- end }}
+
+{{- $srcset := slice }}
+{{- $ultimo := false }}
+{{- range $w := $widths }}
+  {{- if le $w $img.Width }}
+    {{- $r := false }}
+    {{- if $rw }}
+      {{- $h := div (mul $w $rh) $rw }}
+      {{- if le $h $img.Height }}
+        {{- $r = $img.Fill (printf "%dx%d %s q78 Smart" $w $h $formato) }}
+      {{- end }}
+    {{- else }}
+      {{- $r = $img.Resize (printf "%dx %s q78" $w $formato) }}
+    {{- end }}
+    {{- with $r }}
+      {{- $srcset = $srcset | append (printf "%s %dw" .RelPermalink .Width) }}
+      {{- $ultimo = . }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- if not $ultimo }}
+  {{- /* immagine più piccola della larghezza minima: una sola versione */}}
+  {{- if $rw }}
+    {{- $w := $img.Width }}{{ $h := div (mul $w $rh) $rw }}
+    {{- if gt $h $img.Height }}{{ $h = $img.Height }}{{ $w = div (mul $h $rw) $rh }}{{ end }}
+    {{- $ultimo = $img.Fill (printf "%dx%d %s q78 Smart" $w $h $formato) }}
+  {{- else }}
+    {{- $ultimo = $img.Resize (printf "%dx %s q78" $img.Width $formato) }}
+  {{- end }}
+  {{- $srcset = slice (printf "%s %dw" $ultimo.RelPermalink $ultimo.Width) }}
+{{- end }}
+<img src="{{ $ultimo.RelPermalink }}"
+  srcset="{{ delimit $srcset ", " }}"
+  sizes="{{ .sizes | default "100vw" }}"
+  width="{{ $ultimo.Width }}" height="{{ $ultimo.Height }}"
+  alt="{{ .alt }}"
+  {{- with .class }} class="{{ . }}"{{ end }}
+  {{- if .eager }} fetchpriority="high"{{ else }} loading="lazy" decoding="async"{{ end }}>

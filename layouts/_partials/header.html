@@ -1,0 +1,36 @@
+<header class="header" data-header>
+  <div class="contenitore header__barra">
+    <a class="header__logo" href="{{ "/" | relURL }}" aria-label="Circo Svago — home">
+      {{- with resources.Get "img/logo/logo.png" }}
+        {{ partial "img.html" (dict "res" . "alt" "" "widths" (slice 96 192) "sizes" "96px" "formato" "png" "eager" true) }}
+      {{- end }}
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principale" data-menu-toggle>
+      <span class="menu-toggle__icona" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="menu-toggle__testo">Menu</span>
+    </button>
+
+    <nav class="nav" id="menu-principale" aria-label="Menu principale">
+      <ul class="nav__lista">
+        {{- $pagina := . }}
+        {{- range site.Menus.main }}
+          {{- $attivo := or ($pagina.IsMenuCurrent "main" .) ($pagina.HasMenuCurrent "main" .) }}
+          <li class="nav__voce{{ if .HasChildren }} nav__voce--figli{{ end }}">
+            <a class="nav__link" href="{{ .URL }}"{{ if $attivo }} aria-current="{{ if $pagina.IsMenuCurrent "main" . }}page{{ else }}true{{ end }}"{{ end }}>{{ .Name }}</a>
+            {{- if .HasChildren }}
+              <button class="nav__apri" type="button" aria-expanded="false" aria-label="Apri il sottomenu {{ .Name }}" data-sottomenu-toggle>
+                <svg viewBox="0 0 12 8" width="12" height="8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <ul class="nav__sottomenu">
+                {{- range .Children }}
+                  <li><a href="{{ .URL }}"{{ if $pagina.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+                {{- end }}
+              </ul>
+            {{- end }}
+          </li>
+        {{- end }}
+      </ul>
+    </nav>
+  </div>
+</header>

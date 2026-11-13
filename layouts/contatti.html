@@ -1,0 +1,53 @@
+{{ define "main" }}
+{{ partial "testata.html" . }}
+{{- $c := site.Params.contatti }}
+
+<section class="sezione sezione--stretta">
+  <div class="contenitore contatti">
+    <div class="contatti__info">
+      <div class="riquadro">
+        <h2>Scrivici</h2>
+        <dl class="contatti__elenco">
+          <dt class="etichetta">Segreteria e corsi</dt>
+          <dd><a href="mailto:{{ $c.email_segreteria }}">{{ $c.email_segreteria }}</a></dd>
+          <dt class="etichetta">Eventi, feste e spettacoli</dt>
+          <dd><a href="mailto:{{ $c.email_eventi }}">{{ $c.email_eventi }}</a></dd>
+          <dt class="etichetta">Informazioni generali</dt>
+          <dd><a href="mailto:{{ $c.email_info }}">{{ $c.email_info }}</a></dd>
+          <dt class="etichetta">Telefono</dt>
+          <dd><a href="tel:{{ replace $c.telefono " " "" }}">{{ $c.telefono }}</a> ({{ $c.telefono_nome }})</dd>
+        </dl>
+        {{ partial "social.html" . }}
+      </div>
+
+      {{- with site.Params.modulo.azione }}
+      <form class="riquadro modulo" action="{{ . }}" method="post">
+        <h2>Mandaci un messaggio</h2>
+        <label>Nome <input type="text" name="nome" autocomplete="name" required></label>
+        <label>Email <input type="email" name="email" autocomplete="email" required></label>
+        <label>Messaggio <textarea name="messaggio" rows="5" required></textarea></label>
+        <label class="modulo__privacy"><input type="checkbox" name="privacy" required> Ho letto l'informativa privacy</label>
+        <button class="btn btn--pieno" type="submit">Invia</button>
+      </form>
+      {{- end }}
+    </div>
+
+    <div class="contatti__sedi">
+      <h2>Dove siamo</h2>
+      {{- range .Params.sedi }}
+        <article class="riquadro sede">
+          <h3>{{ .nome }}</h3>
+          {{- if .indirizzo }}
+            <p>{{ .indirizzo }}</p>
+            <a class="btn btn--bordo" href="https://www.openstreetmap.org/search?query={{ .indirizzo | urlquery }}" rel="noopener">Apri sulla mappa</a>
+          {{- else }}
+            {{ partial "da-scrivere.html" (dict "testo" "Indirizzo da completare.") }}
+          {{- end }}
+          {{- with .note }}<p class="sede__note">{{ . }}</p>{{ end }}
+        </article>
+      {{- end }}
+      {{- with .Content }}<div class="prosa">{{ . }}</div>{{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

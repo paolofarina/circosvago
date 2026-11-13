@@ -1,0 +1,7 @@
+# Build di Hugo
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# Materiale grezzo del cliente (330 MB): le immagini ottimizzate sono già in content/ e assets/
+/CIRCO SVAGO SITO/

@@ -1,0 +1,15 @@
+{{- /*
+Restituisce il colore di sezione della pagina: corallo | malva | blu.
+Cerca `colore` nella pagina, poi risale le sezioni. Default: corallo.
+@example {{ $c := partial "colore.html" . }}
+*/ -}}
+{{- $colore := "corallo" }}
+{{- $p := . }}
+{{- $trovato := false }}
+{{- range seq 4 }}
+  {{- if and $p (not $trovato) }}
+    {{- with $p.Params.colore }}{{ $colore = . }}{{ $trovato = true }}{{ end }}
+    {{- $p = $p.Parent }}
+  {{- end }}
+{{- end }}
+{{- return $colore }}

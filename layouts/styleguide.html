@@ -1,0 +1,108 @@
+{{ define "main" }}
+{{ partial "testata.html" . }}
+
+{{- $gruppi := slice
+  (dict "titolo" "Colori base" "nota" "Testo, sfondi e linee." "token" (slice "--c-inchiostro" "--c-inchiostro-soft" "--c-carta" "--c-bianco" "--c-linea" "--c-link"))
+  (dict "titolo" "Colori di sezione" "nota" "Campiture piene. Testo sopra: sempre bianco." "token" (slice "--c-corallo" "--c-malva" "--c-blu"))
+  (dict "titolo" "Varianti chiare" "nota" "Sfondi di sezione morbidi. Testo sopra: inchiostro." "token" (slice "--c-corallo-chiaro" "--c-malva-chiaro" "--c-blu-chiaro" "--c-giallo-chiaro"))
+  (dict "titolo" "Accenti dal logo" "nota" "Solo decorazione: puntini, bordi, coriandoli. Mai testo." "token" (slice "--c-giallo" "--c-arancio" "--c-verde" "--c-ciano" "--c-viola" "--c-rosa"))
+}}
+
+<div class="contenitore sezione sg">
+  <p class="sg__nota">Questa pagina mostra le regole di <strong>DESIGN.md</strong> applicate davvero. Se qualcosa qui sembra sbagliato, è sbagliato anche nel sito. Non è nel menu e non viene indicizzata.</p>
+
+  <section>
+    <h2>Colori</h2>
+    {{- range $gruppi }}
+      <h3>{{ .titolo }}</h3>
+      <p class="sg__nota">{{ .nota }}</p>
+      <div class="sg__campioni">
+        {{- range .token }}
+          <div class="sg__campione">
+            <div class="sg__colore" style="{{ printf "background: var(%s)" . | safeCSS }}"></div>
+            <p><strong>{{ . }}</strong></p>
+            <code data-token="{{ . }}"></code>
+          </div>
+        {{- end }}
+      </div>
+    {{- end }}
+
+    <h3>Campiture con testo</h3>
+    <div class="sg__riga">
+      {{- range slice "corallo" "malva" "blu" }}
+        <div class="sg__campitura" data-colore="{{ . }}">
+          <strong>Testo bianco su {{ . }}</strong><br>contrasto ≥ 4.5:1
+        </div>
+      {{- end }}
+    </div>
+  </section>
+
+  <section>
+    <h2>Tipografia</h2>
+    <div class="sg__tipo"><code>h1 · --f-script · --t-3xl</code><h1>Scuola di circo</h1></div>
+    <div class="sg__tipo"><code>h2 · --f-titolo · --t-2xl</code><h2>Dai spazio alla tua passione</h2></div>
+    <div class="sg__tipo"><code>h3 · --f-titolo · --t-xl</code><h3>Laboratori di circo ludico</h3></div>
+    <div class="sg__tipo"><code>.etichetta · --f-titolo · maiuscolo</code><span class="etichetta">Eventi e feste</span></div>
+    <div class="sg__tipo"><code>.lead · --f-testo · --t-lg</code><p class="lead">Entrate, provate, giocate. Il resto lo facciamo insieme.</p></div>
+    <div class="sg__tipo prosa"><code>p · --f-testo · --t-base</code>
+      <p>Qui si impara a giocolare, stare in equilibrio, andare sul monociclo, volare con l'acrobatica aerea e scoprire cosa può fare il proprio corpo. <a href="#">Un link nel testo</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Spazi</h2>
+    {{- range slice "--s-1" "--s-2" "--s-3" "--s-4" "--s-5" "--s-6" "--s-7" "--s-8" "--s-9" "--s-10" }}
+      <div class="sg__spazio"><span style="{{ printf "width: var(%s)" . | safeCSS }}"></span><code>{{ . }}</code> <code data-token="{{ . }}"></code></div>
+    {{- end }}
+  </section>
+
+  <section>
+    <h2>Bottoni</h2>
+    <div class="sg__riga">
+      <a class="btn btn--pieno" href="#">Pieno</a>
+      <a class="btn btn--bordo" href="#">Bordo</a>
+      <button class="btn-tondo" type="button" aria-label="Esempio">→</button>
+    </div>
+    <div class="sg__riga">
+      {{- range slice "corallo" "malva" "blu" }}
+        <a class="btn btn--pieno" data-colore="{{ . }}" href="#">Sezione {{ . }}</a>
+      {{- end }}
+    </div>
+    <div class="sg__campitura sg__riga" data-colore="blu">
+      <a class="btn btn--chiaro" href="#">Chiaro, su campitura</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Elenchi e citazioni</h2>
+    <div class="prosa">
+      <ul>
+        <li>Palline da giocoleria</li><li>Piatti cinesi</li><li>Flowerstick</li>
+        <li>Trampoli a mano</li><li>Trampoli a secchio</li><li>Monociclo</li>
+      </ul>
+      <blockquote><p>Aspetta… ma questa cosa la so fare davvero?</p></blockquote>
+    </div>
+  </section>
+
+  <section>
+    <h2>Card</h2>
+    <div class="griglia-card">
+      {{- range slice "/scuola/acrobatica-aerea" "/scuola/swing" "/eventi/circus-playground" "/progetti/re-play" }}
+        {{- with site.GetPage . }}{{ partial "card.html" . }}{{ end }}
+      {{- end }}
+    </div>
+  </section>
+
+  <section>
+    <h2>Galleria</h2>
+    {{- with site.GetPage "/scuola/giocoleria-equilibrismo" }}
+      {{ partial "galleria.html" (dict "immagini" (first 4 (.Resources.ByType "image"))) }}
+    {{- end }}
+  </section>
+
+  <section>
+    <h2>Segnaposto</h2>
+    {{ partial "da-scrivere.html" (dict "testo" "Così appare un contenuto mancante. Shortcode: `da-scrivere`.") }}
+  </section>
+</div>
+{{ end }}

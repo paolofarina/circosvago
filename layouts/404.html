@@ -1,0 +1,12 @@
+{{ define "main" }}
+<section class="sezione">
+  <div class="contenitore pagina-404">
+    {{- with resources.Get "img/illustrazioni/giocoliere.jpg" }}
+      {{ partial "img.html" (dict "res" . "alt" "" "widths" (slice 320 480) "sizes" "14rem" "class" "illustrazione pagina-404__figura") }}
+    {{- end }}
+    <h1>Ops, palla persa!</h1>
+    <p>La pagina che cerchi non c'è più o non è mai esistita.</p>
+    <a class="btn btn--pieno" href="{{ "/" | relURL }}">Torna alla home</a>
+  </div>
+</section>
+{{ end }}

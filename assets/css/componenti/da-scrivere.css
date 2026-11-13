@@ -1,0 +1,11 @@
+/* Segnaposto per contenuti mancanti: deve saltare all'occhio */
+.da-scrivere {
+  margin: var(--s-5) 0;
+  padding: var(--s-4) var(--s-5);
+  background: var(--c-giallo-chiaro);
+  border: 3px dashed var(--c-giallo);
+  border-radius: var(--r-md);
+  color: var(--c-inchiostro);
+}
+.da-scrivere .etichetta { color: var(--c-inchiostro); }
+.da-scrivere p:last-child { margin-bottom: 0; }

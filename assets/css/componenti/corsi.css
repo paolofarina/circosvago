@@ -1,0 +1,47 @@
+/* Fila dei corsi con le illustrazioni (home) */
+.corsi { background: var(--c-corallo-chiaro); }
+.corsi .etichetta { color: var(--c-link); }
+.corsi__lista {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  gap: var(--s-5);
+  margin: 0;
+  padding: 0;
+}
+.corsi__voce a {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-3);
+  color: var(--c-inchiostro);
+  text-decoration: none;
+}
+.corsi__figura {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 12rem;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--c-bianco);
+  border: 4px solid var(--c-bianco);
+  border-radius: 50%;
+  box-shadow: var(--ombra-1);
+  transition: transform var(--durata) var(--curva), box-shadow var(--durata);
+}
+.corsi__figura img {
+  position: absolute;
+  inset: 6%;
+  width: 88%;
+  height: 88%;
+  object-fit: contain;
+}
+.corsi__figura--foto img { inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.corsi__voce a:hover .corsi__figura { transform: rotate(-4deg) scale(1.04); box-shadow: var(--ombra-2); }
+.corsi__nome {
+  font-family: var(--f-titolo);
+  font-size: var(--t-lg);
+  font-weight: 700;
+  text-align: center;
+  line-height: var(--lh-titolo);
+}

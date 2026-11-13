@@ -1,0 +1,35 @@
+/* Blocchi colore "Cosa facciamo": campiture piene come le pagine della brochure */
+.blocchi {
+  display: grid;
+  gap: var(--s-5);
+}
+@media (min-width: 56rem) {
+  .blocchi { grid-template-columns: repeat(3, 1fr); }
+}
+.blocco {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--c-sezione);
+  color: var(--c-bianco);
+  border-radius: var(--r-lg);
+  transition: transform var(--durata) var(--curva), box-shadow var(--durata);
+}
+.blocco:hover { transform: translateY(-4px) rotate(-.5deg); box-shadow: var(--ombra-2); }
+.blocco__media { position: relative; aspect-ratio: 4 / 3; }
+.blocco__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.blocco__corpo { display: flex; flex: 1; flex-direction: column; padding: var(--s-6); }
+.blocco__titolo { font-family: var(--f-script); font-weight: 400; font-size: var(--t-2xl); margin-bottom: var(--s-3); }
+.blocco__titolo a { color: var(--c-bianco); text-decoration: none; }
+.blocco__titolo a::after { content: ""; position: absolute; inset: 0; }
+.blocco:has(a:focus-visible) { outline: 3px solid var(--c-inchiostro); outline-offset: 3px; }
+.blocco__titolo a:focus-visible { outline: none; }
+.blocco__cta {
+  margin-top: auto;
+  font-family: var(--f-titolo);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  letter-spacing: var(--tracking-maiuscolo);
+  text-transform: uppercase;
+}

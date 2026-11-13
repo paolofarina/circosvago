@@ -1,0 +1,50 @@
+{{ define "main" }}
+{{ partial "testata.html" . }}
+
+{{- $cop := partial "copertina.html" . }}
+{{- $foto := and $cop (not $cop.illustrazione) }}
+<section class="sezione sezione--stretta">
+  <div class="contenitore pagina{{ if $foto }} pagina--con-foto{{ end }}">
+    <div class="prosa pagina__testo">
+      {{ .Content }}
+    </div>
+    {{- if $foto }}
+      <figure class="pagina__foto">
+        {{ partial "img.html" (dict "res" $cop.res "alt" $cop.alt "widths" (slice 480 800 1200) "sizes" "(min-width: 56rem) 28rem, 100vw" "eager" true) }}
+      </figure>
+    {{- end }}
+  </div>
+</section>
+
+{{- /* Galleria automatica: tutte le immagini del bundle tranne la copertina */}}
+{{- if ne .Params.galleria false }}
+  {{- $altre := slice }}
+  {{- range .Resources.ByType "image" }}
+    {{- if not (and $foto (eq .Name $cop.res.Name)) }}{{ $altre = $altre | append . }}{{ end }}
+  {{- end }}
+  {{- with $altre }}
+  <section class="sezione sezione--chiara">
+    <div class="contenitore">
+      {{ partial "galleria.html" (dict "immagini" . "titolo" "Galleria") }}
+    </div>
+  </section>
+  {{- end }}
+{{- end }}
+
+{{- /* Altre pagine della stessa sezione */}}
+{{- with .Parent }}
+  {{- $fratelli := where .Pages.ByWeight "RelPermalink" "ne" $.RelPermalink }}
+  {{- if and $fratelli (not .IsHome) }}
+  <section class="sezione">
+    <div class="contenitore">
+      <h2 class="sezione__titolo">Altro in {{ .LinkTitle }}</h2>
+      <div class="griglia-card">
+        {{- range first 3 $fratelli }}{{ partial "card.html" . }}{{ end }}
+      </div>
+    </div>
+  </section>
+  {{- end }}
+{{- end }}
+
+{{ partial "contatti.html" . }}
+{{ end }}

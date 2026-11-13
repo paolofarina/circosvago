@@ -1,0 +1,3 @@
+{{- /* Uso: {{< galleria >}} (tutte le foto del bundle) oppure {{< galleria filtro="gioco-*" titolo="I giochi" >}} */ -}}
+{{- $filtro := .Get "filtro" | default "*.jpg" }}
+{{ partial "galleria.html" (dict "immagini" (.Page.Resources.Match $filtro) "titolo" (.Get "titolo")) }}
