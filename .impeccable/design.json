@@ -1,0 +1,581 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-13T20:39:42+00:00",
+  "title": "Design System: Circo Svago",
+  "extensions": {
+    "colorMeta": {
+      "giallo": {
+        "role": "primary",
+        "displayName": "Giallo cartellone",
+        "tonalRamp": [
+          "oklch(15% 0.046 90)",
+          "oklch(25% 0.077 90)",
+          "oklch(35% 0.108 90)",
+          "oklch(45% 0.139 90)",
+          "oklch(55% 0.17 90)",
+          "oklch(65% 0.139 90)",
+          "oklch(80% 0.093 90)",
+          "oklch(95% 0.046 90)"
+        ],
+        "canonical": "oklch(84% 0.17 90)"
+      },
+      "rosso": {
+        "role": "secondary",
+        "displayName": "Rosso corallo",
+        "tonalRamp": [
+          "oklch(15% 0.044 33)",
+          "oklch(25% 0.073 33)",
+          "oklch(35% 0.102 33)",
+          "oklch(45% 0.131 33)",
+          "oklch(55% 0.16 33)",
+          "oklch(65% 0.131 33)",
+          "oklch(80% 0.087 33)",
+          "oklch(95% 0.044 33)"
+        ],
+        "canonical": "oklch(56% 0.16 33)"
+      },
+      "malva": {
+        "role": "secondary",
+        "displayName": "Malva",
+        "tonalRamp": [
+          "oklch(15% 0.035 337)",
+          "oklch(25% 0.059 337)",
+          "oklch(35% 0.083 337)",
+          "oklch(45% 0.106 337)",
+          "oklch(55% 0.13 337)",
+          "oklch(65% 0.106 337)",
+          "oklch(80% 0.071 337)",
+          "oklch(95% 0.035 337)"
+        ],
+        "canonical": "oklch(46% 0.13 337)"
+      },
+      "blu": {
+        "role": "secondary",
+        "displayName": "Blu quaderno",
+        "tonalRamp": [
+          "oklch(15% 0.038 260)",
+          "oklch(25% 0.064 260)",
+          "oklch(35% 0.089 260)",
+          "oklch(45% 0.115 260)",
+          "oklch(55% 0.14 260)",
+          "oklch(65% 0.115 260)",
+          "oklch(80% 0.076 260)",
+          "oklch(95% 0.038 260)"
+        ],
+        "canonical": "oklch(48% 0.14 260)"
+      },
+      "nero": {
+        "role": "secondary",
+        "displayName": "Nero album",
+        "tonalRamp": [
+          "oklch(15% 0.008 295)",
+          "oklch(25% 0.014 295)",
+          "oklch(35% 0.019 295)",
+          "oklch(45% 0.025 295)",
+          "oklch(55% 0.03 295)",
+          "oklch(65% 0.025 295)",
+          "oklch(80% 0.016 295)",
+          "oklch(95% 0.008 295)"
+        ],
+        "canonical": "oklch(22% 0.03 295)"
+      },
+      "inchiostro": {
+        "role": "neutral",
+        "displayName": "Inchiostro",
+        "tonalRamp": [
+          "oklch(15% 0.008 295)",
+          "oklch(25% 0.014 295)",
+          "oklch(35% 0.019 295)",
+          "oklch(45% 0.025 295)",
+          "oklch(55% 0.03 295)",
+          "oklch(65% 0.025 295)",
+          "oklch(80% 0.016 295)",
+          "oklch(95% 0.008 295)"
+        ],
+        "canonical": "oklch(22% 0.03 295)"
+      },
+      "matita": {
+        "role": "neutral",
+        "displayName": "Matita",
+        "tonalRamp": [
+          "oklch(15% 0.008 295)",
+          "oklch(25% 0.014 295)",
+          "oklch(35% 0.019 295)",
+          "oklch(45% 0.025 295)",
+          "oklch(55% 0.03 295)",
+          "oklch(65% 0.025 295)",
+          "oklch(80% 0.016 295)",
+          "oklch(95% 0.008 295)"
+        ],
+        "canonical": "oklch(42% 0.03 295)"
+      },
+      "link": {
+        "role": "neutral",
+        "displayName": "Rosso link",
+        "tonalRamp": [
+          "oklch(15% 0.044 33)",
+          "oklch(25% 0.073 33)",
+          "oklch(35% 0.102 33)",
+          "oklch(45% 0.131 33)",
+          "oklch(55% 0.16 33)",
+          "oklch(65% 0.131 33)",
+          "oklch(80% 0.087 33)",
+          "oklch(95% 0.044 33)"
+        ],
+        "canonical": "oklch(52% 0.16 33)"
+      },
+      "foglio": {
+        "role": "neutral",
+        "displayName": "Foglio",
+        "tonalRamp": [
+          "oklch(15% 0.0 0)",
+          "oklch(25% 0.0 0)",
+          "oklch(35% 0.0 0)",
+          "oklch(45% 0.0 0)",
+          "oklch(55% 0.0 0)",
+          "oklch(65% 0.0 0)",
+          "oklch(80% 0.0 0)",
+          "oklch(95% 0.0 0)"
+        ]
+      },
+      "bianco": {
+        "role": "neutral",
+        "displayName": "Bianco",
+        "tonalRamp": [
+          "oklch(15% 0.0 0)",
+          "oklch(25% 0.0 0)",
+          "oklch(35% 0.0 0)",
+          "oklch(45% 0.0 0)",
+          "oklch(55% 0.0 0)",
+          "oklch(65% 0.0 0)",
+          "oklch(80% 0.0 0)",
+          "oklch(95% 0.0 0)"
+        ]
+      },
+      "righe": {
+        "role": "neutral",
+        "displayName": "Righe del quaderno",
+        "tonalRamp": [
+          "oklch(15% 0.008 255)",
+          "oklch(25% 0.014 255)",
+          "oklch(35% 0.019 255)",
+          "oklch(45% 0.025 255)",
+          "oklch(55% 0.03 255)",
+          "oklch(65% 0.025 255)",
+          "oklch(80% 0.016 255)",
+          "oklch(95% 0.008 255)"
+        ],
+        "canonical": "oklch(88% 0.03 255)"
+      },
+      "margine": {
+        "role": "neutral",
+        "displayName": "Margine del quaderno",
+        "tonalRamp": [
+          "oklch(15% 0.022 20)",
+          "oklch(25% 0.036 20)",
+          "oklch(35% 0.051 20)",
+          "oklch(45% 0.065 20)",
+          "oklch(55% 0.08 20)",
+          "oklch(65% 0.065 20)",
+          "oklch(80% 0.044 20)",
+          "oklch(95% 0.022 20)"
+        ],
+        "canonical": "oklch(77% 0.08 20)"
+      },
+      "postit": {
+        "role": "neutral",
+        "displayName": "Post-it",
+        "tonalRamp": [
+          "oklch(15% 0.041 98)",
+          "oklch(25% 0.068 98)",
+          "oklch(35% 0.095 98)",
+          "oklch(45% 0.123 98)",
+          "oklch(55% 0.15 98)",
+          "oklch(65% 0.123 98)",
+          "oklch(80% 0.082 98)",
+          "oklch(95% 0.041 98)"
+        ],
+        "canonical": "oklch(91% 0.15 98)"
+      },
+      "nastro": {
+        "role": "neutral",
+        "displayName": "Nastro di carta",
+        "tonalRamp": [
+          "oklch(15% 0.005 85)",
+          "oklch(25% 0.009 85)",
+          "oklch(35% 0.013 85)",
+          "oklch(45% 0.016 85)",
+          "oklch(55% 0.02 85)",
+          "oklch(65% 0.016 85)",
+          "oklch(80% 0.011 85)",
+          "oklch(95% 0.005 85)"
+        ]
+      },
+      "linea": {
+        "role": "neutral",
+        "displayName": "Linea",
+        "tonalRamp": [
+          "oklch(15% 0.003 80)",
+          "oklch(25% 0.005 80)",
+          "oklch(35% 0.008 80)",
+          "oklch(45% 0.01 80)",
+          "oklch(55% 0.012 80)",
+          "oklch(65% 0.01 80)",
+          "oklch(80% 0.007 80)",
+          "oklch(95% 0.003 80)"
+        ],
+        "canonical": "oklch(90% 0.012 80)"
+      },
+      "arancio": {
+        "role": "tertiary",
+        "displayName": "Bollino arancio",
+        "tonalRamp": [
+          "oklch(15% 0.049 45)",
+          "oklch(25% 0.082 45)",
+          "oklch(35% 0.115 45)",
+          "oklch(45% 0.147 45)",
+          "oklch(55% 0.18 45)",
+          "oklch(65% 0.147 45)",
+          "oklch(80% 0.098 45)",
+          "oklch(95% 0.049 45)"
+        ],
+        "canonical": "oklch(67% 0.18 45)"
+      },
+      "verde": {
+        "role": "tertiary",
+        "displayName": "Bollino verde",
+        "tonalRamp": [
+          "oklch(15% 0.049 128)",
+          "oklch(25% 0.082 128)",
+          "oklch(35% 0.115 128)",
+          "oklch(45% 0.147 128)",
+          "oklch(55% 0.18 128)",
+          "oklch(65% 0.147 128)",
+          "oklch(80% 0.098 128)",
+          "oklch(95% 0.049 128)"
+        ],
+        "canonical": "oklch(75% 0.18 128)"
+      },
+      "ciano": {
+        "role": "tertiary",
+        "displayName": "Bollino ciano",
+        "tonalRamp": [
+          "oklch(15% 0.035 225)",
+          "oklch(25% 0.059 225)",
+          "oklch(35% 0.083 225)",
+          "oklch(45% 0.106 225)",
+          "oklch(55% 0.13 225)",
+          "oklch(65% 0.106 225)",
+          "oklch(80% 0.071 225)",
+          "oklch(95% 0.035 225)"
+        ],
+        "canonical": "oklch(67% 0.13 225)"
+      },
+      "rosa": {
+        "role": "tertiary",
+        "displayName": "Bollino rosa",
+        "tonalRamp": [
+          "oklch(15% 0.044 350)",
+          "oklch(25% 0.073 350)",
+          "oklch(35% 0.102 350)",
+          "oklch(45% 0.131 350)",
+          "oklch(55% 0.16 350)",
+          "oklch(65% 0.131 350)",
+          "oklch(80% 0.087 350)",
+          "oklch(95% 0.044 350)"
+        ],
+        "canonical": "oklch(67% 0.16 350)"
+      },
+      "viola": {
+        "role": "tertiary",
+        "displayName": "Bollino viola",
+        "tonalRamp": [
+          "oklch(15% 0.027 310)",
+          "oklch(25% 0.045 310)",
+          "oklch(35% 0.064 310)",
+          "oklch(45% 0.082 310)",
+          "oklch(55% 0.1 310)",
+          "oklch(65% 0.082 310)",
+          "oklch(80% 0.055 310)",
+          "oklch(95% 0.027 310)"
+        ],
+        "canonical": "oklch(58% 0.1 310)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display a pennarello",
+        "purpose": "Solo il titolo dell'apertura home e delle testate di pagina."
+      },
+      "headline": {
+        "displayName": "Titolo di sezione",
+        "purpose": "h1 e h2 di sezione, titoli di chiusura."
+      },
+      "title": {
+        "displayName": "Titolo piccolo",
+        "purpose": "h3, card, pezzi piccoli; --t-lg per h4, post-it, nomi dei corsi, bottoni."
+      },
+      "didascalia": {
+        "displayName": "Didascalia a pennarello",
+        "purpose": "Didascalie delle stampe, lightbox, voci del post-it."
+      },
+      "body": {
+        "displayName": "Testo",
+        "purpose": "Testo corrente, max 66ch."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Frase sotto il titolo, sempre su una striscia di foglio."
+      },
+      "label": {
+        "displayName": "Etichetta",
+        "purpose": "Etichette dei recapiti e del segnaposto; mai sopra un titolo."
+      }
+    },
+    "shadows": [
+      {
+        "name": "ombra-1",
+        "value": "0 1px 2px rgb(30 26 43 / .18), 0 6px 14px -4px rgb(30 26 43 / .28)",
+        "purpose": "Carta incollata a riposo: fogli, strisce, stampe, bottoni, blocchi."
+      },
+      {
+        "name": "ombra-2",
+        "value": "0 2px 4px rgb(30 26 43 / .16), 0 18px 30px -8px rgb(30 26 43 / .38)",
+        "purpose": "Pezzo staccato (hover/focus), sottomenu, lightbox."
+      },
+      {
+        "name": "ombra-postit",
+        "value": "0 1px 1px rgb(30 26 43 / .15), 0 12px 18px -10px rgb(30 26 43 / .45)",
+        "purpose": "Post-it e segnaposto da-scrivere."
+      },
+      {
+        "name": "ombra-nastro",
+        "value": "0 1px 2px rgb(30 26 43 / .12)",
+        "purpose": "Nastro di carta."
+      },
+      {
+        "name": "ombra-bollino",
+        "value": "inset 0 -2px 0 rgb(30 26 43 / .12), 0 1px 2px rgb(30 26 43 / .25)",
+        "purpose": "Bollini adesivi degli elenchi."
+      },
+      {
+        "name": "ombra-header",
+        "value": "0 1px 0 var(--c-linea), 0 6px 14px -10px rgb(30 26 43 / .35)",
+        "purpose": "Striscia bianca dell'header."
+      },
+      {
+        "name": "ombra-posa",
+        "value": "0 30px 40px -12px rgb(30 26 43 / .35)",
+        "purpose": "Primo fotogramma dell'animazione di posa."
+      },
+      {
+        "name": "ombra-ritaglio",
+        "value": "drop-shadow(0 1px 1px rgb(30 26 43 / .3)) drop-shadow(0 8px 9px rgb(30 26 43 / .3))",
+        "purpose": "filter: ombra che segue la sagoma del ritaglio a riposo."
+      },
+      {
+        "name": "ombra-ritaglio-su",
+        "value": "drop-shadow(0 2px 2px rgb(30 26 43 / .25)) drop-shadow(0 20px 18px rgb(30 26 43 / .38))",
+        "purpose": "filter: ritaglio staccato."
+      },
+      {
+        "name": "focus",
+        "value": "outline: 3px solid var(--c-inchiostro); outline-offset: 3px; box-shadow: 0 0 0 6px var(--c-giallo)",
+        "purpose": "Focus da tastiera ovunque; sui cartoncini scuri outline-color diventa giallo."
+      }
+    ],
+    "motion": [
+      {
+        "name": "durata",
+        "value": "220ms",
+        "purpose": "Tutte le transizioni di stato."
+      },
+      {
+        "name": "curva",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Ease-out esponenziale per transizioni e posa."
+      },
+      {
+        "name": "staccare",
+        "value": "rotate: 0deg; translate: 0 -6px; box-shadow: var(--ombra-2)",
+        "purpose": "Hover (solo con hover) e focus dei pezzi .staccabile; i bottoni salgono di 3px."
+      },
+      {
+        "name": "posa",
+        "value": "700ms var(--curva) backwards; delay calc(var(--ordine) * 110ms + 120ms); from translate 0 -18px, scale 1.04, --ombra-posa",
+        "purpose": "Unica animazione d'ingresso dei pezzi della testata, solo con prefers-reduced-motion: no-preference."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stretto",
+        "value": "40rem"
+      },
+      {
+        "name": "tablet",
+        "value": "48rem"
+      },
+      {
+        "name": "medio",
+        "value": "56rem"
+      },
+      {
+        "name": "desktop",
+        "value": "64rem"
+      },
+      {
+        "name": "largo",
+        "value": "72rem"
+      },
+      {
+        "name": "contenitore",
+        "value": "78rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Bottone pieno",
+      "kind": "button",
+      "refersTo": "button-pieno",
+      "description": "Etichetta di cartoncino nero: la scelta principale.",
+      "html": "<a class=\"ds-btn-pieno\" href=\"#\">Scrivici <svg class=\"ds-freccia\" viewBox=\"0 0 36 20\" aria-hidden=\"true\"><path d=\"M2 11.5c7-1.6 17-2.4 29-1.2M24.5 4.2c2.6 2.2 4.8 4.1 7 6.2-2.4 1.7-4.6 3.4-7.3 5.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-btn-pieno { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 3.25rem; padding: .55em 1.15em .6em; border-radius: var(--r-sm); font-family: var(--f-pennarello); font-size: var(--t-lg); font-weight: 700; line-height: 1.1; text-decoration: none; box-shadow: var(--ombra-1); transition: rotate var(--durata) var(--curva), translate var(--durata) var(--curva), box-shadow var(--durata) var(--curva); background: var(--c-nero); color: var(--c-bianco); rotate: -1deg; } .ds-btn-pieno:hover, .ds-btn-pieno:focus-visible { rotate: 0deg; translate: 0 -3px; box-shadow: var(--ombra-2); } .ds-btn-pieno:focus-visible { outline: 3px solid var(--c-inchiostro); outline-offset: 3px; box-shadow: 0 0 0 6px var(--c-giallo), var(--ombra-2); } .ds-btn-pieno:active { translate: 0 0; box-shadow: var(--ombra-1); } .ds-freccia { width: 1.75rem; height: 1.25rem; transition: translate var(--durata) var(--curva); } .ds-btn-pieno:hover .ds-freccia { translate: 4px 0; }"
+    },
+    {
+      "name": "Bottone bordo",
+      "kind": "button",
+      "refersTo": "button-bordo",
+      "description": "Etichetta di foglio bianco, storta dall'altra parte: la scelta secondaria.",
+      "html": "<a class=\"ds-btn-bordo\" href=\"#\">I corsi</a>",
+      "css": ".ds-btn-bordo { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 3.25rem; padding: .55em 1.15em .6em; border-radius: var(--r-sm); font-family: var(--f-pennarello); font-size: var(--t-lg); font-weight: 700; line-height: 1.1; text-decoration: none; box-shadow: var(--ombra-1); transition: rotate var(--durata) var(--curva), translate var(--durata) var(--curva), box-shadow var(--durata) var(--curva); background: var(--c-foglio); color: var(--c-inchiostro); rotate: 1.2deg; } .ds-btn-bordo:hover, .ds-btn-bordo:focus-visible { rotate: 0deg; translate: 0 -3px; box-shadow: var(--ombra-2); } .ds-btn-bordo:focus-visible { outline: 3px solid var(--c-inchiostro); outline-offset: 3px; box-shadow: 0 0 0 6px var(--c-giallo), var(--ombra-2); }"
+    },
+    {
+      "name": "Bottone chiaro",
+      "kind": "button",
+      "refersTo": "button-chiaro",
+      "description": "Etichetta gialla: l'azione principale sui cartoncini scuri.",
+      "html": "<div class=\"ds-fondo-blu\"><a class=\"ds-btn-chiaro\" href=\"#\">Organizza un evento</a></div>",
+      "css": ".ds-fondo-blu { background: var(--c-blu); padding: var(--s-6); } .ds-btn-chiaro { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 3.25rem; padding: .55em 1.15em .6em; border-radius: var(--r-sm); font-family: var(--f-pennarello); font-size: var(--t-lg); font-weight: 700; line-height: 1.1; text-decoration: none; box-shadow: var(--ombra-1); transition: rotate var(--durata) var(--curva), translate var(--durata) var(--curva), box-shadow var(--durata) var(--curva); background: var(--c-giallo); color: var(--c-inchiostro); rotate: -1deg; } .ds-btn-chiaro:hover, .ds-btn-chiaro:focus-visible { rotate: 0deg; translate: 0 -3px; box-shadow: var(--ombra-2); } .ds-btn-chiaro:focus-visible { outline: 3px solid var(--c-giallo); outline-offset: 3px; box-shadow: 0 0 0 6px var(--c-giallo), var(--ombra-2); }"
+    },
+    {
+      "name": "Post-it contatti",
+      "kind": "card",
+      "refersTo": "postit",
+      "description": "Recapiti veloci a pennarello, sempre nel primo schermo.",
+      "html": "<aside class=\"ds-postit\"><p class=\"ds-postit-titolo\">Vuoi provare?</p><p>Chiama la segreteria<br><a href=\"#\">000 000 0000</a></p></aside>",
+      "css": ".ds-postit { width: min(100%, 22rem); padding: var(--s-5); background: var(--c-postit); color: var(--c-inchiostro); font-family: var(--f-pennarello); line-height: 1.3; rotate: -2.5deg; box-shadow: var(--ombra-postit); } .ds-postit p { margin: 0; } .ds-postit .ds-postit-titolo { margin-bottom: var(--s-2); font-size: var(--t-lg); font-weight: 800; } .ds-postit a { color: var(--c-inchiostro); font-size: var(--t-lg); font-weight: 700; } .ds-postit a:focus-visible { outline: 3px solid var(--c-inchiostro); outline-offset: 3px; box-shadow: 0 0 0 6px var(--c-giallo); }"
+    },
+    {
+      "name": "Stampa staccabile",
+      "kind": "card",
+      "refersTo": "stampa",
+      "description": "Foto stampata col bordo bianco e nastro; si stacca dal cartellone al passaggio e al focus.",
+      "html": "<div class=\"ds-fondo-nero\"><a class=\"ds-stampa\" href=\"#\"><span class=\"ds-stampa-foto\"></span><span class=\"ds-stampa-did\">Circus Playground</span></a></div>",
+      "css": ".ds-fondo-nero { background: var(--c-nero); padding: var(--s-7) var(--s-6); } .ds-stampa { position: relative; display: block; width: 14rem; padding: .6rem; background: var(--c-foglio); color: var(--c-inchiostro); text-decoration: none; box-shadow: var(--ombra-1); rotate: -1.5deg; transition: rotate var(--durata) var(--curva), translate var(--durata) var(--curva), box-shadow var(--durata) var(--curva); } .ds-stampa::after { content: ''; position: absolute; top: -0.85rem; left: 50%; width: 5rem; height: 1.7rem; translate: -50% 0; rotate: -3deg; background: var(--c-nastro); box-shadow: var(--ombra-nastro); } .ds-stampa-foto { display: block; aspect-ratio: 4 / 3; background: var(--c-blu); } .ds-stampa-did { display: block; padding: var(--s-2) var(--s-1) 0; font-family: var(--f-pennarello); font-weight: 600; line-height: 1.3; } .ds-stampa:hover, .ds-stampa:focus-visible { rotate: 0deg; translate: 0 -6px; box-shadow: var(--ombra-2); } .ds-stampa:focus-visible { outline: 3px solid var(--c-giallo); outline-offset: 3px; box-shadow: 0 0 0 6px var(--c-giallo), var(--ombra-2); }"
+    },
+    {
+      "name": "Foglio a righe",
+      "kind": "card",
+      "refersTo": "foglio",
+      "description": "Il racconto scritto sulle righe del quaderno, incollato su un cartoncino.",
+      "html": "<div class=\"ds-fondo-malva\"><div class=\"ds-foglio\"><p>Siamo una scuola di circo educativo e sociale.</p><p>Qui si prova, si sbaglia, si gioca.</p></div></div>",
+      "css": ".ds-fondo-malva { background: var(--c-malva); padding: var(--s-7) var(--s-6); } .ds-foglio { --riga: 1.75rem; max-width: 30rem; background: linear-gradient(90deg, transparent 2.6rem, var(--c-margine) 2.6rem, var(--c-margine) calc(2.6rem + 2px), transparent 0), repeating-linear-gradient(to bottom, transparent 0 calc(var(--riga) - 1px), var(--c-righe) calc(var(--riga) - 1px) var(--riga)), var(--c-foglio); background-position: 0 0, 0 -0.3rem; padding: calc(var(--riga) * 2) var(--s-6) calc(var(--riga) * 2) 3.5rem; line-height: var(--riga); color: var(--c-inchiostro); font-family: var(--f-testo); box-shadow: var(--ombra-1); rotate: 0.8deg; } .ds-foglio p { margin: 0 0 var(--riga); } .ds-foglio p:last-child { margin-bottom: 0; }"
+    },
+    {
+      "name": "Cartoncino con zigzag",
+      "kind": "custom",
+      "refersTo": "cartoncino",
+      "description": "Una sezione: un colore pieno a tutta pagina, bordo superiore tagliato a zigzag, titolo a pennarello e lead su striscia.",
+      "html": "<div class=\"ds-sopra\"></div><section class=\"ds-cartoncino\"><h2 class=\"ds-cartoncino-titolo\">Scegli il tuo corso</h2><p><span class=\"ds-striscia\">Entra, prova, gioca.</span></p></section>",
+      "css": ".ds-sopra { height: 2rem; background: var(--c-giallo); } .ds-cartoncino { --carta: var(--c-rosso); position: relative; background: var(--carta); color: var(--c-bianco); padding: var(--s-7) var(--s-6); } .ds-cartoncino::before { content: ''; position: absolute; left: 0; right: 0; bottom: calc(100% - 1px); height: var(--zigzag); background: conic-gradient(from 135deg at 50% 0, var(--carta) 90deg, transparent 0) 50% 100% / calc(var(--zigzag) * 2) 100% repeat-x; } .ds-cartoncino-titolo { margin: 0 0 var(--s-4); font-family: var(--f-pennarello); font-size: var(--t-2xl); font-weight: 800; line-height: var(--lh-titolo); } .ds-striscia { display: inline-block; padding: .45em .8em .5em; background: var(--c-foglio); color: var(--c-inchiostro); font-family: var(--f-testo); font-size: var(--t-lg); font-weight: 600; box-shadow: var(--ombra-1); rotate: 0.8deg; }"
+    },
+    {
+      "name": "Navigazione desktop",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Voci a pennarello con evidenziatore giallo; Contatti è un'etichetta nera.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Scuola</a><a href=\"#\">Eventi</a><a href=\"#\">Chi siamo</a><a class=\"ds-nav-contatti\" href=\"#\">Contatti</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: var(--s-2); padding: var(--s-3) var(--s-5); background: var(--c-foglio); box-shadow: var(--ombra-header); } .ds-nav a { position: relative; isolation: isolate; padding: var(--s-2); color: var(--c-inchiostro); font-family: var(--f-pennarello); font-weight: 700; text-decoration: none; } .ds-nav a::after { content: ''; position: absolute; left: var(--s-1); right: var(--s-1); bottom: .35rem; height: .5rem; z-index: -1; background: var(--c-giallo); rotate: -1.5deg; scale: 0 1; transform-origin: left; transition: scale var(--durata) var(--curva); } .ds-nav a:hover::after, .ds-nav a[aria-current]::after { scale: 1 1; } .ds-nav a:focus-visible { outline: 3px solid var(--c-inchiostro); outline-offset: 3px; box-shadow: 0 0 0 6px var(--c-giallo); } .ds-nav .ds-nav-contatti { margin-left: var(--s-3); padding: var(--s-2) var(--s-4); background: var(--c-nero); color: var(--c-bianco); border-radius: var(--r-sm); rotate: -1.5deg; box-shadow: var(--ombra-1); } .ds-nav .ds-nav-contatti::after { display: none; }"
+    },
+    {
+      "name": "Campo modulo",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Campo della pagina contatti (pagina non ancora ridisegnata).",
+      "html": "<label class=\"ds-campo\">Il tuo nome<input class=\"ds-input\" type=\"text\"></label>",
+      "css": ".ds-campo { display: grid; gap: var(--s-1); font-family: var(--f-testo); font-weight: 700; color: var(--c-inchiostro); } .ds-input { padding: var(--s-3); border: 2px solid var(--c-linea); border-radius: var(--r-sm); background: var(--c-bianco); font: inherit; font-weight: 400; } .ds-input:focus { border-color: var(--c-blu); outline: none; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Il cartellone di classe",
+    "overview": "Il sito è un cartellone fatto a mano dalla scuola. Ogni sezione è un cartoncino a tutta pagina di un solo colore pieno (giallo, nero dell'album, malva, bianco, rosso, blu) con il bordo superiore tagliato con le forbici a zigzag, che si sovrappone alla sezione prima. Sopra il cartoncino si incollano i materiali: fogli bianchi per il testo, strisce di foglio per le frasi brevi, ritagli degli acquerelli del cliente, foto stampate col bordo bianco, post-it gialli, nastro di carta, bollini adesivi. I titoli sono scritti a pennarello (Shantell Sans), il testo è stampato in un carattere leggibilissimo (Atkinson Hyperlegible Next).\n\nOgni pezzo incollato è appena storto (da -3° a +4°) e ha un'ombra corta di carta appoggiata. Il pezzo interattivo si \"stacca\" dal cartellone quando ci passi sopra o lo raggiungi con la tastiera: si raddrizza, si alza di qualche pixel, l'ombra si allunga. All'apertura della pagina i pezzi della testata si posano uno alla volta, una sola volta.\n\nLa densità è da cartellone, non da vetrina: pochi pezzi grandi per sezione, molto colore pieno attorno. Rifiuta l'hero con foto a tutto schermo e testo sopra, la griglia di card tutte uguali, il fondo crema con decorazioni sparse.",
+    "keyCharacteristics": [
+      "Un colore pieno per sezione, a tutta larghezza, mai due fondi nella stessa sezione.",
+      "Tutto ciò che sta sopra il cartoncino è un materiale di carta riconoscibile, incollato e storto.",
+      "Titoli a pennarello, testo in un sans ad alta leggibilità; niente terza famiglia.",
+      "Ombre di carta incollata in tono inchiostro, mai nere né colorate.",
+      "Un solo gesto di movimento firma: staccare un pezzo dal cartellone."
+    ],
+    "rules": [
+      {
+        "name": "The Un Cartoncino Rule",
+        "body": "Ogni sezione è un solo cartoncino pieno con il suo testo fisso: inchiostro su giallo e bianco, bianco su rosso, malva, blu e nero. Sui cartoncini scuri i link nudi diventano bianchi; sulla carta chiara incollata sopra (foglio, striscia, post-it) torna l'inchiostro o il rosso link.",
+        "section": "colors"
+      },
+      {
+        "name": "The Bollino Rule",
+        "body": "I cinque colori del logo sono adesivi: decorano, non portano mai testo.",
+        "section": "colors"
+      },
+      {
+        "name": "The Colore di Sezione Rule",
+        "body": "Una sezione del sito dichiara `colore: corallo | malva | blu` nel front matter di `_index.md`; `_partials/colore.html` lo eredita risalendo le pagine e `_partials/carta-sezione.html` lo traduce nel cartoncino (`corallo → rosso`, `malva → malva`, `blu → blu`). Testata e sezione \"altro\" usano quel cartoncino.",
+        "section": "colors"
+      },
+      {
+        "name": "The Due Mani Rule",
+        "body": "Il pennarello scrive titoli, nomi, didascalie e bottoni; il testo da leggere è sempre Atkinson. Nessuna terza famiglia, nessun font di sistema per i titoli.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sentence Case Rule",
+        "body": "Titoli, bottoni, menu ed etichette si scrivono in sentence case; il sito non usa maiuscolo decorativo.",
+        "section": "typography"
+      },
+      {
+        "name": "The Carta Incollata Rule",
+        "body": "Un pezzo a riposo ha sempre `--ombra-1` (o la sua variante di materiale) e una rotazione `--storto`; solo nello stato staccato si raddrizza e prende `--ombra-2`.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Texture Rule",
+        "body": "Gli unici gradienti ammessi sono le due texture del cartellone in `componenti/carta.css`: il bordo a zigzag (`conic-gradient`) e le righe e il margine del foglio di quaderno (`linear-gradient` + `repeating-linear-gradient`). Nessun altro gradiente, in nessun file (lo verifica `tools/controlla_design.py`).",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** usare colori, font, misure, ombre e durate solo come variabili di `assets/css/tokens.css`.",
+      "**Do** dare a ogni sezione un solo cartoncino (`.cartoncino[data-carta]`) e, dopo la prima, il bordo a zigzag.",
+      "**Do** mettere il testo lungo su un foglio, le frasi brevi su una striscia, i recapiti su un post-it: mai testo direttamente sopra una foto.",
+      "**Do** ruotare ogni pezzo incollato con `--storto` (da -3° a +4°) e alternare il verso tra pezzi vicini.",
+      "**Do** mostrare ogni immagine raster con `_partials/img.html` e ogni acquerello con `_partials/illustrazione.html`, che preferisce il ritaglio PNG.",
+      "**Do** attaccare le didascalie alla foto o al ritaglio che nominano.",
+      "**Do** segnare i fatti mancanti (date, nomi, prezzi, orari) con lo shortcode `da-scrivere`: non si inventano.",
+      "**Do** tenere telefono ed email nel primo schermo (post-it) e in fondo a ogni pagina (chiusura contatti gialla).",
+      "**Do** tenere il focus visibile: contorno inchiostro + anello giallo, contorno giallo sui cartoncini scuri.",
+      "**Do** limitare il movimento alla posa d'ingresso e allo stacco, sempre sotto `prefers-reduced-motion`."
+    ],
+    "donts": [
+      "**Don't** usare gradienti oltre alle due texture del cartellone (zigzag, quaderno a righe).",
+      "**Don't** mettere un'etichetta o un sopratitolo sopra un titolo: le etichette stanno solo accanto ai recapiti.",
+      "**Don't** usare i colori dei bollini (arancio, verde, ciano, rosa, viola) per testo o come fondo di un testo.",
+      "**Don't** scrivere testo sopra una foto senza un fondo pieno di carta.",
+      "**Don't** caricare risorse da domini terzi (font, script, CDN, mappe incorporate) né librerie JS/CSS esterne.",
+      "**Don't** usare ombre nere, colorate o dure senza sfocatura, né angoli morbidi su foto, fogli e card.",
+      "**Don't** introdurre una terza famiglia di caratteri o il maiuscolo decorativo.",
+      "**Don't** disegnare o generare illustrazioni nuove: si usano solo gli acquerelli del cliente, e se mancano la foto nella stessa cornice.",
+      "**Don't** usare le varianti chiare (`*-chiaro`) come fondo di sezioni nuove: il fondo è sempre un cartoncino pieno."
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{{- /*
+La serie dei corsi: ogni corso è un ritaglio (illustrazione ad acquerello, o foto se manca)
+con il nome scritto su una striscia di carta. Usato in home e in fondo alle pagine corso.
+@param pagine slice di pagine corso
+*/ -}}
+{{- with .pagine }}
+<ul class="corsi__lista">
+  {{- range . }}
+    {{- $illu := false }}
+    {{- with .Params.illustrazione }}{{ $illu = partial "illustrazione.html" . }}{{ end }}
+    {{- $cop := partial "copertina.html" . }}
+    <li class="corsi__voce">
+      <a class="corsi__link" href="{{ .RelPermalink }}">
+        <span class="corsi__figura {{ if $illu }}ritaglio{{ else }}stampa corsi__figura--foto{{ end }} staccabile">
+          {{- with $illu }}
+            {{ partial "img.html" (dict "res" . "alt" "" "widths" (slice 240 400 560) "sizes" "(min-width: 64rem) 11rem, 40vw") }}
+          {{- else }}
+            {{- with $cop }}
+              {{ partial "img.html" (dict "res" .res "alt" "" "ratio" "1:2" "widths" (slice 240 400) "sizes" "(min-width: 64rem) 11rem, 40vw") }}
+            {{- end }}
+          {{- end }}
+        </span>
+        <span class="corsi__nome striscia">{{ .LinkTitle }}</span>
+      </a>
+    </li>
+  {{- end }}
+</ul>
+{{- end }}

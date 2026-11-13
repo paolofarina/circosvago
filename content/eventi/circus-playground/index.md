@@ -40,4 +40,4 @@ I giochi ingegnano la mente, esercitano l'equilibrio e stimolano la cooperazione
 - Non serve alimentazione elettrica.
 - Perfetto per feste, fiere ed eventi, sia all'aperto che al chiuso.
 
-{{< bottone link="/contatti/" >}}Porta il Playground al tuo evento{{< /bottone >}}
+{{< bottone link="#contatti" >}}Porta il Playground al tuo evento{{< /bottone >}}

@@ -1,47 +1,61 @@
-/* Fila dei corsi con le illustrazioni (home) */
-.corsi { background: var(--c-corallo-chiaro); }
-.corsi .etichetta { color: var(--c-link); }
+/* La serie dei corsi: ritagli ad acquerello appesi al cartoncino rosso */
 .corsi__lista {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
-  gap: var(--s-5);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-8) var(--s-5);
   margin: 0;
-  padding: 0;
+  padding: var(--s-4) 0 0;
 }
-.corsi__voce a {
+@media (min-width: 48rem) {
+  .corsi__lista { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 72rem) {
+  .corsi__lista { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-6); }
+  .corsi__voce:nth-child(even) { margin-top: var(--s-7); }
+}
+
+.corsi__link {
   display: grid;
   justify-items: center;
-  gap: var(--s-3);
   color: var(--c-inchiostro);
   text-decoration: none;
 }
 .corsi__figura {
-  position: relative;
-  display: block;
-  width: 100%;
-  max-width: 12rem;
-  aspect-ratio: 1;
-  overflow: hidden;
-  background: var(--c-bianco);
-  border: 4px solid var(--c-bianco);
-  border-radius: 50%;
-  box-shadow: var(--ombra-1);
-  transition: transform var(--durata) var(--curva), box-shadow var(--durata);
+  width: min(100%, 12rem);
+  aspect-ratio: 1 / 2;
 }
-.corsi__figura img {
-  position: absolute;
-  inset: 6%;
-  width: 88%;
-  height: 88%;
-  object-fit: contain;
-}
-.corsi__figura--foto img { inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.corsi__voce a:hover .corsi__figura { transform: rotate(-4deg) scale(1.04); box-shadow: var(--ombra-2); }
+.corsi__figura--foto { overflow: hidden; }
+.corsi__figura img { width: 100%; height: 100%; object-fit: contain; }
+.corsi__figura--foto img { object-fit: cover; }
+.corsi__voce:nth-child(4n+1) .corsi__figura { --storto: -3deg; }
+.corsi__voce:nth-child(4n+2) .corsi__figura { --storto: 2.5deg; }
+.corsi__voce:nth-child(4n+3) .corsi__figura { --storto: -1deg; }
+.corsi__voce:nth-child(4n+4) .corsi__figura { --storto: 3.5deg; }
+
 .corsi__nome {
-  font-family: var(--f-titolo);
+  --storto: -2deg;
+  position: relative;
+  z-index: 2;
+  margin-top: -0.75rem;
+  max-width: 100%;
+  font-family: var(--f-pennarello);
   font-size: var(--t-lg);
-  font-weight: 700;
+  font-weight: 800;
+  line-height: 1.15;
   text-align: center;
-  line-height: var(--lh-titolo);
+  transition: rotate var(--durata) var(--curva);
 }
+.corsi__voce:nth-child(even) .corsi__nome { --storto: 2deg; }
+
+.corsi__link:hover .corsi__figura,
+.corsi__link:focus-visible .corsi__figura {
+  rotate: 0deg;
+  translate: 0 -6px;
+  box-shadow: var(--ombra-2);
+}
+.corsi__link:hover .corsi__nome { rotate: 0deg; text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 4px; }
+.corsi__link:focus-visible { outline: none; box-shadow: none; }
+.corsi__link:focus-visible .corsi__nome { outline: 3px solid var(--c-inchiostro); outline-offset: 3px; box-shadow: 0 0 0 6px var(--c-giallo); }
+.corsi__link:is(:hover, :focus-visible) .corsi__figura.ritaglio { box-shadow: none; }
+.corsi__link:is(:hover, :focus-visible) .corsi__figura.ritaglio img { filter: var(--ombra-ritaglio-su); }

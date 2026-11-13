@@ -1,38 +1,51 @@
+/* Testata di pagina: cartoncino del colore di sezione */
 .testata {
-  position: relative;
-  padding-block: var(--s-7) var(--s-8);
-  background: var(--c-sezione);
-  color: var(--c-bianco);
+  padding-block: var(--s-6) var(--s-8);
+  overflow: hidden;
 }
-.testata__griglia { display: grid; gap: var(--s-6); align-items: center; }
-@media (min-width: 48rem) {
-  .testata--illustrata .testata__griglia { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+.testata__griglia {
+  display: grid;
+  gap: var(--s-6);
+  grid-template-areas:
+    "testo"
+    "biglietto"
+    "media";
 }
+.testata__testo { grid-area: testo; }
+.testata__media { grid-area: media; }
+.testata__biglietto { grid-area: biglietto; --storto: 2deg; justify-self: start; }
+
 .testata__titolo {
-  color: var(--c-bianco);
-  margin-bottom: var(--s-4);
+  margin-bottom: var(--s-5);
+  font-size: var(--t-4xl);
+  line-height: .95;
+  letter-spacing: -0.025em;
+  color: var(--su-carta);
 }
 .testata__lead {
-  max-width: 52ch;
+  max-width: 34ch;
   margin: 0;
   font-size: var(--t-lg);
+  font-weight: 600;
+  line-height: 1.5;
 }
-.testata__illustrazione {
-  justify-self: center;
-  padding: var(--s-4);
-  background: var(--c-bianco);
-  border-radius: var(--r-lg);
-  box-shadow: var(--ombra-2);
-  transform: rotate(-2deg);
-}
-.testata__illustrazione img { max-height: 18rem; width: auto; margin-inline: auto; }
 
-.testata__onda {
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  color: var(--c-carta);
+/* La pila: foto stampata grande, illustrazione ritagliata sopra l'angolo */
+.testata__media {
+  position: relative;
+  padding-bottom: var(--s-6);
 }
+.testata__foto { --storto: -2deg; width: 88%; }
+.testata__foto img { aspect-ratio: 4 / 3; }
+.testata__illustrazione {
+  --storto: 4deg;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  width: clamp(7rem, 34%, 12rem);
+}
+.testata__illustrazione--sola { position: relative; width: min(60%, 14rem); margin-inline: auto; }
 
 /* Briciole */
 .briciole ol {
@@ -42,11 +55,23 @@
   gap: var(--s-1) var(--s-2);
   margin: 0 0 var(--s-4);
   padding: 0;
-  font-family: var(--f-titolo);
   font-size: var(--t-sm);
-  font-weight: 600;
-  letter-spacing: var(--tracking-maiuscolo);
-  text-transform: uppercase;
+  font-weight: 700;
 }
-.briciole li + li::before { content: "·"; margin-right: var(--s-2); }
-.briciole a { color: var(--c-bianco); }
+.briciole li + li::before { content: "/"; margin-right: var(--s-2); opacity: .7; }
+.briciole a { color: inherit; }
+
+@media (min-width: 64rem) {
+  .testata { padding-block: var(--s-7) var(--s-9); }
+  .testata--media .testata__griglia {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "testo media"
+      "biglietto media";
+    column-gap: var(--s-8);
+    align-items: start;
+  }
+  .testata__biglietto { margin-left: var(--s-7); }
+  .testata__media { margin-top: var(--s-4); }
+}

@@ -1,0 +1,16 @@
+{{- /*
+Post-it con il contatto giusto, sempre visibile in apertura di pagina.
+@param tipo   "corsi" (segreteria) o "eventi" (email eventi)
+@param classe classi CSS aggiuntive
+@param ordine posizione nell'animazione di apertura
+*/ -}}
+{{- $c := site.Params.contatti }}
+{{- $eventi := eq .tipo "eventi" }}
+{{- $email := cond $eventi $c.email_eventi $c.email_segreteria }}
+<aside class="postit {{ .classe }}" style="--ordine: {{ .ordine | default 2 }}" aria-label="Contatti veloci">
+  <p class="postit__titolo">{{ if $eventi }}Hai una festa o un evento?{{ else }}Vuoi provare?{{ end }}</p>
+  <p>
+    <span class="postit__voce">Chiama {{ $c.telefono_nome }}<br><a href="tel:{{ replace $c.telefono " " "" }}">{{ $c.telefono }}</a></span>
+    <span class="postit__voce">o scrivi a<br><a href="mailto:{{ $email }}">{{ replace $email "@" "<wbr>@" | safeHTML }}</a></span>
+  </p>
+</aside>

@@ -1,6 +1,6 @@
 ---
 title: "Styleguide"
-description: "Il design system di Circo Svago: colori, tipografia e componenti. Riferimento vincolante: DESIGN.md."
+description: "Il design system di Circo Svago, il cartellone di classe: cartoncini, materiali, tipografia e componenti. Riferimento: DESIGN.md."
 layout: styleguide
 colore: corallo
 noindex: true

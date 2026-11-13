@@ -8,7 +8,7 @@
 {{- if or .Params.noindex hugo.IsDevelopment }}
 <meta name="robots" content="noindex">
 {{- end }}
-<meta name="theme-color" content="#C2513F">{{/* = --c-corallo; i meta tag non possono leggere variabili CSS */}}
+<meta name="theme-color" content="#F5C518">{{/* = --c-giallo; i meta tag non possono leggere variabili CSS */}}
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
@@ -29,6 +29,6 @@
   {{- with .Resize "180x png" }}<link rel="apple-touch-icon" href="{{ .RelPermalink }}">{{ end }}
 {{- end }}
 
-<link rel="preload" href="/fonts/nunito-400_800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/yellowtail-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/shantell-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/atkinson-hyperlegible-next-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 {{ partialCached "head/css.html" . }}

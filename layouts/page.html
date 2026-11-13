@@ -1,46 +1,50 @@
 {{ define "main" }}
 {{ partial "testata.html" . }}
 
+{{- $colore := partial "colore.html" . }}
+{{- $carta := partial "carta-sezione.html" $colore }}
 {{- $cop := partial "copertina.html" . }}
 {{- $foto := and $cop (not $cop.illustrazione) }}
-<section class="sezione sezione--stretta">
-  <div class="contenitore pagina{{ if $foto }} pagina--con-foto{{ end }}">
-    <div class="prosa pagina__testo">
-      {{ .Content }}
+
+{{/* Il testo, scritto su un foglio incollato */}}
+<section class="pagina cartoncino cartoncino--zigzag sezione" data-carta="bianco">
+  <div class="contenitore">
+    <div class="pagina__foglio foglio nastrato">
+      <div class="prosa">{{ .Content }}</div>
     </div>
-    {{- if $foto }}
-      <figure class="pagina__foto">
-        {{ partial "img.html" (dict "res" $cop.res "alt" $cop.alt "widths" (slice 480 800 1200) "sizes" "(min-width: 56rem) 28rem, 100vw" "eager" true) }}
-      </figure>
-    {{- end }}
   </div>
 </section>
 
-{{- /* Galleria automatica: tutte le immagini del bundle tranne la copertina */}}
+{{- /* Galleria automatica: tutte le immagini del bundle tranne la copertina (già in testata) */}}
 {{- if ne .Params.galleria false }}
   {{- $altre := slice }}
   {{- range .Resources.ByType "image" }}
     {{- if not (and $foto (eq .Name $cop.res.Name)) }}{{ $altre = $altre | append . }}{{ end }}
   {{- end }}
   {{- with $altre }}
-  <section class="sezione sezione--chiara">
+  <section class="cartoncino cartoncino--zigzag sezione" data-carta="nero">
     <div class="contenitore">
-      {{ partial "galleria.html" (dict "immagini" . "titolo" "Galleria") }}
+      {{ partial "galleria.html" (dict "immagini" . "titolo" (printf "%s, in foto" $.LinkTitle)) }}
     </div>
   </section>
   {{- end }}
 {{- end }}
 
-{{- /* Altre pagine della stessa sezione */}}
+{{- /* Le altre pagine della stessa sezione: i corsi come ritagli, il resto come foto stampate */}}
 {{- with .Parent }}
   {{- $fratelli := where .Pages.ByWeight "RelPermalink" "ne" $.RelPermalink }}
   {{- if and $fratelli (not .IsHome) }}
-  <section class="sezione">
+  <section class="altro cartoncino cartoncino--zigzag sezione" data-carta="{{ $carta }}">
     <div class="contenitore">
-      <h2 class="sezione__titolo">Altro in {{ .LinkTitle }}</h2>
-      <div class="griglia-card">
-        {{- range first 3 $fratelli }}{{ partial "card.html" . }}{{ end }}
-      </div>
+      {{- if eq $.Section "scuola" }}
+        <h2 class="sezione__titolo">Gli altri corsi</h2>
+        {{ partial "corsi.html" (dict "pagine" $fratelli) }}
+      {{- else }}
+        <h2 class="sezione__titolo">Altro in {{ .LinkTitle }}</h2>
+        <div class="griglia-card">
+          {{- range first 3 $fratelli }}{{ partial "card.html" . }}{{ end }}
+        </div>
+      {{- end }}
     </div>
   </section>
   {{- end }}

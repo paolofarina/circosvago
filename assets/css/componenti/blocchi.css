@@ -1,35 +1,73 @@
-/* Blocchi colore "Cosa facciamo": campiture piene come le pagine della brochure */
+/* "Cosa facciamo": la scuola è il pezzo grande, eventi e progetti due pezzi più piccoli incollati accanto */
 .blocchi {
   display: grid;
-  gap: var(--s-5);
-}
-@media (min-width: 56rem) {
-  .blocchi { grid-template-columns: repeat(3, 1fr); }
+  gap: var(--s-8) var(--s-6);
+  padding-top: var(--s-4);
 }
 .blocco {
+  --carta: var(--c-rosso);
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  background: var(--c-sezione);
+  padding: 0 var(--s-5) var(--s-6);
+  background: var(--carta);
   color: var(--c-bianco);
-  border-radius: var(--r-lg);
-  transition: transform var(--durata) var(--curva), box-shadow var(--durata);
+  box-shadow: var(--ombra-1);
+  rotate: var(--storto, -1deg);
 }
-.blocco:hover { transform: translateY(-4px) rotate(-.5deg); box-shadow: var(--ombra-2); }
-.blocco__media { position: relative; aspect-ratio: 4 / 3; }
-.blocco__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.blocco__corpo { display: flex; flex: 1; flex-direction: column; padding: var(--s-6); }
-.blocco__titolo { font-family: var(--f-script); font-weight: 400; font-size: var(--t-2xl); margin-bottom: var(--s-3); }
+.blocco[data-carta="malva"] { --carta: var(--c-malva); }
+.blocco[data-carta="blu"]   { --carta: var(--c-blu); }
+.blocco:nth-child(2) { --storto: 1.2deg; }
+.blocco:nth-child(3) { --storto: -0.6deg; }
+
+.blocco__foto {
+  --storto: 2deg;
+  margin: calc(-1 * var(--s-5)) calc(-1 * var(--s-2)) var(--s-5);
+}
+.blocco:nth-child(2) .blocco__foto { --storto: -2.5deg; }
+.blocco__foto img { aspect-ratio: 4 / 3; }
+
+.blocco__titolo { margin-bottom: var(--s-2); font-size: var(--t-2xl); }
 .blocco__titolo a { color: var(--c-bianco); text-decoration: none; }
-.blocco__titolo a::after { content: ""; position: absolute; inset: 0; }
-.blocco:has(a:focus-visible) { outline: 3px solid var(--c-inchiostro); outline-offset: 3px; }
-.blocco__titolo a:focus-visible { outline: none; }
+.blocco__titolo a::after { content: ""; position: absolute; inset: 0; z-index: 3; }
+.blocco__titolo a:focus-visible { outline: none; box-shadow: none; }
+.blocco:has(a:focus-visible) { outline: 3px solid var(--c-inchiostro); outline-offset: 4px; box-shadow: 0 0 0 7px var(--c-giallo); }
+.blocco__testo { margin-bottom: var(--s-4); max-width: 40ch; }
 .blocco__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
   margin-top: auto;
-  font-family: var(--f-titolo);
-  font-size: var(--t-sm);
+  font-family: var(--f-pennarello);
+  font-size: var(--t-lg);
   font-weight: 700;
-  letter-spacing: var(--tracking-maiuscolo);
-  text-transform: uppercase;
+}
+
+/* i pezzi piccoli (eventi, progetti): foto che sborda a sinistra, testo accanto, a ogni larghezza */
+.blocco:not(:first-child) {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  column-gap: var(--s-4);
+  align-items: start;
+  padding: var(--s-4) var(--s-4) var(--s-5) 0;
+}
+.blocco:not(:first-child) .blocco__foto { grid-row: 1 / span 3; margin: calc(-1 * var(--s-5)) 0 0 calc(-1 * var(--s-3)); }
+.blocco:not(:first-child) .blocco__titolo { font-size: var(--t-xl); }
+.blocco:not(:first-child) .blocco__testo { font-size: var(--t-sm); }
+
+@media (min-width: 56rem) {
+  .blocco:not(:first-child) { column-gap: var(--s-5); padding: var(--s-5) var(--s-5) var(--s-5) 0; }
+  .blocco:not(:first-child) .blocco__foto { margin: calc(-1 * var(--s-6)) 0 0 calc(-1 * var(--s-5)); }
+  .blocco:not(:first-child) .blocco__testo { font-size: var(--t-base); }
+  .blocchi {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-items: start;
+    column-gap: var(--s-8);
+  }
+  /* il pezzo grande: la scuola */
+  .blocco:first-child { grid-row: 1 / span 2; padding: 0 var(--s-6) var(--s-7); }
+  .blocco:first-child .blocco__titolo { font-size: var(--t-3xl); }
+  .blocco:first-child .blocco__testo { font-size: var(--t-lg); }
+  .blocco:nth-child(3) { margin-left: var(--s-7); margin-top: var(--s-4); }
 }

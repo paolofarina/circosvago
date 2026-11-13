@@ -1,0 +1,6 @@
+{{- /*
+Traduce il colore di sezione del front matter (corallo | malva | blu) nel cartoncino corrispondente.
+@example {{ $carta := partial "carta-sezione.html" "corallo" }} → "rosso"
+*/ -}}
+{{- $mappa := dict "corallo" "rosso" "malva" "malva" "blu" "blu" }}
+{{- return (index $mappa . | default "rosso") }}

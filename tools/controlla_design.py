@@ -15,6 +15,10 @@ TOKENS = RADICE / "assets" / "css" / "tokens.css"
 # Eccezioni puntuali (file relativo, frammento della riga) con motivazione
 ECCEZIONI = [
     ("layouts/_partials/head.html", "theme-color"),  # i meta tag non leggono variabili CSS
+    # Texture del cartellone (DESIGN.md): bordo a zigzag e righe del quaderno sono gli unici gradienti ammessi
+    ("assets/css/componenti/carta.css", "conic-gradient(from 135deg"),
+    ("assets/css/componenti/carta.css", "linear-gradient(90deg, transparent 2.6rem"),
+    ("assets/css/componenti/carta.css", "repeating-linear-gradient(to bottom"),
 ]
 
 REGOLE_CSS = [
@@ -22,7 +26,7 @@ REGOLE_CSS = [
     (re.compile(r"\b(rgb|rgba|hsl|hsla)\(", re.I), "colore rgb()/hsl() fuori da tokens.css"),
     (re.compile(r"font-family\s*:(?!\s*(var\(|inherit))", re.I), "font-family senza token --f-*"),
     (re.compile(r"font-size\s*:(?!\s*(var\(|inherit))", re.I), "font-size senza token --t-*"),
-    (re.compile(r"gradient\(", re.I), "gradiente (vietato)"),
+    (re.compile(r"gradient\(", re.I), "gradiente (ammessi solo le texture in carta.css)"),
     (re.compile(r"@import\s+url\(\s*['\"]?https?:", re.I), "import da dominio esterno"),
 ]
 

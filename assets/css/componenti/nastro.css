@@ -1,55 +1,41 @@
-/* Nastro di foto orizzontale (scroll-snap, nessuna libreria) */
-.nastro { padding-block: var(--s-5) var(--s-8); }
+/* Momenti di circo: foto stampate e incollate sul cartoncino nero dell'album */
+.nastro { padding-block: var(--s-8) var(--s-9); }
 .nastro__testa {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--s-4);
-  margin-bottom: var(--s-4);
+  margin-bottom: var(--s-6);
 }
-.nastro__testa .etichetta { margin: 0; font-size: var(--t-base); }
-.nastro__frecce { display: flex; gap: var(--s-2); }
+.nastro__titolo { margin: 0; color: var(--c-bianco); }
+.nastro__frecce { display: flex; gap: var(--s-3); }
 
 .nastro__lista {
   list-style: none;
   display: flex;
-  gap: var(--s-4);
+  gap: var(--s-6);
   margin: 0;
-  padding: var(--s-2) var(--s-gutter) var(--s-4);
+  padding: var(--s-5) var(--s-gutter) var(--s-6);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-padding-inline: var(--s-gutter);
   scrollbar-width: thin;
-  scrollbar-color: var(--c-corallo) transparent;
+  scrollbar-color: var(--c-giallo) transparent;
 }
-@media (min-width: 75rem) {
-  .nastro__lista { padding-inline: max(var(--s-gutter), calc((100vw - var(--w-max)) / 2 + var(--s-gutter))); }
+@media (min-width: 78rem) {
+  .nastro__lista {
+    padding-inline: max(var(--s-gutter), calc((100vw - var(--w-max)) / 2 + var(--s-gutter)));
+    scroll-padding-inline: max(var(--s-gutter), calc((100vw - var(--w-max)) / 2 + var(--s-gutter)));
+  }
 }
+.nastro__lista:focus-visible { outline: 3px solid var(--c-giallo); outline-offset: -4px; box-shadow: none; }
 .nastro__voce {
-  flex: 0 0 clamp(14rem, 26vw, 18rem);
+  flex: 0 0 clamp(13rem, 24vw, 17rem);
   scroll-snap-align: start;
 }
-.nastro__voce:nth-child(odd) { transform: rotate(-1.5deg); }
-.nastro__voce:nth-child(even) { transform: rotate(1.5deg) translateY(.75rem); }
-.nastro__voce a {
-  display: block;
-  padding: var(--s-2) var(--s-2) var(--s-3);
-  background: var(--c-bianco);
-  border-radius: var(--r-md);
-  box-shadow: var(--ombra-1);
-  color: var(--c-inchiostro);
-  text-decoration: none;
-  transition: transform var(--durata) var(--curva), box-shadow var(--durata);
-}
-.nastro__voce a:hover { transform: scale(1.03); box-shadow: var(--ombra-2); }
-.nastro__voce img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--r-sm); }
-.nastro__didascalia {
-  display: block;
-  padding-top: var(--s-2);
-  text-align: center;
-  font-family: var(--f-titolo);
-  font-size: var(--t-sm);
-  font-weight: 700;
-  letter-spacing: var(--tracking-maiuscolo);
-  text-transform: uppercase;
-}
+.nastro__voce:nth-child(3n+1) .stampa { --storto: -2deg; }
+.nastro__voce:nth-child(3n+2) .stampa { --storto: 1.5deg; translate: 0 .75rem; }
+.nastro__voce:nth-child(3n+3) .stampa { --storto: -0.5deg; }
+.nastro__voce:nth-child(odd) .nastrato { --nastro-storto: 4deg; }
+.nastro__voce .stampa { text-decoration: none; }
+.nastro__voce img { aspect-ratio: 3 / 4; }

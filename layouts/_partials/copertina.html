@@ -17,7 +17,7 @@ Restituisce dict { res, illustrazione: bool, alt } oppure nil.
   {{- end }}
 {{- end }}
 {{- if and (not $res) .Params.illustrazione }}
-  {{- $res = resources.Get (printf "img/illustrazioni/%s" .Params.illustrazione) }}
+  {{- $res = partial "illustrazione.html" .Params.illustrazione }}
   {{- $illu = true }}
 {{- end }}
 {{- if not $res }}
