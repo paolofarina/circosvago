@@ -1,3 +1,8 @@
+> **COPIA DI TEST — skill: Impeccable** (branch `test/impeccable`, anteprima su http://localhost:1314)
+> In questa copia vale **BRIEF-TEST.md** (modalità "carta bianca"): `DESIGN.md` e `tokens.css` sono solo un riferimento,
+> e `tools/controlla_design.py` non è obbligatorio. I vincoli non negoziabili del brief restano validi.
+> Avvia l'anteprima con: `hugo server --port 1314`. Non modificare `C:\Progetti\circosvago` né le altre copie.
+
 # Circo Svago — sito Hugo
 
 Sito statico della scuola di circo Circo Svago (Albano Laziale). Hugo **extended** ≥ 0.146 (layout con la nuova struttura `layouts/_partials`, `layouts/_shortcodes`). Lingua: italiano.
