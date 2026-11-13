@@ -5,3 +5,10 @@
 
 # Materiale grezzo del cliente (330 MB): le immagini ottimizzate sono già in content/ e assets/
 /CIRCO SVAGO SITO/
+
+# Skill di test installate localmente (non versionate)
+/.claude/skills/
+/.claude/agents/
+/.claude/settings.local.json
+/.impeccable/
+
