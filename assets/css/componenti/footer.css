@@ -1,18 +1,10 @@
+/* Footer: cartoncino nero, il motto a pennarello giallo */
 .footer {
-  position: relative;
-  margin-top: var(--s-8);
   padding-bottom: var(--s-5);
-  background: var(--c-inchiostro);
   color: var(--c-bianco);
 }
-.footer__onda {
-  position: absolute;
-  bottom: calc(100% - 1px);
-  left: 0;
-  color: var(--c-inchiostro);
-}
-.footer a { color: var(--c-bianco); }
-.footer a:hover { color: var(--c-giallo); }
+.footer a { color: var(--c-bianco); text-decoration-color: var(--c-sottolinea-chiara); }
+.footer a:hover { color: var(--c-giallo); text-decoration-color: currentColor; }
 
 .footer__griglia {
   display: grid;
@@ -22,19 +14,26 @@
 @media (min-width: 48rem) {
   .footer__griglia { grid-template-columns: 1.4fr 1fr 1.2fr; }
 }
-.footer__logo { width: 10rem; margin-bottom: var(--s-4); }
+.footer__logo { width: 9rem; margin-bottom: var(--s-4); }
 .footer__motto {
-  font-family: var(--f-script);
+  max-width: 14ch;
+  font-family: var(--f-pennarello);
   font-size: var(--t-2xl);
-  line-height: 1.2;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--c-giallo);
+  rotate: calc(-2deg * var(--k-storto));
+}
+.footer__titolo {
+  margin-bottom: var(--s-3);
+  font-size: var(--t-lg);
   color: var(--c-giallo);
 }
-.footer .etichetta { color: var(--c-giallo); }
-.footer__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-2); }
+.footer__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-2); overflow-wrap: anywhere; }
 
 .footer__fondo {
   padding-top: var(--s-5);
-  border-top: 1px solid var(--c-inchiostro-soft);
+  border-top: 1px solid var(--c-riga-chiara);
   font-size: var(--t-sm);
 }
 .footer__fondo p { margin: 0; }
@@ -45,6 +44,8 @@
   place-items: center;
   width: 2.75rem;
   height: 2.75rem;
-  border: 2px solid currentColor;
   border-radius: 50%;
+  background: var(--c-giallo);
+  color: var(--c-inchiostro);
 }
+.footer__elemento { width: 5.5rem; margin: var(--s-2) 0 var(--s-5); }

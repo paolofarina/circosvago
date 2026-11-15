@@ -1,0 +1,17 @@
+{{- /*
+Piccolo disegno vettoriale preso dalla brochure 2025 (assets/img/elementi/<nome>.svg, estratti con
+tools/estrai_elementi_brochure.py). È decorazione: niente testo alternativo, nascosto ai lettori di schermo.
+@param nome    birilli | monociclo | giocoliere | biciclo | clave
+@param classe  classi CSS per posizione e misura
+@param linea   true per i disegni a linee bianche: prendono il colore del testo (currentColor) via mask
+@example {{ partial "elemento.html" (dict "nome" "monociclo" "classe" "fascia-contatti__elemento") }}
+*/ -}}
+{{- with resources.Get (printf "img/elementi/%s.svg" .nome) }}
+  {{- $w := index (index (findRESubmatch `width="(\d+)"` .Content 1) 0) 1 }}
+  {{- $h := index (index (findRESubmatch `height="(\d+)"` .Content 1) 0) 1 }}
+  {{- if $.linea }}
+<span class="elemento elemento--linea {{ $.classe }}" style="{{ printf "--src: url('%s'); --ar: %s / %s" .RelPermalink $w $h | safeCSS }}" aria-hidden="true"></span>
+  {{- else }}
+<img class="elemento {{ $.classe }}" src="{{ .RelPermalink }}" width="{{ $w }}" height="{{ $h }}" alt="" loading="lazy" decoding="async">
+  {{- end }}
+{{- end }}

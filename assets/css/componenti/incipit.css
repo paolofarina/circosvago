@@ -1,0 +1,15 @@
+/* Chi siamo in home: il titolo a pennarello sul malva, il racconto su un foglio di quaderno */
+.incipit__griglia { display: grid; gap: var(--s-7); }
+.incipit__titolo {
+  margin: 0;
+  font-size: var(--t-2xl);
+  line-height: 1.12;
+  color: var(--c-bianco);
+}
+.incipit__foglio { --storto: 0.8deg; max-width: 44rem; }
+.incipit__foglio .prosa { max-width: none; }
+.incipit__azione { margin-top: var(--s-2); }
+@media (min-width: 56rem) {
+  .incipit__griglia { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr); align-items: start; column-gap: var(--s-8); }
+  .incipit__titolo { position: sticky; top: calc(var(--h-header) + var(--s-6)); font-size: var(--t-frase); }
+}

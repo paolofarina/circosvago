@@ -1,11 +1,22 @@
-/* Segnaposto per contenuti mancanti: deve saltare all'occhio */
+/* Segnaposto per contenuti mancanti: un post-it "da scrivere" attaccato al foglio. Deve saltare all'occhio. */
 .da-scrivere {
-  margin: var(--s-5) 0;
-  padding: var(--s-4) var(--s-5);
-  background: var(--c-giallo-chiaro);
-  border: 3px dashed var(--c-giallo);
-  border-radius: var(--r-md);
+  position: relative;
+  max-width: 34rem;
+  margin: var(--s-6) 0;
+  padding: var(--s-5) var(--s-5) var(--s-4);
+  background: var(--c-postit);
   color: var(--c-inchiostro);
+  font-size: var(--t-base);
+  line-height: 1.5;
+  rotate: calc(1.2deg * var(--k-storto));
+  box-shadow: var(--ombra-postit);
 }
-.da-scrivere .etichetta { color: var(--c-inchiostro); }
+.da-scrivere .etichetta {
+  display: inline-block;
+  margin-bottom: var(--s-2);
+  padding: 0 var(--s-2);
+  background: var(--c-inchiostro);
+  color: var(--c-postit);
+  font-size: var(--t-sm);
+}
 .da-scrivere p:last-child { margin-bottom: 0; }

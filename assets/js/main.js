@@ -47,6 +47,15 @@ if (nastro) {
   const passo = () => nastro.clientWidth * 0.8;
   document.querySelector("[data-nastro-prec]")?.addEventListener("click", () => nastro.scrollBy({ left: -passo(), behavior: "smooth" }));
   document.querySelector("[data-nastro-succ]")?.addEventListener("click", () => nastro.scrollBy({ left: passo(), behavior: "smooth" }));
+  const prec = document.querySelector("[data-nastro-prec]");
+  const succ = document.querySelector("[data-nastro-succ]");
+  const aggiorna = () => {
+    if (prec) prec.disabled = nastro.scrollLeft <= 2;
+    if (succ) succ.disabled = nastro.scrollLeft + nastro.clientWidth >= nastro.scrollWidth - 2;
+  };
+  nastro.addEventListener("scroll", aggiorna, { passive: true });
+  addEventListener("resize", aggiorna);
+  aggiorna();
 }
 
 // ---------- Lightbox ----------

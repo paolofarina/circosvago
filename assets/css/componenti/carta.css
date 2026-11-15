@@ -1,0 +1,263 @@
+/* =====================================================================
+   I materiali del cartellone: cartoncino, foglio, ritaglio, stampa,
+   post-it, nastro adesivo. Tutto il resto del sito è fatto con questi.
+   ===================================================================== */
+
+/* ---------- Cartoncino: una sezione = un colore pieno a tutta pagina ---------- */
+.cartoncino {
+  --carta: var(--c-bianco);
+  --su-carta: var(--c-inchiostro);
+  position: relative;
+  background: var(--carta);
+  color: var(--su-carta);
+}
+.cartoncino[data-carta="giallo"] { --carta: var(--c-giallo); --su-carta: var(--c-inchiostro); }
+.cartoncino[data-carta="rosso"]  { --carta: var(--c-rosso);  --su-carta: var(--c-bianco); }
+.cartoncino[data-carta="malva"]  { --carta: var(--c-malva);  --su-carta: var(--c-bianco); }
+.cartoncino[data-carta="blu"]    { --carta: var(--c-blu);    --su-carta: var(--c-bianco); }
+.cartoncino[data-carta="nero"]   { --carta: var(--c-nero);   --su-carta: var(--c-bianco); }
+.cartoncino[data-carta="bianco"] { --carta: var(--c-bianco); --su-carta: var(--c-inchiostro); }
+
+/* Il bordo superiore è tagliato con le forbici a zigzag e si sovrappone alla sezione prima */
+.cartoncino--zigzag::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% - 1px);
+  height: var(--zigzag);
+  background: conic-gradient(from 135deg at 50% 0, var(--carta) 90deg, transparent 0) 50% 100% / calc(var(--zigzag) * 2) 100% repeat-x;
+  pointer-events: none;
+}
+.cartoncino > .contenitore { position: relative; }
+
+/* I link nel testo sui cartoncini scuri restano leggibili */
+.cartoncino:is([data-carta="rosso"], [data-carta="malva"], [data-carta="blu"], [data-carta="nero"]) a:not([class]) {
+  color: var(--c-bianco);
+}
+/* …ma sulla carta chiara incollata sopra (foglio, post-it, striscia) torna l'inchiostro */
+.cartoncino :is(.foglio, .striscia) a:not([class]) { color: var(--c-link); }
+.cartoncino :is(.postit, .da-scrivere) a:not([class]) { color: var(--c-inchiostro); }
+
+/* ---------- Foglio: carta bianca incollata per il testo ---------- */
+.foglio {
+  position: relative;
+  background: var(--c-foglio);
+  color: var(--c-inchiostro);
+  padding: clamp(var(--s-5), 4vw, var(--s-7));
+  box-shadow: var(--ombra-1);
+  rotate: calc(var(--storto, -0.6deg) * var(--k-storto));
+}
+/* Foglio di quaderno: il testo è scritto sulle righe (padding e margini in multipli di riga) */
+.foglio--righe {
+  --riga: 1.75rem;
+  background:
+    linear-gradient(90deg, transparent 2.6rem, var(--c-margine) 2.6rem, var(--c-margine) calc(2.6rem + 2px), transparent 0),
+    repeating-linear-gradient(to bottom, transparent 0 calc(var(--riga) - 1px), var(--c-righe) calc(var(--riga) - 1px) var(--riga)),
+    var(--c-foglio);
+  background-position: 0 0, 0 -0.3rem;
+  padding: calc(var(--riga) * 2) clamp(var(--s-5), 4vw, var(--s-7)) calc(var(--riga) * 2) clamp(3.5rem, 6vw, 4.5rem);
+  line-height: var(--riga);
+}
+.foglio--righe p { margin-bottom: var(--riga); }
+.foglio--righe blockquote {
+  margin: var(--riga) 0 calc(var(--riga) * 2);
+  padding-block: calc(var(--riga) / 2);
+  font-size: var(--t-lg);
+  line-height: var(--riga);
+}
+
+/* Striscia: un ritaglio di foglio largo quanto il testo che porta */
+.striscia {
+  display: inline-block;
+  padding: .45em .8em .5em;
+  background: var(--c-foglio);
+  color: var(--c-inchiostro);
+  box-shadow: var(--ombra-1);
+  rotate: calc(var(--storto, 0.8deg) * var(--k-storto));
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* ---------- Nastro adesivo (pezzetto di carta semitrasparente) ---------- */
+.nastrato { position: relative; }
+.nastrato::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: -0.85rem;
+  left: 50%;
+  width: clamp(4.5rem, 30%, 7.5rem);
+  height: 1.7rem;
+  translate: -50% 0;
+  rotate: var(--nastro-storto, -3deg);
+  background: var(--c-nastro);
+  box-shadow: var(--ombra-nastro);
+  pointer-events: none;
+}
+.nastrato--angoli::after {
+  left: -1.4rem;
+  top: 0.4rem;
+  translate: 0 0;
+  width: 5rem;
+  rotate: -40deg;
+}
+.nastrato--angoli::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  right: -1.4rem;
+  bottom: 0.6rem;
+  width: 5rem;
+  height: 1.7rem;
+  rotate: -40deg;
+  background: var(--c-nastro);
+  box-shadow: var(--ombra-nastro);
+  pointer-events: none;
+}
+
+/* ---------- Ritaglio: illustrazione ad acquerello ritagliata con le forbici ----------
+   L'immagine è già una sagoma con margine bianco e trasparenza (tools/ritaglia_illustrazioni.py):
+   l'ombra segue il contorno, non un rettangolo. */
+.ritaglio {
+  position: relative;
+  display: block;
+  margin: 0;
+  rotate: calc(var(--storto, 2deg) * var(--k-storto));
+}
+.ritaglio img {
+  width: 100%;
+  height: auto;
+  filter: var(--ombra-ritaglio);
+  transition: filter var(--durata) var(--curva);
+}
+
+/* ---------- Stampa: foto stampata con il bordo bianco ---------- */
+.stampa {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: clamp(.4rem, 1vw, .6rem) clamp(.4rem, 1vw, .6rem) clamp(.4rem, 1vw, .6rem);
+  background: var(--c-foglio);
+  box-shadow: var(--ombra-1);
+  rotate: calc(var(--storto, -1.5deg) * var(--k-storto));
+}
+.stampa img { width: 100%; height: 100%; object-fit: cover; }
+.stampa figcaption,
+.stampa__didascalia {
+  display: block;
+  padding: var(--s-2) var(--s-1) 0;
+  font-family: var(--f-pennarello);
+  font-size: var(--t-base);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--c-inchiostro);
+}
+
+/* ---------- Post-it ---------- */
+.postit {
+  position: relative;
+  display: block;
+  width: min(100%, 22rem);
+  padding: var(--s-5);
+  background: var(--c-postit);
+  color: var(--c-inchiostro);
+  font-family: var(--f-pennarello);
+  line-height: 1.3;
+  rotate: calc(var(--storto, -2.5deg) * var(--k-storto));
+  box-shadow: var(--ombra-postit);
+}
+.postit > :last-child { margin-bottom: 0; }
+.postit__titolo {
+  margin: 0 0 var(--s-2);
+  font-size: var(--t-lg);
+  font-weight: 700;
+}
+.postit a {
+  color: var(--c-inchiostro);
+  font-size: var(--t-base);
+  font-weight: 700;
+  overflow-wrap: break-word;
+}
+.postit a[href^="tel:"] { font-size: var(--t-lg); }
+.postit__voce { display: block; margin-top: var(--s-2); }
+
+/* ---------- Staccare un pezzo dal cartellone (interazione firma) ---------- */
+.staccabile {
+  transition: rotate var(--durata) var(--curva), translate var(--durata) var(--curva), box-shadow var(--durata) var(--curva);
+}
+@media (hover: hover) {
+  .staccabile:hover {
+    rotate: 0deg;
+    translate: 0 -6px;
+    box-shadow: var(--ombra-2);
+  }
+}
+.staccabile:focus-within,
+.staccabile:focus-visible {
+  rotate: 0deg;
+  translate: 0 -6px;
+  box-shadow: 0 0 0 6px var(--c-giallo), var(--ombra-2);
+}
+
+/* Il ritaglio si stacca senza ombra rettangolare: è la sagoma ad alzarsi */
+.ritaglio.staccabile:is(:hover, :focus-within, :focus-visible) { box-shadow: none; }
+.ritaglio.staccabile:is(:hover, :focus-within) img { filter: var(--ombra-ritaglio-su); }
+
+/* Focus da tastiera sui cartoncini scuri: il contorno diventa giallo */
+.cartoncino:is([data-carta="rosso"], [data-carta="malva"], [data-carta="blu"], [data-carta="nero"]) :focus-visible {
+  outline-color: var(--c-giallo);
+}
+
+/* ---------- Posare i pezzi (una volta, all'apertura della pagina) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .si-posa {
+    animation: posa 700ms var(--curva) backwards;
+    animation-delay: calc(var(--ordine, 0) * 110ms + 120ms);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ritaglio.si-posa { animation-name: posa-ritaglio; }
+}
+@keyframes posa-ritaglio {
+  from { translate: 0 -18px; scale: 1.04; }
+}
+@keyframes posa {
+  from {
+    translate: 0 -18px;
+    scale: 1.04;
+    box-shadow: var(--ombra-posa);
+  }
+}
+
+/* ---------- Freccia a mano (icona SVG inline) ---------- */
+.freccia {
+  display: inline-block;
+  width: 2.25rem;
+  height: 1.25rem;
+  vertical-align: middle;
+  color: currentColor;
+}
+
+/* Recapiti cliccabili: area di tocco alta almeno 44px senza cambiare il disegno */
+.postit a,
+.fascia-contatti__foglio a,
+.footer__lista a {
+  display: inline-block;
+  padding-block: .55rem;
+  margin-block: -.3rem;
+}
+
+/* ---------- Elementi della brochure (disegni vettoriali, decorativi) ---------- */
+.elemento { display: block; height: auto; pointer-events: none; }
+.elemento--linea {
+  aspect-ratio: var(--ar);
+  background: currentColor;
+  -webkit-mask: var(--src) center / contain no-repeat;
+  mask: var(--src) center / contain no-repeat;
+  opacity: .85;
+}
+/* testata di sezione con un disegno accanto al titolo */
+.sezione__testa { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--s-5); }
+.sezione__testa .sezione__titolo { margin-bottom: var(--s-6); }
+.sezione__elemento { flex: 0 0 auto; height: clamp(3.5rem, 7vw, 6rem); width: auto; margin-bottom: var(--s-5); }

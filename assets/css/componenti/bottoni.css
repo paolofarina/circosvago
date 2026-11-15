@@ -1,46 +1,68 @@
+/* Bottoni: etichette di cartoncino incollate, scritte a pennarello */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--s-2);
-  min-height: 3rem;
-  padding: .85em 1.6em .7em; /* Josefin Sans siede alto: più spazio sopra */
-  border: 3px solid transparent;
-  border-radius: var(--r-pill);
-  font-family: var(--f-titolo);
-  font-size: var(--t-sm);
+  min-height: 3.25rem;
+  padding: .55em 1.15em .6em;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: var(--c-foglio);
+  color: var(--c-inchiostro);
+  font-family: var(--f-pennarello);
+  font-size: var(--t-lg);
   font-weight: 700;
-  letter-spacing: var(--tracking-maiuscolo);
-  line-height: 1;
-  text-transform: uppercase;
+  line-height: 1.1;
   text-decoration: none;
   cursor: pointer;
-  transition: transform var(--durata) var(--curva), background-color var(--durata), color var(--durata), box-shadow var(--durata);
+  box-shadow: var(--ombra-1);
+  rotate: calc(var(--storto, -1deg) * var(--k-storto));
+  transition: rotate var(--durata) var(--curva), translate var(--durata) var(--curva), box-shadow var(--durata) var(--curva), background-color var(--durata);
 }
-.btn:hover { transform: translateY(-2px); box-shadow: var(--ombra-1); }
+.btn:hover,
+.btn:focus-visible {
+  rotate: 0deg;
+  translate: 0 -3px;
+  box-shadow: var(--ombra-2);
+}
+.btn:focus-visible { box-shadow: 0 0 0 6px var(--c-giallo), var(--ombra-2); }
+.btn:active { translate: 0 0; box-shadow: var(--ombra-1); }
+.btn .freccia { width: 1.75rem; transition: translate var(--durata) var(--curva); }
+.btn:hover .freccia { translate: 4px 0; }
 
-.btn--pieno { background: var(--c-sezione); color: var(--c-bianco); }
-.btn--pieno:hover { background: var(--c-inchiostro); }
+/* Pieno: cartoncino nero, la scelta principale */
+.btn--pieno { background: var(--c-nero); color: var(--c-bianco); }
 
-.btn--bordo { background: transparent; color: var(--c-inchiostro); border-color: var(--c-inchiostro); }
-.btn--bordo:hover { background: var(--c-inchiostro); color: var(--c-bianco); }
+/* Bordo: foglio bianco, la scelta secondaria */
+.btn--bordo { background: var(--c-foglio); color: var(--c-inchiostro); --storto: 1.2deg; }
 
-/* Per campiture colorate */
-.btn--chiaro { background: var(--c-bianco); color: var(--c-inchiostro); }
-.btn--chiaro:hover { background: var(--c-giallo); }
+/* Chiaro: cartoncino giallo, per i cartoncini scuri */
+.btn--chiaro { background: var(--c-giallo); color: var(--c-inchiostro); }
 
+/* Bottone tondo: un bollino adesivo */
 .btn-tondo {
   display: inline-grid;
   place-items: center;
   width: 3rem;
   height: 3rem;
-  border: 3px solid var(--c-inchiostro);
+  border: 0;
   border-radius: 50%;
-  background: var(--c-bianco);
+  background: var(--c-giallo);
   color: var(--c-inchiostro);
-  font-size: var(--t-lg);
-  font-weight: 800;
   cursor: pointer;
-  transition: background-color var(--durata), color var(--durata);
+  box-shadow: var(--ombra-1);
+  transition: translate var(--durata) var(--curva), box-shadow var(--durata);
 }
-.btn-tondo:hover { background: var(--c-inchiostro); color: var(--c-bianco); }
+.btn-tondo:hover { translate: 0 -2px; box-shadow: var(--ombra-2); }
+.btn-tondo:focus-visible { box-shadow: 0 0 0 6px var(--c-bianco), var(--ombra-2); }
+.btn-tondo:disabled {
+  background: transparent;
+  color: var(--c-giallo);
+  outline: 2px dashed var(--c-giallo);
+  outline-offset: -2px;
+  cursor: default;
+  translate: 0 0;
+  box-shadow: none;
+}
+.btn-tondo svg { width: 1.4rem; height: 1.4rem; }

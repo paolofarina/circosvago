@@ -1,31 +1,46 @@
-{{- /* Fascia contatti (home e fondo pagine). */ -}}
+{{- /*
+Chiusura di ogni pagina: cartoncino giallo, invito a scrivere, contatti su un foglio.
+Nelle pagine della sezione Eventi il primo contatto è l'email eventi, altrove la segreteria.
+Contesto: la pagina.
+*/ -}}
 {{- $c := site.Params.contatti }}
-<section class="fascia-contatti" data-colore="malva">
-  <div class="contenitore">
-    <div class="fascia-contatti__blocco">
-      <div class="fascia-contatti__intro">
-        <h2>Vuoi provare? Scrivici</h2>
-        <p>Per corsi, eventi e progetti siamo a un messaggio di distanza.</p>
-        <a class="btn btn--chiaro" href="{{ "/contatti/" | relURL }}">Tutti i contatti</a>
-      </div>
-      <ul class="fascia-contatti__lista">
-        <li>
-          <span class="etichetta">Segreteria e corsi</span>
-          <a href="mailto:{{ $c.email_segreteria }}">{{ $c.email_segreteria }}</a>
-        </li>
-        <li>
-          <span class="etichetta">Eventi e feste</span>
-          <a href="mailto:{{ $c.email_eventi }}">{{ $c.email_eventi }}</a>
-        </li>
-        <li>
-          <span class="etichetta">Telefono</span>
-          <a href="tel:{{ replace $c.telefono " " "" }}">{{ $c.telefono }}</a>
-        </li>
-        <li>
-          <span class="etichetta">Dove siamo</span>
-          {{ $c.indirizzo }}, {{ $c.cap_citta }}
-        </li>
-      </ul>
+{{- $eventi := false }}
+{{- with .FirstSection }}{{ if eq .Section "eventi" }}{{ $eventi = true }}{{ end }}{{ end }}
+{{- $titolo := cond $eventi "Portiamo il circo da te? Scrivici" "Vuoi provare? Scrivici" }}
+{{- $intro := cond $eventi "Raccontaci la tua festa o il tuo evento: la costruiamo insieme." "Per corsi, eventi e progetti siamo a un messaggio di distanza." }}
+<section class="fascia-contatti cartoncino cartoncino--zigzag sezione" id="contatti" data-carta="giallo" aria-labelledby="titolo-contatti">
+  <div class="contenitore fascia-contatti__griglia">
+    <div class="fascia-contatti__intro">
+      <h2 id="titolo-contatti">{{ $titolo }}</h2>
+      <p>{{ $intro }}</p>
+      <a class="btn btn--pieno" href="{{ "contatti/" | relURL }}">Tutti i contatti {{ partial "freccia.html" }}</a>
+      {{ partial "elemento.html" (dict "nome" "monociclo" "classe" "fascia-contatti__elemento") }}
     </div>
+    <ul class="fascia-contatti__foglio foglio nastrato">
+      {{- if $eventi }}
+      <li>
+        <span class="etichetta">Eventi, feste e spettacoli</span>
+        <a href="mailto:{{ $c.email_eventi }}">{{ $c.email_eventi }}</a>
+      </li>
+      {{- end }}
+      <li>
+        <span class="etichetta">Telefono ({{ $c.telefono_nome }})</span>
+        <a href="tel:{{ replace $c.telefono " " "" }}">{{ $c.telefono }}</a>
+      </li>
+      <li>
+        <span class="etichetta">Segreteria e corsi</span>
+        <a href="mailto:{{ $c.email_segreteria }}">{{ $c.email_segreteria }}</a>
+      </li>
+      {{- if not $eventi }}
+      <li>
+        <span class="etichetta">Eventi e feste</span>
+        <a href="mailto:{{ $c.email_eventi }}">{{ $c.email_eventi }}</a>
+      </li>
+      {{- end }}
+      <li>
+        <span class="etichetta">Dove siamo</span>
+        {{ $c.indirizzo }}, {{ $c.cap_citta }}
+      </li>
+    </ul>
   </div>
 </section>

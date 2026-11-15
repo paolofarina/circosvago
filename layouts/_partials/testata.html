@@ -1,7 +1,17 @@
-{{- /* Testata di pagina: campitura nel colore di sezione, titolo script, briciole, lead, illustrazione opzionale. */ -}}
+{{- /*
+Testata di pagina: cartoncino nel colore della sezione, titolo a pennarello, descrizione su una striscia,
+post-it con il contatto giusto e, a destra, la foto di copertina stampata e l'illustrazione ritagliata.
+Contesto: la pagina.
+*/ -}}
+{{- $colore := partial "colore.html" . }}
 {{- $illu := false }}
-{{- with .Params.illustrazione }}{{ $illu = resources.Get (printf "img/illustrazioni/%s" .) }}{{ end }}
-<section class="testata{{ if $illu }} testata--illustrata{{ end }}">
+{{- with .Params.illustrazione }}{{ $illu = partial "illustrazione.html" . }}{{ end }}
+{{- $cop := partial "copertina.html" . }}
+{{- $foto := and $cop (not $cop.illustrazione) .IsPage }}
+{{- $elemento := and (not $illu) .Params.elemento }}
+{{- $tipo := "corsi" }}
+{{- with .FirstSection }}{{ if eq .Section "eventi" }}{{ $tipo = "eventi" }}{{ end }}{{ end }}
+<section class="testata cartoncino{{ if or $illu $foto }} testata--media{{ end }}" data-carta="{{ partial "carta-sezione.html" $colore }}">
   <div class="contenitore testata__griglia">
     <div class="testata__testo">
       {{- if not .IsHome }}
@@ -16,14 +26,30 @@
       {{- end }}
       <h1 class="testata__titolo">{{ .Title }}</h1>
       {{- with .Description }}
-        <p class="testata__lead">{{ . }}</p>
+        <p class="testata__lead"><span class="striscia">{{ . }}</span></p>
       {{- end }}
     </div>
-    {{- with $illu }}
-      <div class="testata__illustrazione">
-        {{ partial "img.html" (dict "res" . "alt" "" "widths" (slice 320 640) "sizes" "(min-width: 48rem) 20rem, 60vw" "class" "illustrazione" "eager" true) }}
-      </div>
+
+    {{- if or $illu $foto }}
+    <div class="testata__media">
+      {{- if $foto }}
+        <figure class="testata__foto stampa nastrato si-posa" style="--ordine: 0">
+          {{ partial "img.html" (dict "res" $cop.res "alt" $cop.alt "ratio" "4:3" "widths" (slice 480 800 1200) "sizes" "(min-width: 64rem) 34rem, 92vw" "eager" true) }}
+        </figure>
+      {{- end }}
+      {{- with $elemento }}
+        <div class="testata__elemento si-posa" style="--ordine: 1">{{ partial "elemento.html" (dict "nome" .) }}</div>
+      {{- end }}
+      {{- with $illu }}
+        <figure class="testata__illustrazione ritaglio staccabile si-posa{{ if not $foto }} testata__illustrazione--sola{{ end }}" style="--ordine: 1">
+          {{ partial "img.html" (dict "res" . "alt" "" "widths" (slice 240 400 640) "sizes" "(min-width: 64rem) 12rem, 34vw" "eager" true) }}
+        </figure>
+      {{- end }}
+    </div>
+    {{- end }}
+
+    {{- if and .IsPage (ne .Section "contatti") }}
+      {{ partial "biglietto.html" (dict "tipo" $tipo "classe" "testata__biglietto si-posa" "ordine" 2) }}
     {{- end }}
   </div>
-  {{ partial "onda.html" (dict "classe" "testata__onda") }}
 </section>

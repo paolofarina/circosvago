@@ -1,0 +1,13 @@
+{{- /*
+Link nei testi markdown. I link interni scritti dalla radice ("/scuola/") vengono riportati sotto il
+baseURL del sito, così funzionano anche quando il sito sta in una sottocartella (es. GitHub Pages /circosvago/).
+I link esterni si aprono nella stessa scheda, con rel="noopener".
+*/ -}}
+{{- $u := urls.Parse .Destination }}
+{{- $dest := .Destination }}
+{{- $esterno := $u.IsAbs }}
+{{- if and (not $esterno) (strings.HasPrefix $dest "/") }}
+  {{- $dest = relURL (strings.TrimPrefix "/" $dest) }}
+{{- end -}}
+<a href="{{ $dest }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $esterno }} rel="noopener"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- /* niente spazi in coda */ -}}

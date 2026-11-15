@@ -1,56 +1,54 @@
+/* Card: una foto stampata e incollata, con il titolo scritto a pennarello sotto */
 .card {
-  --accento: var(--c-giallo);
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  background: var(--c-bianco);
-  border-top: 6px solid var(--accento);
-  border-radius: var(--r-lg);
-  box-shadow: var(--ombra-1);
-  transition: transform var(--durata) var(--curva), box-shadow var(--durata);
+  gap: var(--s-4);
 }
-.card:hover { transform: translateY(-4px); box-shadow: var(--ombra-2); }
-.griglia-card > :nth-child(6n+2) { --accento: var(--c-arancio); }
-.griglia-card > :nth-child(6n+3) { --accento: var(--c-verde); }
-.griglia-card > :nth-child(6n+4) { --accento: var(--c-ciano); }
-.griglia-card > :nth-child(6n+5) { --accento: var(--c-viola); }
-.griglia-card > :nth-child(6n+6) { --accento: var(--c-rosa); }
+.card__media { --storto: -1.5deg; }
+.griglia-card > :nth-child(3n+2) .card__media { --storto: 1.5deg; --nastro-storto: 5deg; }
+.griglia-card > :nth-child(3n+3) .card__media { --storto: -0.5deg; }
+.card__media.stampa img { aspect-ratio: 4 / 3; }
+.card__media.ritaglio { width: fit-content; max-width: 100%; margin-inline: auto; }
+.card__media.ritaglio img { height: min(16rem, 60vw); width: auto; max-width: 100%; } /* il rapporto viene dagli attributi width/height */
+.card__segnaposto { display: block; aspect-ratio: 4 / 3; background: var(--c-linea); }
 
-.card__media {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  background: var(--c-sezione-chiaro);
-}
-/* assoluta: aspect-ratio è solo un minimo, un'immagine alta allargherebbe il box */
-.card__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.card__media--illustrazione img { object-fit: contain; padding: var(--s-4); }
-.card__segnaposto {
-  display: block;
-  height: 100%;
-  background: var(--c-sezione-chiaro);
+.card__corpo { padding-inline: var(--s-1); }
+.card__titolo { margin: 0 0 var(--s-2); font-size: var(--t-xl); }
+.card__titolo a { color: inherit; text-decoration: none; }
+.card__titolo a::after { content: ""; position: absolute; inset: 0; z-index: 3; }
+.card__titolo a:focus-visible { outline: none; box-shadow: none; }
+.card:has(a:focus-visible) .card__media { rotate: 0deg; translate: 0 -6px; box-shadow: var(--ombra-2); }
+.card:has(a:focus-visible) .card__titolo { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 5px; }
+.card:has(a:focus-visible) { outline: 3px solid currentColor; outline-offset: 8px; }
+.card__testo { margin: 0; }
+
+@media (hover: hover) {
+  .card:hover .card__media { rotate: 0deg; translate: 0 -6px; box-shadow: var(--ombra-2); }
+  .card:hover .card__titolo { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 5px; }
 }
 
-.card__corpo {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: var(--s-2);
-  padding: var(--s-5);
-}
-.card__titolo { margin: 0; font-size: var(--t-xl); }
-.card__titolo a { color: var(--c-inchiostro); text-decoration: none; }
-.card__titolo a::after { content: ""; position: absolute; inset: 0; }
-.card__titolo a:focus-visible { outline: none; }
-.card:has(a:focus-visible) { outline: 3px solid var(--c-blu); outline-offset: 3px; }
-.card__testo { margin: 0; color: var(--c-inchiostro-soft); }
-.card__cta {
-  margin-top: auto;
-  padding-top: var(--s-3);
-  font-family: var(--f-titolo);
-  font-size: var(--t-sm);
-  font-weight: 700;
-  letter-spacing: var(--tracking-maiuscolo);
-  text-transform: uppercase;
-  color: var(--c-link);
+/* Sezione eventi in home */
+.eventi-casa__azione { margin: var(--s-8) 0 0; }
+
+/* Card con un ritaglio: si alza la sagoma, non un rettangolo */
+.card:is(:hover, :has(a:focus-visible)) .card__media.ritaglio { box-shadow: none; }
+.card:is(:hover, :has(a:focus-visible)) .card__media.ritaglio img { filter: var(--ombra-ritaglio-su); }
+
+/* Telefono: le quattro proposte eventi scorrono di lato, invece di quattro schermate in colonna */
+@media (max-width: 39.99rem) {
+  .griglia-card--quattro {
+    display: flex;
+    gap: var(--s-5);
+    margin-inline: calc(-1 * var(--s-gutter));
+    padding: var(--s-5) var(--s-gutter) var(--s-4);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--s-gutter);
+    scrollbar-width: thin;
+    scrollbar-color: var(--c-giallo) transparent;
+    align-items: flex-start;
+  }
+  .griglia-card--quattro > .card { flex: 0 0 78%; scroll-snap-align: start; }
+  .griglia-card--quattro .card__media.ritaglio img { height: 12rem; }
 }

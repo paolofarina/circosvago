@@ -1,6 +1,7 @@
 ---
 title: "Circus Playground"
 description: "Un percorso di giochi in legno costruiti a mano per bambini, famiglie e adulti: sicuri, silenziosi, senza elettricità."
+elemento: "giocoliere"   # disegno della brochure (assets/img/elementi/), mostrato in testata
 copertina: "gioco-01.jpg"
 weight: 20
 resources:
@@ -40,4 +41,4 @@ I giochi ingegnano la mente, esercitano l'equilibrio e stimolano la cooperazione
 - Non serve alimentazione elettrica.
 - Perfetto per feste, fiere ed eventi, sia all'aperto che al chiuso.
 
-{{< bottone link="/contatti/" >}}Porta il Playground al tuo evento{{< /bottone >}}
+{{< bottone link="#contatti" >}}Porta il Playground al tuo evento{{< /bottone >}}

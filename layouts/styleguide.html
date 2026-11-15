@@ -2,10 +2,9 @@
 {{ partial "testata.html" . }}
 
 {{- $gruppi := slice
-  (dict "titolo" "Colori base" "nota" "Testo, sfondi e linee." "token" (slice "--c-inchiostro" "--c-inchiostro-soft" "--c-carta" "--c-bianco" "--c-linea" "--c-link"))
-  (dict "titolo" "Colori di sezione" "nota" "Campiture piene. Testo sopra: sempre bianco." "token" (slice "--c-corallo" "--c-malva" "--c-blu"))
-  (dict "titolo" "Varianti chiare" "nota" "Sfondi di sezione morbidi. Testo sopra: inchiostro." "token" (slice "--c-corallo-chiaro" "--c-malva-chiaro" "--c-blu-chiaro" "--c-giallo-chiaro"))
-  (dict "titolo" "Accenti dal logo" "nota" "Solo decorazione: puntini, bordi, coriandoli. Mai testo." "token" (slice "--c-giallo" "--c-arancio" "--c-verde" "--c-ciano" "--c-viola" "--c-rosa"))
+  (dict "titolo" "Cartoncini" "nota" "Una sezione = un cartoncino a tutta pagina. Testo sopra: inchiostro su giallo e bianco, bianco su rosso, malva, blu e nero." "token" (slice "--c-giallo" "--c-rosso" "--c-malva" "--c-blu" "--c-nero" "--c-bianco"))
+  (dict "titolo" "Inchiostri e carta" "nota" "Testo, link, fogli, post-it e righe del quaderno." "token" (slice "--c-inchiostro" "--c-matita" "--c-link" "--c-foglio" "--c-postit" "--c-righe" "--c-margine"))
+  (dict "titolo" "Bollini adesivi" "nota" "Solo decorazione (pallini degli elenchi): mai testo." "token" (slice "--c-arancio" "--c-verde" "--c-ciano" "--c-rosa" "--c-viola"))
 }}
 
 <div class="contenitore sezione sg">
@@ -27,23 +26,21 @@
       </div>
     {{- end }}
 
-    <h3>Campiture con testo</h3>
+    <h3>Cartoncini con testo</h3>
     <div class="sg__riga">
-      {{- range slice "corallo" "malva" "blu" }}
-        <div class="sg__campitura" data-colore="{{ . }}">
-          <strong>Testo bianco su {{ . }}</strong><br>contrasto ≥ 4.5:1
-        </div>
+      {{- range slice "giallo" "rosso" "malva" "blu" "nero" }}
+        <div class="cartoncino sg__campitura" data-carta="{{ . }}"><strong>Testo su {{ . }}</strong><br>contrasto AA</div>
       {{- end }}
     </div>
   </section>
 
   <section>
     <h2>Tipografia</h2>
-    <div class="sg__tipo"><code>h1 · --f-script · --t-3xl</code><h1>Scuola di circo</h1></div>
-    <div class="sg__tipo"><code>h2 · --f-titolo · --t-2xl</code><h2>Dai spazio alla tua passione</h2></div>
-    <div class="sg__tipo"><code>h3 · --f-titolo · --t-xl</code><h3>Laboratori di circo ludico</h3></div>
-    <div class="sg__tipo"><code>.etichetta · --f-titolo · maiuscolo</code><span class="etichetta">Eventi e feste</span></div>
-    <div class="sg__tipo"><code>.lead · --f-testo · --t-lg</code><p class="lead">Entrate, provate, giocate. Il resto lo facciamo insieme.</p></div>
+    <div class="sg__tipo"><code>h1 · --f-pennarello (Shantell Sans) · --t-3xl / --t-4xl in apertura</code><h1>Scuola di circo</h1></div>
+    <div class="sg__tipo"><code>h2 · --f-pennarello · --t-2xl</code><h2>Dai spazio alla tua passione</h2></div>
+    <div class="sg__tipo"><code>h3 · --f-pennarello · --t-xl</code><h3>Laboratori di circo ludico</h3></div>
+    <div class="sg__tipo"><code>.etichetta · --f-testo 700 · --t-sm (mai sopra un titolo)</code><span class="etichetta">Eventi e feste</span></div>
+    <div class="sg__tipo"><code>.lead · --f-testo (Atkinson Hyperlegible Next) · --t-lg</code><p class="lead">Entrate, provate, giocate. Il resto lo facciamo insieme.</p></div>
     <div class="sg__tipo prosa"><code>p · --f-testo · --t-base</code>
       <p>Qui si impara a giocolare, stare in equilibrio, andare sul monociclo, volare con l'acrobatica aerea e scoprire cosa può fare il proprio corpo. <a href="#">Un link nel testo</a>.</p>
     </div>
@@ -63,13 +60,25 @@
       <a class="btn btn--bordo" href="#">Bordo</a>
       <button class="btn-tondo" type="button" aria-label="Esempio">→</button>
     </div>
-    <div class="sg__riga">
-      {{- range slice "corallo" "malva" "blu" }}
-        <a class="btn btn--pieno" data-colore="{{ . }}" href="#">Sezione {{ . }}</a>
-      {{- end }}
+    <div class="cartoncino sg__campitura sg__riga" data-carta="blu">
+      <a class="btn btn--chiaro" href="#">Chiaro, sui cartoncini scuri</a>
     </div>
-    <div class="sg__campitura sg__riga" data-colore="blu">
-      <a class="btn btn--chiaro" href="#">Chiaro, su campitura</a>
+  </section>
+
+  <section>
+    <h2>Materiali del cartellone</h2>
+    <p class="sg__nota">Definiti in <code>assets/css/componenti/carta.css</code>. Ogni pagina è composta solo da questi pezzi.</p>
+    <div class="sg__materiali">
+      <div class="foglio nastrato"><strong>.foglio</strong> — carta bianca incollata per il testo</div>
+      <div class="foglio foglio--righe"><p><strong>.foglio--righe</strong> — foglio di quaderno: il testo sta sulle righe</p></div>
+      <p><span class="striscia"><strong>.striscia</strong> — ritaglio di foglio per una frase</span></p>
+      {{ partial "biglietto.html" (dict "tipo" "corsi") }}
+      {{- with partial "illustrazione.html" "giocoliere.jpg" }}
+        <figure class="ritaglio staccabile" style="width: 9rem">{{ partial "img.html" (dict "res" . "alt" "" "widths" (slice 240) "sizes" "9rem") }}<figcaption class="etichetta">.ritaglio (sagoma con trasparenza)</figcaption></figure>
+      {{- end }}
+      {{- with site.GetPage "/scuola/acrobatica-aerea" }}{{ with .Resources.Get "aerea-02.jpg" }}
+        <figure class="stampa nastrato" style="width: 12rem">{{ partial "img.html" (dict "res" . "alt" "" "ratio" "4:3" "widths" (slice 400) "sizes" "12rem") }}<figcaption>.stampa con didascalia</figcaption></figure>
+      {{- end }}{{ end }}
     </div>
   </section>
 

@@ -1,5 +1,6 @@
-{{- /* Uso: {{< bottone link="/contatti/" stile="pieno" >}}Scrivici{{< /bottone >}}  — stile: pieno | bordo */ -}}
+{{- /* Uso: {{< bottone link="/contatti/" stile="pieno" >}}Scrivici{{< /bottone >}}  — stile: pieno | bordo. link può essere una pagina, "#contatti" (la chiusura contatti della pagina), mailto: o tel: */ -}}
 {{- $link := .Get "link" }}
 {{- $stile := .Get "stile" | default "pieno" }}
 {{- $esterno := strings.HasPrefix $link "http" }}
-<a class="btn btn--{{ $stile }}" href="{{ if $esterno }}{{ $link }}{{ else }}{{ relURL $link }}{{ end }}"{{ if $esterno }} rel="noopener"{{ end }}>{{ .Inner | strings.TrimSpace }}</a>
+{{- $diretto := or $esterno (strings.HasPrefix $link "#") (strings.HasPrefix $link "mailto:") (strings.HasPrefix $link "tel:") }}
+<a class="btn btn--{{ $stile }}" href="{{ if $diretto }}{{ $link }}{{ else }}{{ relURL (strings.TrimPrefix "/" $link) }}{{ end }}"{{ if $esterno }} rel="noopener"{{ end }}>{{ .Inner | strings.TrimSpace }}</a>

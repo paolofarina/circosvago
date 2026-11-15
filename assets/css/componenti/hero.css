@@ -1,66 +1,64 @@
+/* Apertura della home: cartoncino giallo, titolo enorme, balena ritagliata, post-it */
 .hero {
-  position: relative;
-  padding-block: var(--s-6) var(--s-8);
+  padding-block: var(--s-6) var(--s-9);
   overflow: hidden;
 }
 .hero__griglia {
-  position: relative;
   display: grid;
   gap: var(--s-6);
-  align-items: center;
+  grid-template-areas:
+    "testo"
+    "biglietto"
+    "balena";
 }
-@media (min-width: 56rem) {
-  .hero__griglia { grid-template-columns: 1.05fr 1fr; }
-}
-.hero__etichetta { color: var(--c-viola); }
+.hero__testo { grid-area: testo; }
+.hero__balena { grid-area: balena; }
+.hero__biglietto { grid-area: biglietto; }
+
 .hero__titolo {
+  margin: 0 0 var(--s-3);
+  max-width: 9ch;
   font-size: var(--t-4xl);
-  line-height: 1.05;
-  color: var(--c-corallo); /* testo grande: 4.39:1 ≥ 3:1 */
-  margin-bottom: var(--s-5);
+  font-weight: var(--w-display);
+  line-height: .95;
+  letter-spacing: -0.025em;
 }
-.hero__lead {
-  max-width: 34ch;
+.hero__sotto {
+  margin: 0 0 var(--s-5);
+  font-family: var(--f-pennarello);
   font-size: var(--t-lg);
   font-weight: 600;
 }
-.hero__azioni { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-5); }
-.hero__azioni .btn--pieno { background: var(--c-corallo); }
-.hero__azioni .btn--pieno:hover { background: var(--c-inchiostro); }
-
-.hero__illustrazione { justify-self: center; }
-.hero__illustrazione img {
-  width: min(100%, 34rem);
-  max-height: 80vh;
-  object-fit: contain;
-  clip-path: inset(0 0 0 2%); /* toglie il bordo della scansione sul lato sinistro */
+.hero__lead {
+  margin: 0 0 var(--s-6);
+  max-width: 30ch;
+  font-size: var(--t-lg);
+  font-weight: 600;
+  line-height: 1.5;
 }
+.hero__lead .striscia { --storto: -1deg; }
+.hero__azioni { display: flex; flex-wrap: wrap; gap: var(--s-4); }
 
-/* Coriandoli: puntini nei colori del logo */
-.coriandoli i {
-  position: absolute;
-  border-radius: 50%;
-  opacity: .9;
-  animation: galleggia 6s ease-in-out infinite alternate;
+.hero__balena {
+  --storto: -3.5deg;
+  --nastro-storto: 8deg;
+  justify-self: center;
+  width: min(100%, 26rem);
 }
-.coriandoli i:nth-child(1) { width: 1.1rem; height: 1.1rem; background: var(--c-giallo); top: 12%; left: 4%; }
-.coriandoli i:nth-child(2) { width: .7rem;  height: .7rem;  background: var(--c-ciano);  top: 70%; left: 8%;  animation-delay: -1s; }
-.coriandoli i:nth-child(3) { width: 1.4rem; height: 1.4rem; background: var(--c-rosa);   top: 8%;  left: 52%; animation-delay: -2s; }
-.coriandoli i:nth-child(4) { width: .8rem;  height: .8rem;  background: var(--c-verde);  top: 86%; left: 46%; animation-delay: -3s; }
-.coriandoli i:nth-child(5) { width: 1rem;   height: 1rem;   background: var(--c-arancio); top: 30%; right: 3%; animation-delay: -4s; }
-.coriandoli i:nth-child(6) { width: .6rem;  height: .6rem;  background: var(--c-viola);  top: 92%; right: 12%; animation-delay: -5s; }
+.hero__biglietto { --storto: -3deg; justify-self: start; }
 
-@keyframes galleggia {
-  from { transform: translateY(0); }
-  to   { transform: translateY(-14px); }
+@media (min-width: 64rem) {
+  .hero { padding-block: var(--s-7) var(--s-10); }
+  .hero__griglia {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "testo balena"
+      "biglietto balena";
+    column-gap: var(--s-8);
+    row-gap: var(--s-6);
+    align-items: start;
+  }
+  .hero__balena { width: min(100%, 33rem); justify-self: end; margin-top: var(--s-2); }
+  .hero__biglietto { margin-left: clamp(0rem, 6vw, 6rem); }
 }
-
-/* Incipit "chi siamo" in home */
-.incipit { background: var(--c-malva-chiaro); }
-.incipit__griglia { display: grid; gap: var(--s-6); }
-@media (min-width: 56rem) {
-  .incipit__griglia { grid-template-columns: 1fr 1.4fr; align-items: start; }
-  .incipit__titolo { position: sticky; top: calc(var(--h-header) + var(--s-6)); }
-}
-.incipit__titolo { font-size: var(--t-2xl); color: var(--c-malva); }
-.incipit__testo .btn { margin-top: var(--s-4); }

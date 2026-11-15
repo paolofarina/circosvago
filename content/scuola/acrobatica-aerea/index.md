@@ -31,4 +31,4 @@ Sospesi a pochi metri da terra si scopre cosa può fare il proprio corpo: ci si 
 Dettagli del corso: **attrezzi** usati (tessuti, cerchio, trapezio…), **fasce d'età** e livelli, **giorni e orari**, **insegnante**, sede.
 {{< /da-scrivere >}}
 
-{{< bottone link="/contatti/" >}}Chiedi informazioni{{< /bottone >}}
+{{< bottone link="#contatti" >}}Chiedi informazioni{{< /bottone >}}

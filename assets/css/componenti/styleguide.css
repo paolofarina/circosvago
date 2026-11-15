@@ -20,8 +20,10 @@
 .sg__campione code { display: block; padding: 0 var(--s-3) var(--s-3); color: var(--c-inchiostro-soft); }
 
 .sg__riga { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4); margin-bottom: var(--s-5); }
-.sg__campitura { padding: var(--s-6); border-radius: var(--r-lg); background: var(--c-sezione); color: var(--c-bianco); }
+.sg__campitura { padding: var(--s-6); background: var(--carta, var(--c-sezione)); color: var(--su-carta, var(--c-bianco)); }
 .sg__tipo { display: grid; gap: var(--s-2); margin-bottom: var(--s-5); }
 .sg__tipo code { font-size: var(--t-sm); color: var(--c-inchiostro-soft); }
 .sg__spazio { display: flex; align-items: center; gap: var(--s-3); font-size: var(--t-sm); }
 .sg__spazio span { display: block; height: 1rem; background: var(--c-corallo); border-radius: 2px; }
+.sg__materiali { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--s-7) var(--s-6); padding: var(--s-6); background: var(--c-blu-chiaro); }
+.sg__materiali > .foglio { max-width: 20rem; }

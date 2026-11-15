@@ -1,0 +1,20 @@
+/* Pagina corso / evento: il testo su un foglio incollato al cartoncino bianco */
+.pagina__foglio {
+  --storto: -0.5deg;
+  max-width: 48rem;
+  font-size: var(--t-lg);
+}
+.pagina__foglio .prosa { max-width: 60ch; }
+.pagina__foglio .prosa > p:first-child {
+  font-size: var(--t-xl);
+  line-height: 1.45;
+  font-weight: 500;
+}
+.pagina__foglio .btn { margin-top: var(--s-3); }
+
+@media (min-width: 64rem) {
+  .pagina__foglio { margin-inline: auto; }
+}
+
+/* Sezione "altro": il titolo eredita il colore del cartoncino */
+.altro .sezione__titolo { color: var(--su-carta); }

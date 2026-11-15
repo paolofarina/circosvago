@@ -1,0 +1,12 @@
+{{- /*
+Trova un'illustrazione del cliente: preferisce il ritaglio con trasparenza
+(assets/img/illustrazioni/ritagli/<nome>.png, generato da tools/ritaglia_illustrazioni.py),
+altrimenti la scansione originale (assets/img/illustrazioni/<nome>.jpg).
+@param  nome del file come nel front matter, es. "aerea-cerchio.jpg"
+@return resource oppure false
+@example {{ $illu := partial "illustrazione.html" "balena.jpg" }}
+*/ -}}
+{{- $nome := . }}
+{{- $res := resources.Get (printf "img/illustrazioni/ritagli/%s.png" (strings.TrimSuffix (path.Ext $nome) $nome)) }}
+{{- if not $res }}{{ $res = resources.Get (printf "img/illustrazioni/%s" $nome) }}{{ end }}
+{{- return ($res | default false) }}

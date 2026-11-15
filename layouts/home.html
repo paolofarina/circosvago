@@ -1,39 +1,45 @@
 {{ define "main" }}
 {{- $p := .Params }}
 
-{{/* 1. Hero */}}
-<section class="hero">
-  <span class="coriandoli" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+{{/* 1. Apertura: cartoncino giallo, titolo a pennarello, la balena ritagliata */}}
+<section class="hero cartoncino" data-carta="giallo">
   <div class="contenitore hero__griglia">
     <div class="hero__testo">
-      <p class="etichetta hero__etichetta">{{ $p.hero.etichetta }}</p>
       <h1 class="hero__titolo">{{ $p.hero.titolo }}</h1>
-      <p class="hero__lead">{{ $p.hero.lead }}</p>
+      <p class="hero__sotto">{{ $p.hero.etichetta }}</p>
+      <p class="hero__lead"><span class="striscia">{{ $p.hero.lead }}</span></p>
       <div class="hero__azioni">
         {{- range $i, $b := $p.hero.bottoni }}
-          <a class="btn {{ if eq $i 0 }}btn--pieno{{ else }}btn--bordo{{ end }}" href="{{ relURL $b.link }}">{{ $b.testo }}</a>
+          <a class="btn {{ if eq $i 0 }}btn--pieno{{ else }}btn--bordo{{ end }}" href="{{ relURL (strings.TrimPrefix "/" $b.link) }}">{{ $b.testo }}</a>
         {{- end }}
       </div>
     </div>
-    <div class="hero__illustrazione">
-      {{- with resources.Get "img/illustrazioni/balena.jpg" }}
-        {{ partial "img.html" (dict "res" . "alt" "Illustrazione: un tendone da circo sopra un albero e una balena, con acrobati, giocolieri e trapezisti" "widths" (slice 480 800) "sizes" "(min-width: 56rem) 34rem, 90vw" "class" "illustrazione" "eager" true) }}
+
+    <figure class="hero__balena ritaglio nastrato staccabile si-posa" style="--ordine: 1">
+      {{- with partial "illustrazione.html" "balena.jpg" }}
+        {{ partial "img.html" (dict "res" . "alt" "Illustrazione ad acquerello: un tendone da circo sopra un albero e una balena, con acrobati, giocolieri e trapezisti" "widths" (slice 480 800 1100) "sizes" "(min-width: 64rem) 34rem, 88vw" "eager" true) }}
       {{- end }}
-    </div>
+    </figure>
+
+    {{ partial "biglietto.html" (dict "tipo" "corsi" "classe" "hero__biglietto si-posa" "ordine" 3) }}
   </div>
 </section>
 
-{{/* 2. Nastro di foto */}}
+{{/* 2. Momenti di circo: foto stampate sul cartoncino nero dell'album */}}
 {{- with $p.nastro }}
-<section class="nastro" aria-label="Foto da corsi ed eventi">
+<section class="nastro cartoncino cartoncino--zigzag" data-carta="nero" aria-labelledby="titolo-nastro">
   <div class="contenitore nastro__testa">
-    <h2 class="etichetta">Momenti di circo</h2>
+    <h2 class="nastro__titolo" id="titolo-nastro">Momenti di circo</h2>
     <div class="nastro__frecce">
-      <button class="btn-tondo" type="button" data-nastro-prec aria-label="Foto precedenti">←</button>
-      <button class="btn-tondo" type="button" data-nastro-succ aria-label="Foto successive">→</button>
+      <button class="btn-tondo" type="button" data-nastro-prec aria-label="Foto precedenti">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="btn-tondo" type="button" data-nastro-succ aria-label="Foto successive">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
     </div>
   </div>
-  <ul class="nastro__lista" data-nastro tabindex="0">
+  <ul class="nastro__lista" data-nastro tabindex="0" aria-label="Foto da corsi ed eventi: scorri di lato">
     {{- range . }}
       {{- $percorso := . }}
       {{- with site.GetPage (path.Dir $percorso) }}
@@ -41,10 +47,10 @@
         {{- with $pg.Resources.Get (path.Base $percorso) }}
           {{- $alt := cond (eq .Title .Name) "" .Title }}
           <li class="nastro__voce">
-            <a href="{{ $pg.RelPermalink }}">
-              {{ partial "img.html" (dict "res" . "alt" $alt "ratio" "3:4" "widths" (slice 300 480 640) "sizes" "(min-width: 64rem) 18rem, 70vw") }}
-              <span class="nastro__didascalia">{{ $pg.LinkTitle }}</span>
-            </a>
+            <figure class="stampa">
+              {{ partial "img.html" (dict "res" . "alt" $alt "ratio" "3:4" "widths" (slice 300 480 640) "sizes" "(min-width: 64rem) 17rem, 62vw") }}
+              <figcaption>{{ $pg.LinkTitle }}</figcaption>
+            </figure>
           </li>
         {{- end }}
       {{- end }}
@@ -53,37 +59,35 @@
 </section>
 {{- end }}
 
-{{/* 3. Incipit chi siamo */}}
-<section class="sezione incipit" data-colore="malva">
+{{/* 3. Chi siamo: il racconto su un foglio di quaderno */}}
+<section class="incipit cartoncino cartoncino--zigzag sezione" data-carta="malva">
   <div class="contenitore incipit__griglia">
     <h2 class="incipit__titolo">{{ $p.incipit.titolo }}</h2>
-    <div class="prosa incipit__testo">
-      {{ .Content }}
-      <a class="btn btn--pieno" href="{{ relURL "/chi-siamo/" }}">La nostra storia</a>
+    <div class="incipit__foglio foglio foglio--righe nastrato">
+      <div class="prosa">{{ .Content }}</div>
+      <a class="btn btn--pieno incipit__azione" href="{{ relURL "chi-siamo/" }}">La nostra storia {{ partial "freccia.html" }}</a>
     </div>
   </div>
 </section>
 
-{{/* 4. Cosa facciamo: tre blocchi colore */}}
-<section class="sezione cosa-facciamo">
+{{/* 4. Cosa facciamo: tre pezzi di cartoncino, ognuno con la sua foto */}}
+<section class="cosa-facciamo cartoncino cartoncino--zigzag sezione" data-carta="bianco">
   <div class="contenitore">
     <h2 class="sezione__titolo">Cosa facciamo</h2>
     <div class="blocchi">
-      {{- range $p.blocchi }}
-        {{- with site.GetPage .pagina }}
+      {{- range $i, $b := $p.blocchi }}
+        {{- with site.GetPage $b.pagina }}
           {{- $colore := partial "colore.html" . }}
           {{- $cop := partial "copertina.html" . }}
-          <article class="blocco" data-colore="{{ $colore }}">
+          <article class="blocco staccabile" data-carta="{{ partial "carta-sezione.html" $colore }}">
             {{- with $cop }}
-              <div class="blocco__media">
-                {{ partial "img.html" (dict "res" .res "alt" "" "ratio" "4:3" "widths" (slice 400 640 900) "sizes" "(min-width: 56rem) 24rem, 90vw") }}
+              <div class="blocco__foto stampa">
+                {{ partial "img.html" (dict "res" .res "alt" "" "ratio" "4:3" "widths" (slice 400 640 900) "sizes" "(min-width: 56rem) 22rem, 84vw") }}
               </div>
             {{- end }}
-            <div class="blocco__corpo">
-              <h3 class="blocco__titolo"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
-              <p>{{ .Description }}</p>
-              <span class="blocco__cta" aria-hidden="true">Scopri →</span>
-            </div>
+            <h3 class="blocco__titolo"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
+            <p class="blocco__testo">{{ .Description }}</p>
+            <span class="blocco__cta" aria-hidden="true">Scopri {{ partial "freccia.html" }}</span>
           </article>
         {{- end }}
       {{- end }}
@@ -91,50 +95,35 @@
   </div>
 </section>
 
-{{/* 5. I corsi, con le illustrazioni */}}
+{{/* 5. I corsi: la serie dei ritagli ad acquerello */}}
 {{- with site.GetPage "/scuola" }}
-<section class="sezione corsi" data-colore="corallo">
+<section class="corsi cartoncino cartoncino--zigzag sezione" data-carta="rosso">
   <div class="contenitore">
-    <p class="etichetta">Scuola di circo</p>
-    <h2 class="sezione__titolo">Scegli il tuo corso</h2>
-    <p class="sezione__lead">{{ .Description }}</p>
-    <ul class="corsi__lista">
-      {{- range .Pages.ByWeight }}
-        {{- /* qui l'illustrazione ha la precedenza sulla foto */}}
-        {{- $illu := false }}
-        {{- with .Params.illustrazione }}{{ $illu = resources.Get (printf "img/illustrazioni/%s" .) }}{{ end }}
-        {{- $cop := partial "copertina.html" . }}
-        <li class="corsi__voce">
-          <a href="{{ .RelPermalink }}">
-            <span class="corsi__figura{{ if not $illu }} corsi__figura--foto{{ end }}">
-              {{- with $illu }}
-                {{ partial "img.html" (dict "res" . "alt" "" "widths" (slice 240 480) "sizes" "12rem" "class" "illustrazione") }}
-              {{- else }}
-                {{- with $cop }}
-                  {{ partial "img.html" (dict "res" .res "alt" "" "ratio" "1:1" "widths" (slice 240 480) "sizes" "12rem") }}
-                {{- end }}
-              {{- end }}
-            </span>
-            <span class="corsi__nome">{{ .LinkTitle }}</span>
-          </a>
-        </li>
-      {{- end }}
-    </ul>
+    <div class="sezione__testa">
+      <h2 class="sezione__titolo">Scegli il tuo corso</h2>
+      {{ partial "elemento.html" (dict "nome" "biciclo" "linea" true "classe" "sezione__elemento") }}
+    </div>
+    {{ partial "corsi.html" (dict "pagine" .Pages.ByWeight) }}
   </div>
 </section>
 {{- end }}
 
-{{/* 6. Eventi in evidenza */}}
+{{/* 6. Eventi: foto stampate con la didascalia a pennarello */}}
 {{- with $p.in_evidenza }}
-<section class="sezione" data-colore="blu">
+<section class="eventi-casa cartoncino cartoncino--zigzag sezione" data-carta="blu">
   <div class="contenitore">
-    <p class="etichetta">Eventi e feste</p>
-    <h2 class="sezione__titolo">Portiamo il circo dove vuoi tu</h2>
+    <div class="sezione__testa">
+      <h2 class="sezione__titolo">Portiamo il circo dove vuoi tu</h2>
+      {{ partial "elemento.html" (dict "nome" "clave" "linea" true "classe" "sezione__elemento") }}
+    </div>
     <div class="griglia-card griglia-card--quattro">
       {{- range . }}
         {{- with site.GetPage . }}{{ partial "card.html" . }}{{ end }}
       {{- end }}
     </div>
+    <p class="eventi-casa__azione">
+      <a class="btn btn--chiaro" href="{{ relURL "eventi/" }}">Organizza un evento {{ partial "freccia.html" }}</a>
+    </p>
   </div>
 </section>
 {{- end }}

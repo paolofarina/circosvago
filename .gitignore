@@ -8,3 +8,10 @@
 
 # Mockup PDF delle prove delle skill (generati, non versionati)
 /mockup/
+
+# Skill e impostazioni locali di Claude Code (non versionate)
+/.claude/skills/
+/.claude/agents/
+/.claude/settings.local.json
+# File di lavoro di Impeccable (quelli utili sono già versionati)
+/.impeccable/
