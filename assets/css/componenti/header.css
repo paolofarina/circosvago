@@ -17,18 +17,38 @@
 .header__logo-finestra { display: block; }
 .header__logo img { width: 4.75rem; height: auto; }
 
-/* Desktop: il logo intero dentro una finestra di carta che mostra la fascia centrale.
-   Al passaggio (o al focus) la finestra scende come una linguetta sopra la pagina,
-   senza spostare il contenuto, e scopre l'85% del logo. */
+/* Desktop: il logo intero, ingrandito, dentro una finestra che mostra la fascia centrale.
+   Al passaggio (o al focus) sul logo tutta la striscia bianca dell'header scende sopra la pagina,
+   senza spostare il contenuto, e il logo (un po' rimpicciolito) si vede all'85%. */
 @media (min-width: 64rem) {
-  .header__logo {
+  .header {
     --logo-l: 11.25rem;                    /* larghezza del logo ingrandito */
     --logo-a: calc(var(--logo-l) * .929);  /* altezza: rapporto di logo.png (1200 × 1115) */
     --finestra: 3.75rem;                   /* altezza a riposo: la fascia CIRCO SVAGO */
     --centro: .48;                         /* centro della fascia, in frazione dell'altezza */
     --aperta: .85;                         /* quanto logo si vede al passaggio */
-    --logo-l-aperto: 8.25rem;              /* al passaggio il logo si rimpicciolisce: la linguetta resta corta */
+    --logo-l-aperto: 8.25rem;              /* al passaggio il logo si rimpicciolisce: la barra scende poco */
     --logo-a-aperto: calc(var(--logo-l-aperto) * .929);
+    /* di quanto scende la barra: dal fondo della barra al fondo del logo aperto, più un margine */
+    --sporgenza: calc((var(--h-header) - var(--finestra)) / 2 + var(--logo-a-aperto) * var(--aperta) - var(--h-header) + var(--s-2));
+    background: none;
+    box-shadow: none;
+  }
+  /* la striscia di carta è disegnata qui sotto, così può allungarsi senza spostare la pagina */
+  .header::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    z-index: -1;
+    height: 100%;
+    background: var(--c-foglio);
+    box-shadow: var(--ombra-header);
+    transition: height var(--durata) var(--curva);
+  }
+  .header:has(.header__logo:is(:hover, :focus-visible))::before {
+    height: calc(100% + var(--sporgenza));
+  }
+  .header__logo {
     position: relative;
     width: var(--logo-l);
     height: var(--finestra);
@@ -38,9 +58,7 @@
     inset: 0 0 auto 0;
     height: var(--finestra);
     overflow: hidden;
-    background: var(--c-foglio);
-    border-radius: 0 0 var(--r-sm) var(--r-sm);
-    transition: height var(--durata) var(--curva), box-shadow var(--durata) var(--curva);
+    transition: height var(--durata) var(--curva);
   }
   .header__logo img {
     position: absolute;
@@ -52,7 +70,6 @@
   }
   .header__logo:is(:hover, :focus-visible) .header__logo-finestra {
     height: calc(var(--logo-a-aperto) * var(--aperta));
-    box-shadow: var(--ombra-2);
   }
   .header__logo:is(:hover, :focus-visible) img {
     left: calc((var(--logo-l) - var(--logo-l-aperto)) / 2);
