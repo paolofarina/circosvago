@@ -1,8 +1,3 @@
-> **COPIA DI TEST — skill: Impeccable** (branch `test/impeccable`, anteprima su http://localhost:1314)
-> In questa copia vale **BRIEF-TEST.md** (modalità "carta bianca"): `DESIGN.md` e `tokens.css` sono solo un riferimento,
-> e `tools/controlla_design.py` non è obbligatorio. I vincoli non negoziabili del brief restano validi.
-> Avvia l'anteprima con: `hugo server --port 1314`. Non modificare `C:\Progetti\circosvago` né le altre copie.
-
 # Circo Svago — sito Hugo
 
 Sito statico della scuola di circo Circo Svago (Albano Laziale). Hugo **extended** ≥ 0.146 (layout con la nuova struttura `layouts/_partials`, `layouts/_shortcodes`). Lingua: italiano.
@@ -23,6 +18,13 @@ hugo --minify            # build di produzione in public/
 python tools/prepara_immagini.py   # ottimizza le foto da "CIRCO SVAGO SITO/" ai page bundle (vedi tools/immagini.toml)
 python tools/controlla_design.py   # verifica i divieti di DESIGN.md
 ```
+
+## Pubblicazione
+
+Il sito è su GitHub Pages: https://paolofarina.github.io/circosvago/ (repository `paolofarina/circosvago`, ramo `main`).
+- Ogni push su `main` fa partire `.github/workflows/pubblica.yml`, che costruisce il sito con Hugo e lo pubblica. Non serve nessun passaggio a mano.
+- Il sito sta in una sottocartella: i link interni passano da `relURL` senza barra iniziale (vedi `layouts/_markup/render-link.html`).
+- Non si committa `public/`: la build la fa GitHub.
 
 ## Struttura
 

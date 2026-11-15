@@ -1,0 +1,68 @@
+# Costruisce il sito con Hugo e lo pubblica su GitHub Pages a ogni push su main.
+# Si può anche lanciare a mano dalla scheda "Actions" del repository.
+name: Pubblica il sito
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Una pubblicazione alla volta; quelle in corso non vengono interrotte.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  costruisci:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.169.0
+      TZ: Europe/Rome
+    steps:
+      - name: Installa Hugo extended
+        run: |
+          wget -q -O "${{ runner.temp }}/hugo.deb" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "${{ runner.temp }}/hugo.deb"
+          hugo version
+
+      - name: Scarica i sorgenti
+        uses: actions/checkout@v5
+
+      - name: Prepara GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      # Le immagini ridimensionate da Hugo restano in cache tra una pubblicazione e l'altra
+      - name: Recupera le immagini già elaborate
+        uses: actions/cache@v4
+        with:
+          path: resources/_gen
+          key: hugo-gen-${{ hashFiles('content/**/*.jpg', 'content/**/*.png', 'assets/img/**', 'hugo.toml') }}
+          restore-keys: hugo-gen-
+
+      - name: Costruisci il sito
+        env:
+          HUGO_ENVIRONMENT: production
+        run: hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+
+      - name: Carica il sito costruito
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./public
+
+  pubblica:
+    needs: costruisci
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Pubblica su GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
