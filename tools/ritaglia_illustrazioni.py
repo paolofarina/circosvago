@@ -22,19 +22,21 @@ SORGENTI = RADICE / "assets" / "img" / "illustrazioni"
 USCITA = SORGENTI / "ritagli"
 
 SOGLIA_CARTA = 228      # sopra questa luminosità minima (e poco saturo) è carta
+# Immagini che arrivano già "a adesivo" (margine bianco e ombra grigia): soglia più bassa, così l'ombra resta fuori
+SOGLIE_SPECIALI = {"corpo-e-movimento": 200}
 SOGLIA_SATURAZIONE = 22
 MARGINE = 0.012         # margine bianco delle forbici, in frazione del lato lungo
 BORDO_SCANSIONE = 0.02  # striscia ai bordi della scansione considerata sempre carta
 LATO_MAX = 1400         # le sorgenti in assets restano leggere: Hugo genera poi le misure WebP
 
 
-def maschera_disegno(im: Image.Image) -> Image.Image:
+def maschera_disegno(im: Image.Image, soglia: int = SOGLIA_CARTA) -> Image.Image:
     """Bianco dove c'è inchiostro o colore, nero dove c'è carta."""
     r, g, b = im.split()
     minimo = ImageChops.darker(ImageChops.darker(r, g), b)
     massimo = ImageChops.lighter(ImageChops.lighter(r, g), b)
     saturazione = ImageChops.subtract(massimo, minimo)
-    scuro = minimo.point(lambda v: 255 if v < SOGLIA_CARTA else 0)
+    scuro = minimo.point(lambda v: 255 if v < soglia else 0)
     colorato = saturazione.point(lambda v: 255 if v > SOGLIA_SATURAZIONE else 0)
     m = ImageChops.lighter(scuro, colorato)
     # via i puntini isolati della grana della carta
@@ -51,7 +53,7 @@ def ritaglia(src: Path, dest: Path) -> str:
     with Image.open(src) as im:
         im = im.convert("RGB")
         lato = max(im.size)
-        disegno = maschera_disegno(im)
+        disegno = maschera_disegno(im, SOGLIE_SPECIALI.get(src.stem, SOGLIA_CARTA))
         # margine delle forbici: allarga la sagoma, poi ammorbidisce e ri-soglia per un contorno irregolare ma pulito
         raggio = max(3, int(lato * MARGINE)) | 1
         sagoma = disegno.filter(ImageFilter.MaxFilter(raggio)).filter(ImageFilter.MaxFilter(raggio))

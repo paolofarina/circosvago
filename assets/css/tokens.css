@@ -7,21 +7,29 @@
    Atkinson Hyperlegible Next per il testo. */
 @font-face {
   font-family: "Shantell Sans";
-  src: url("/fonts/shantell-sans-latin-wght-normal.woff2") format("woff2");
+  src: url("../fonts/shantell-sans-latin-wght-normal.woff2") format("woff2");
   font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+/* Prova: corsivo vicino ai titoli della brochure (OFL). Il browser lo scarica solo se params.titoli = "corsivo". */
+@font-face {
+  font-family: "Style Script";
+  src: url("../fonts/style-script-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Atkinson Hyperlegible Next";
-  src: url("/fonts/atkinson-hyperlegible-next-latin-wght-normal.woff2") format("woff2");
+  src: url("../fonts/atkinson-hyperlegible-next-latin-wght-normal.woff2") format("woff2");
   font-weight: 200 800;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Atkinson Hyperlegible Next";
-  src: url("/fonts/atkinson-hyperlegible-next-latin-wght-italic.woff2") format("woff2");
+  src: url("../fonts/atkinson-hyperlegible-next-latin-wght-italic.woff2") format("woff2");
   font-weight: 200 800;
   font-style: italic;
   font-display: swap;
@@ -29,32 +37,33 @@
 
 :root {
   /* --- Cartoncini (campiture piene a tutta pagina) --- */
-  --c-giallo: #F5C518;   /* inchiostro sopra: 10.4:1 */
-  --c-rosso: #C2452F;    /* bianco sopra: 5.0:1 */
-  --c-malva: #8C3B7C;    /* bianco sopra: 6.9:1 */
-  --c-blu: #2C5AA8;      /* bianco sopra: 6.7:1 */
-  --c-nero: #1E1A2B;     /* il cartoncino nero dell'album: bianco sopra 17:1 */
+  /* tonalità della brochure, ammorbidite (~25% meno saturazione) */
+  --c-giallo: #F1D06B;   /* inchiostro sopra: 9.7:1 */
+  --c-rosso: #AD5344;    /* bianco sopra: 5.1:1 */
+  --c-malva: #814675;    /* bianco sopra: 6.8:1 */
+  --c-blu: #3D5E97;      /* bianco sopra: 6.5:1 */
+  --c-nero: #2B2735;     /* il cartoncino scuro dell'album: bianco sopra 14.5:1 */
   --c-bianco: #FFFFFF;
 
   /* --- Inchiostri --- */
-  --c-inchiostro: #1E1A2B;     /* pennarello nero */
-  --c-matita: #4F4A5C;         /* testo secondario su bianco: 8.5:1 */
-  --c-link: #B03A26;           /* link su foglio bianco: 5.7:1 */
+  --c-inchiostro: #2B2735;     /* pennarello scuro */
+  --c-matita: #55505F;         /* testo secondario su bianco: 7.8:1 */
+  --c-link: #A8402E;           /* link su foglio bianco: 6.1:1 */
 
   /* --- Carta e materiali --- */
   --c-foglio: #FFFFFF;
   --c-righe: #C9D8EE;          /* righe del quaderno */
   --c-margine: #E7A0A0;        /* margine rosso del quaderno */
-  --c-postit: #FFE45C;
+  --c-postit: #FFE58A;         /* inchiostro sopra: 11.7:1 */
   --c-nastro: rgb(244 236 214 / .78); /* nastro di carta semitrasparente */
   --c-linea: #E4DED3;
 
   /* --- Bollini adesivi (dal logo): solo decorazione, mai testo --- */
-  --c-arancio: #EE6A24;
-  --c-verde: #8DBF2A;
-  --c-ciano: #12A8CF;
-  --c-rosa: #E06AA6;
-  --c-viola: #906CA8;
+  --c-arancio: #E07F4F;
+  --c-verde: #9BBF5A;
+  --c-ciano: #4FAECB;
+  --c-rosa: #D982AE;
+  --c-viola: #957BAA;
 
   /* --- Varianti chiare (pagine non ridisegnate, styleguide) --- */
   --c-corallo: var(--c-rosso);
@@ -66,9 +75,9 @@
   --c-inchiostro-soft: var(--c-matita);
 
   /* --- Ombre: carta incollata (offset + sfocatura, tono inchiostro) --- */
-  --ombra-colore: 30 26 43;
-  --ombra-1: 0 1px 2px rgb(var(--ombra-colore) / .18), 0 6px 14px -4px rgb(var(--ombra-colore) / .28);
-  --ombra-2: 0 2px 4px rgb(var(--ombra-colore) / .16), 0 18px 30px -8px rgb(var(--ombra-colore) / .38);
+  --ombra-colore: 43 39 53;
+  --ombra-1: 0 1px 2px rgb(var(--ombra-colore) / .12), 0 4px 10px -4px rgb(var(--ombra-colore) / .18);
+  --ombra-2: 0 2px 4px rgb(var(--ombra-colore) / .12), 0 14px 24px -10px rgb(var(--ombra-colore) / .28);
   --velo: rgb(var(--ombra-colore) / .9);
   --ombra-bollino: inset 0 -2px 0 rgb(var(--ombra-colore) / .12), 0 1px 2px rgb(var(--ombra-colore) / .25);
   --ombra-nastro: 0 1px 2px rgb(var(--ombra-colore) / .12);
@@ -91,6 +100,9 @@
   --f-testo: "Atkinson Hyperlegible Next", "Segoe UI", system-ui, sans-serif;
   --f-titolo: var(--f-pennarello);
   --f-script: var(--f-pennarello);
+  --f-firma: var(--f-pennarello);   /* titoli grandi: pennarello, oppure corsivo (params.titoli = "corsivo") */
+  --w-display: 700;                 /* peso dei titoli grandi */
+  --w-titolo: 650;                  /* peso dei titoli di sezione */
 
   /* --- Scala tipografica --- */
   --t-sm: 0.9375rem;
@@ -98,8 +110,10 @@
   --t-lg: clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem);
   --t-xl: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
   --t-2xl: clamp(1.875rem, 1.45rem + 2vw, 3rem);
-  --t-3xl: clamp(2.5rem, 1.7rem + 3.8vw, 4.75rem);
-  --t-4xl: clamp(2.875rem, 1.6rem + 5.6vw, 6rem);
+  --t-3xl: clamp(2.25rem, 1.6rem + 3vw, 4rem);
+  --t-4xl: clamp(2.5rem, 1.6rem + 4.2vw, 5rem);
+  --t-4xl-corsivo: clamp(3rem, 1.9rem + 5vw, 6rem);    /* il corsivo ha occhio piccolo: serve più corpo */
+  --t-2xl-corsivo: clamp(2.25rem, 1.7rem + 2.4vw, 3.5rem);
   --t-nav: 1.0625rem;                                    /* voci del menu desktop */
   --t-frase: clamp(2.25rem, 1.5rem + 2vw, 3.25rem);      /* titolo-frase lungo (incipit in home) */
 
@@ -129,7 +143,8 @@
   --r-md: 4px;
   --r-lg: 6px;
   --r-pill: 999px;
-  --zigzag: 14px;    /* passo delle forbici a zigzag */
+  --zigzag: 9px;     /* passo delle forbici a zigzag */
+  --k-storto: .5;    /* quanto sono storti i pezzi incollati: 1 = cartellone vivace, 0 = tutto dritto */
 
   /* --- Movimento --- */
   --durata: 220ms;

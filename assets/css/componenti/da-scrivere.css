@@ -8,7 +8,7 @@
   color: var(--c-inchiostro);
   font-size: var(--t-base);
   line-height: 1.5;
-  rotate: 1.2deg;
+  rotate: calc(1.2deg * var(--k-storto));
   box-shadow: var(--ombra-postit);
 }
 .da-scrivere .etichetta {

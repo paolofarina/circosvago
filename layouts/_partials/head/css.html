@@ -1,6 +1,6 @@
 {{- with resources.Get "css/main.css" }}
   {{- /* i font stanno in static/fonts: il bundler non deve risolverli */}}
-  {{- $opts := dict "minify" (not hugo.IsDevelopment) "externals" (slice "/fonts/*") }}
+  {{- $opts := dict "minify" (not hugo.IsDevelopment) "externals" (slice "../fonts/*") }}
   {{- with . | css.Build $opts }}
     {{- if hugo.IsDevelopment }}
 <link rel="stylesheet" href="{{ .RelPermalink }}">

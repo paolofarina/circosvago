@@ -10,7 +10,7 @@
       <p class="hero__lead"><span class="striscia">{{ $p.hero.lead }}</span></p>
       <div class="hero__azioni">
         {{- range $i, $b := $p.hero.bottoni }}
-          <a class="btn {{ if eq $i 0 }}btn--pieno{{ else }}btn--bordo{{ end }}" href="{{ relURL $b.link }}">{{ $b.testo }}</a>
+          <a class="btn {{ if eq $i 0 }}btn--pieno{{ else }}btn--bordo{{ end }}" href="{{ relURL (strings.TrimPrefix "/" $b.link) }}">{{ $b.testo }}</a>
         {{- end }}
       </div>
     </div>
@@ -47,7 +47,7 @@
         {{- with $pg.Resources.Get (path.Base $percorso) }}
           {{- $alt := cond (eq .Title .Name) "" .Title }}
           <li class="nastro__voce">
-            <figure class="stampa nastrato">
+            <figure class="stampa">
               {{ partial "img.html" (dict "res" . "alt" $alt "ratio" "3:4" "widths" (slice 300 480 640) "sizes" "(min-width: 64rem) 17rem, 62vw") }}
               <figcaption>{{ $pg.LinkTitle }}</figcaption>
             </figure>
@@ -65,7 +65,7 @@
     <h2 class="incipit__titolo">{{ $p.incipit.titolo }}</h2>
     <div class="incipit__foglio foglio foglio--righe nastrato">
       <div class="prosa">{{ .Content }}</div>
-      <a class="btn btn--pieno incipit__azione" href="{{ relURL "/chi-siamo/" }}">La nostra storia {{ partial "freccia.html" }}</a>
+      <a class="btn btn--pieno incipit__azione" href="{{ relURL "chi-siamo/" }}">La nostra storia {{ partial "freccia.html" }}</a>
     </div>
   </div>
 </section>
@@ -81,7 +81,7 @@
           {{- $cop := partial "copertina.html" . }}
           <article class="blocco staccabile" data-carta="{{ partial "carta-sezione.html" $colore }}">
             {{- with $cop }}
-              <div class="blocco__foto stampa nastrato">
+              <div class="blocco__foto stampa">
                 {{ partial "img.html" (dict "res" .res "alt" "" "ratio" "4:3" "widths" (slice 400 640 900) "sizes" "(min-width: 56rem) 22rem, 84vw") }}
               </div>
             {{- end }}
@@ -99,7 +99,10 @@
 {{- with site.GetPage "/scuola" }}
 <section class="corsi cartoncino cartoncino--zigzag sezione" data-carta="rosso">
   <div class="contenitore">
-    <h2 class="sezione__titolo">Scegli il tuo corso</h2>
+    <div class="sezione__testa">
+      <h2 class="sezione__titolo">Scegli il tuo corso</h2>
+      {{ partial "elemento.html" (dict "nome" "biciclo" "linea" true "classe" "sezione__elemento") }}
+    </div>
     {{ partial "corsi.html" (dict "pagine" .Pages.ByWeight) }}
   </div>
 </section>
@@ -109,14 +112,17 @@
 {{- with $p.in_evidenza }}
 <section class="eventi-casa cartoncino cartoncino--zigzag sezione" data-carta="blu">
   <div class="contenitore">
-    <h2 class="sezione__titolo">Portiamo il circo dove vuoi tu</h2>
+    <div class="sezione__testa">
+      <h2 class="sezione__titolo">Portiamo il circo dove vuoi tu</h2>
+      {{ partial "elemento.html" (dict "nome" "clave" "linea" true "classe" "sezione__elemento") }}
+    </div>
     <div class="griglia-card griglia-card--quattro">
       {{- range . }}
         {{- with site.GetPage . }}{{ partial "card.html" . }}{{ end }}
       {{- end }}
     </div>
     <p class="eventi-casa__azione">
-      <a class="btn btn--chiaro" href="{{ relURL "/eventi/" }}">Organizza un evento {{ partial "freccia.html" }}</a>
+      <a class="btn btn--chiaro" href="{{ relURL "eventi/" }}">Organizza un evento {{ partial "freccia.html" }}</a>
     </p>
   </div>
 </section>

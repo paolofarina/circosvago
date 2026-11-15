@@ -29,6 +29,6 @@
   {{- with .Resize "180x png" }}<link rel="apple-touch-icon" href="{{ .RelPermalink }}">{{ end }}
 {{- end }}
 
-<link rel="preload" href="/fonts/shantell-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/atkinson-hyperlegible-next-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/shantell-sans-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/atkinson-hyperlegible-next-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 {{ partialCached "head/css.html" . }}

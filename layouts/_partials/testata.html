@@ -8,6 +8,7 @@ Contesto: la pagina.
 {{- with .Params.illustrazione }}{{ $illu = partial "illustrazione.html" . }}{{ end }}
 {{- $cop := partial "copertina.html" . }}
 {{- $foto := and $cop (not $cop.illustrazione) .IsPage }}
+{{- $elemento := and (not $illu) .Params.elemento }}
 {{- $tipo := "corsi" }}
 {{- with .FirstSection }}{{ if eq .Section "eventi" }}{{ $tipo = "eventi" }}{{ end }}{{ end }}
 <section class="testata cartoncino{{ if or $illu $foto }} testata--media{{ end }}" data-carta="{{ partial "carta-sezione.html" $colore }}">
@@ -35,6 +36,9 @@ Contesto: la pagina.
         <figure class="testata__foto stampa nastrato si-posa" style="--ordine: 0">
           {{ partial "img.html" (dict "res" $cop.res "alt" $cop.alt "ratio" "4:3" "widths" (slice 480 800 1200) "sizes" "(min-width: 64rem) 34rem, 92vw" "eager" true) }}
         </figure>
+      {{- end }}
+      {{- with $elemento }}
+        <div class="testata__elemento si-posa" style="--ordine: 1">{{ partial "elemento.html" (dict "nome" .) }}</div>
       {{- end }}
       {{- with $illu }}
         <figure class="testata__illustrazione ritaglio staccabile si-posa{{ if not $foto }} testata__illustrazione--sola{{ end }}" style="--ordine: 1">

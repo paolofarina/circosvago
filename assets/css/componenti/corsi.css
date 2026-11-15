@@ -41,7 +41,7 @@
   max-width: 100%;
   font-family: var(--f-pennarello);
   font-size: var(--t-lg);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.15;
   text-align: center;
   transition: rotate var(--durata) var(--curva);

@@ -1,6 +1,7 @@
 ---
 title: "Corpo e movimento"
 description: "Flessibilità, allenamento funzionale, acroyoga e pilates: per stare bene nel proprio corpo."
+illustrazione: "corpo-e-movimento.jpg"
 copertina: "acrobatica-coppia-02.jpg"
 weight: 50
 resources:

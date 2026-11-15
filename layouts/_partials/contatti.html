@@ -13,7 +13,8 @@ Contesto: la pagina.
     <div class="fascia-contatti__intro">
       <h2 id="titolo-contatti">{{ $titolo }}</h2>
       <p>{{ $intro }}</p>
-      <a class="btn btn--pieno" href="{{ "/contatti/" | relURL }}">Tutti i contatti {{ partial "freccia.html" }}</a>
+      <a class="btn btn--pieno" href="{{ "contatti/" | relURL }}">Tutti i contatti {{ partial "freccia.html" }}</a>
+      {{ partial "elemento.html" (dict "nome" "monociclo" "classe" "fascia-contatti__elemento") }}
     </div>
     <ul class="fascia-contatti__foglio foglio nastrato">
       {{- if $eventi }}

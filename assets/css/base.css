@@ -42,8 +42,8 @@ h1, h2, h3, h4 {
   letter-spacing: -0.01em;
   text-wrap: balance;
 }
-h1 { font-size: var(--t-3xl); font-weight: 800; }
-h2 { font-size: var(--t-2xl); font-weight: 800; }
+h1 { font-size: var(--t-3xl); font-weight: var(--w-display); font-family: var(--f-firma); }
+h2 { font-size: var(--t-2xl); font-weight: var(--w-titolo); }
 h3 { font-size: var(--t-xl); }
 h4 { font-size: var(--t-lg); }
 
@@ -169,7 +169,7 @@ a:hover { text-decoration-thickness: 3px; }
   font-size: var(--t-xl);
   font-weight: 700;
   line-height: 1.25;
-  rotate: -1.5deg;
+  rotate: calc(-1.5deg * var(--k-storto));
 }
 .prosa blockquote::after {
   content: "";
@@ -197,3 +197,20 @@ a:hover { text-decoration-thickness: 3px; }
 .riquadro > :last-child { margin-bottom: 0; }
 
 .illustrazione { mix-blend-mode: multiply; }
+
+/* ---------- Prova: titoli in corsivo come nella brochure ----------
+   Si attiva con params.titoli = "corsivo" in hugo.toml (default: "pennarello").
+   Il corsivo vale solo per i titoli grandi; etichette, bottoni e post-it restano a pennarello. */
+[data-titoli="corsivo"] { --f-firma: "Style Script", var(--f-pennarello); }
+[data-titoli="corsivo"] :is(.hero__titolo, .testata__titolo) {
+  font-weight: 400;
+  font-size: var(--t-4xl-corsivo);
+  line-height: 1;
+  letter-spacing: 0;
+}
+[data-titoli="corsivo"] :is(.sezione__titolo, .nastro__titolo, .galleria__titolo, .fascia-contatti h2, .incipit__titolo) {
+  font-family: var(--f-firma);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+[data-titoli="corsivo"] :is(.sezione__titolo, .nastro__titolo, .galleria__titolo) { font-size: var(--t-2xl-corsivo); }

@@ -75,3 +75,15 @@
   .testata__biglietto { margin-left: var(--s-7); }
   .testata__media { margin-top: var(--s-4); }
 }
+/* disegno della brochure al posto dell'illustrazione (es. Circus Playground: il giocoliere) */
+.testata__elemento {
+  position: absolute;
+  right: -0.5rem;
+  bottom: -0.5rem;
+  z-index: 3;
+  width: clamp(8rem, 38%, 14rem);
+  padding: var(--s-3);
+  background: var(--c-foglio);
+  box-shadow: var(--ombra-1);
+  rotate: calc(3deg * var(--k-storto));
+}

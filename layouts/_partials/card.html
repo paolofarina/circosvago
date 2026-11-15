@@ -1,7 +1,7 @@
 {{- /* Una pagina come foto stampata incollata, con titolo e descrizione scritti sotto. Contesto: la pagina. */ -}}
 {{- $cop := partial "copertina.html" . }}
 <article class="card">
-  <div class="card__media {{ if and $cop $cop.illustrazione }}ritaglio{{ else }}stampa nastrato{{ end }} staccabile">
+  <div class="card__media {{ if and $cop $cop.illustrazione }}ritaglio{{ else }}stampa{{ end }} staccabile">
     {{- with $cop }}
       {{- if .illustrazione }}
         {{ partial "img.html" (dict "res" .res "alt" "" "widths" (slice 320 640) "sizes" "(min-width: 64rem) 18rem, (min-width: 40rem) 45vw, 90vw") }}

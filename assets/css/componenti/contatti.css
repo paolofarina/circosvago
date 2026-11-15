@@ -54,3 +54,5 @@
 .modulo input:focus, .modulo textarea:focus { border-color: var(--c-blu); outline: none; }
 .modulo .modulo__privacy { display: flex; align-items: center; gap: var(--s-2); font-weight: 400; }
 .modulo__privacy input { width: auto; }
+.fascia-contatti__elemento { width: clamp(4.5rem, 10vw, 7rem); margin-top: var(--s-7); rotate: calc(-6deg * var(--k-storto)); }
+@media (max-width: 55.99rem) { .fascia-contatti__elemento { display: none; } }

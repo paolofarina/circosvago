@@ -3,4 +3,4 @@
 {{- $stile := .Get "stile" | default "pieno" }}
 {{- $esterno := strings.HasPrefix $link "http" }}
 {{- $diretto := or $esterno (strings.HasPrefix $link "#") (strings.HasPrefix $link "mailto:") (strings.HasPrefix $link "tel:") }}
-<a class="btn btn--{{ $stile }}" href="{{ if $diretto }}{{ $link }}{{ else }}{{ relURL $link }}{{ end }}"{{ if $esterno }} rel="noopener"{{ end }}>{{ .Inner | strings.TrimSpace }}</a>
+<a class="btn btn--{{ $stile }}" href="{{ if $diretto }}{{ $link }}{{ else }}{{ relURL (strings.TrimPrefix "/" $link) }}{{ end }}"{{ if $esterno }} rel="noopener"{{ end }}>{{ .Inner | strings.TrimSpace }}</a>

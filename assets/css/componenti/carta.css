@@ -46,7 +46,7 @@
   color: var(--c-inchiostro);
   padding: clamp(var(--s-5), 4vw, var(--s-7));
   box-shadow: var(--ombra-1);
-  rotate: var(--storto, -0.6deg);
+  rotate: calc(var(--storto, -0.6deg) * var(--k-storto));
 }
 /* Foglio di quaderno: il testo è scritto sulle righe (padding e margini in multipli di riga) */
 .foglio--righe {
@@ -74,7 +74,7 @@
   background: var(--c-foglio);
   color: var(--c-inchiostro);
   box-shadow: var(--ombra-1);
-  rotate: var(--storto, 0.8deg);
+  rotate: calc(var(--storto, 0.8deg) * var(--k-storto));
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
@@ -123,7 +123,7 @@
   position: relative;
   display: block;
   margin: 0;
-  rotate: var(--storto, 2deg);
+  rotate: calc(var(--storto, 2deg) * var(--k-storto));
 }
 .ritaglio img {
   width: 100%;
@@ -140,7 +140,7 @@
   padding: clamp(.4rem, 1vw, .6rem) clamp(.4rem, 1vw, .6rem) clamp(.4rem, 1vw, .6rem);
   background: var(--c-foglio);
   box-shadow: var(--ombra-1);
-  rotate: var(--storto, -1.5deg);
+  rotate: calc(var(--storto, -1.5deg) * var(--k-storto));
 }
 .stampa img { width: 100%; height: 100%; object-fit: cover; }
 .stampa figcaption,
@@ -164,14 +164,14 @@
   color: var(--c-inchiostro);
   font-family: var(--f-pennarello);
   line-height: 1.3;
-  rotate: var(--storto, -2.5deg);
+  rotate: calc(var(--storto, -2.5deg) * var(--k-storto));
   box-shadow: var(--ombra-postit);
 }
 .postit > :last-child { margin-bottom: 0; }
 .postit__titolo {
   margin: 0 0 var(--s-2);
   font-size: var(--t-lg);
-  font-weight: 800;
+  font-weight: 700;
 }
 .postit a {
   color: var(--c-inchiostro);
@@ -247,3 +247,17 @@
   padding-block: .55rem;
   margin-block: -.3rem;
 }
+
+/* ---------- Elementi della brochure (disegni vettoriali, decorativi) ---------- */
+.elemento { display: block; height: auto; pointer-events: none; }
+.elemento--linea {
+  aspect-ratio: var(--ar);
+  background: currentColor;
+  -webkit-mask: var(--src) center / contain no-repeat;
+  mask: var(--src) center / contain no-repeat;
+  opacity: .85;
+}
+/* testata di sezione con un disegno accanto al titolo */
+.sezione__testa { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--s-5); }
+.sezione__testa .sezione__titolo { margin-bottom: var(--s-6); }
+.sezione__elemento { flex: 0 0 auto; height: clamp(3.5rem, 7vw, 6rem); width: auto; margin-bottom: var(--s-5); }

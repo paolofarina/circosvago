@@ -1,6 +1,6 @@
 <header class="header" data-header>
   <div class="contenitore header__barra">
-    <a class="header__logo" href="{{ "/" | relURL }}" aria-label="Circo Svago — home">
+    <a class="header__logo" href="{{ site.Home.RelPermalink }}" aria-label="Circo Svago — home">
       {{- with resources.Get "img/logo/logo.png" }}
         {{ partial "img.html" (dict "res" . "alt" "" "widths" (slice 96 192) "sizes" "96px" "formato" "png" "eager" true) }}
       {{- end }}

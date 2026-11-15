@@ -19,10 +19,10 @@
   max-width: 14ch;
   font-family: var(--f-pennarello);
   font-size: var(--t-2xl);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.1;
   color: var(--c-giallo);
-  rotate: -2deg;
+  rotate: calc(-2deg * var(--k-storto));
 }
 .footer__titolo {
   margin-bottom: var(--s-3);
@@ -48,3 +48,4 @@
   background: var(--c-giallo);
   color: var(--c-inchiostro);
 }
+.footer__elemento { width: 5.5rem; margin: var(--s-2) 0 var(--s-5); }

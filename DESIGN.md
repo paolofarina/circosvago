@@ -2,37 +2,37 @@
 name: Circo Svago
 description: Il cartellone di classe di una scuola di circo ad Albano Laziale, fatto di cartoncini, ritagli e pennarello.
 colors:
-  giallo: "#F5C518"
-  rosso: "#C2452F"
-  malva: "#8C3B7C"
-  blu: "#2C5AA8"
-  nero: "#1E1A2B"
+  giallo: "#F1D06B"
+  rosso: "#AD5344"
+  malva: "#814675"
+  blu: "#3D5E97"
+  nero: "#2B2735"
   bianco: "#FFFFFF"
-  inchiostro: "#1E1A2B"
-  matita: "#4F4A5C"
-  link: "#B03A26"
+  inchiostro: "#2B2735"
+  matita: "#55505F"
+  link: "#A8402E"
   foglio: "#FFFFFF"
   righe: "#C9D8EE"
   margine: "#E7A0A0"
-  postit: "#FFE45C"
+  postit: "#FFE58A"
   nastro: "rgb(244 236 214 / .78)"
   linea: "#E4DED3"
-  arancio: "#EE6A24"
-  verde: "#8DBF2A"
-  ciano: "#12A8CF"
-  rosa: "#E06AA6"
-  viola: "#906CA8"
+  arancio: "#E07F4F"
+  verde: "#9BBF5A"
+  ciano: "#4FAECB"
+  rosa: "#D982AE"
+  viola: "#957BAA"
 typography:
   display:
     fontFamily: "Shantell Sans, Comic Sans MS, Segoe Print, cursive"
-    fontSize: "clamp(2.875rem, 1.6rem + 5.6vw, 6rem)"
-    fontWeight: 800
+    fontSize: "clamp(2.5rem, 1.6rem + 4.2vw, 5rem)"
+    fontWeight: 700
     lineHeight: 0.95
     letterSpacing: "-0.025em"
   headline:
     fontFamily: "Shantell Sans, Comic Sans MS, Segoe Print, cursive"
     fontSize: "clamp(1.875rem, 1.45rem + 2vw, 3rem)"
-    fontWeight: 800
+    fontWeight: 650
     lineHeight: 1.05
     letterSpacing: "-0.01em"
   title:
@@ -45,6 +45,18 @@ typography:
     fontSize: "clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem)"
     fontWeight: 600
     lineHeight: 1.3
+  display-corsivo:
+    fontFamily: "Style Script, Shantell Sans, cursive"
+    fontSize: "clamp(3rem, 1.9rem + 5vw, 6rem)"
+    fontWeight: 400
+    lineHeight: 1
+    letterSpacing: "0"
+  headline-corsivo:
+    fontFamily: "Style Script, Shantell Sans, cursive"
+    fontSize: "clamp(2.25rem, 1.7rem + 2.4vw, 3.5rem)"
+    fontWeight: 400
+    lineHeight: 1.05
+    letterSpacing: "0"
   body:
     fontFamily: "Atkinson Hyperlegible Next, Segoe UI, system-ui, sans-serif"
     fontSize: "clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem)"
@@ -138,14 +150,14 @@ Questo documento è **vincolante** per template, CSS e struttura delle pagine. S
 
 Il sito è un cartellone fatto a mano dalla scuola. Ogni sezione è un cartoncino a tutta pagina di un solo colore pieno (giallo, nero dell'album, malva, bianco, rosso, blu) con il bordo superiore tagliato con le forbici a zigzag, che si sovrappone alla sezione prima. Sopra il cartoncino si incollano i materiali: fogli bianchi per il testo, strisce di foglio per le frasi brevi, ritagli degli acquerelli del cliente, foto stampate col bordo bianco, post-it gialli, nastro di carta, bollini adesivi. I titoli sono scritti a pennarello (Shantell Sans), il testo è stampato in un carattere leggibilissimo (Atkinson Hyperlegible Next).
 
-Ogni pezzo incollato è appena storto (da -3° a +4°) e ha un'ombra corta di carta appoggiata. Il pezzo interattivo si "stacca" dal cartellone quando ci passi sopra o lo raggiungi con la tastiera: si raddrizza, si alza di qualche pixel, l'ombra si allunga. All'apertura della pagina i pezzi della testata si posano uno alla volta, una sola volta.
+Ogni pezzo incollato è appena storto (da -1.5° a +2°: ogni rotazione è `--storto × --k-storto`, con `--k-storto: .5`) e ha un'ombra corta di carta appoggiata. Il pezzo interattivo si "stacca" dal cartellone quando ci passi sopra o lo raggiungi con la tastiera: si raddrizza, si alza di qualche pixel, l'ombra si allunga. All'apertura della pagina i pezzi della testata si posano uno alla volta, una sola volta.
 
 La densità è da cartellone, non da vetrina: pochi pezzi grandi per sezione, molto colore pieno attorno. Rifiuta l'hero con foto a tutto schermo e testo sopra, la griglia di card tutte uguali, il fondo crema con decorazioni sparse.
 
 **Key Characteristics:**
 - Un colore pieno per sezione, a tutta larghezza, mai due fondi nella stessa sezione.
 - Tutto ciò che sta sopra il cartoncino è un materiale di carta riconoscibile, incollato e storto.
-- Titoli a pennarello, testo in un sans ad alta leggibilità; niente terza famiglia.
+- Titoli a pennarello, testo in un sans ad alta leggibilità; niente terza famiglia (l'unica eccezione è il corsivo opzionale dei titoli, vedi The Titoli Rule).
 - Ombre di carta incollata in tono inchiostro, mai nere né colorate.
 - Un solo gesto di movimento firma: staccare un pezzo dal cartellone.
 
@@ -183,13 +195,13 @@ Le varianti chiare (`--c-corallo-chiaro`, `--c-malva-chiaro`, `--c-blu-chiaro`, 
 
 | Coppia | Rapporto |
 |---|---|
-| inchiostro su giallo | 10.4:1 |
-| bianco su rosso | 5.0:1 |
-| bianco su malva | 6.9:1 |
-| bianco su blu | 6.7:1 |
-| bianco su nero (e inchiostro su bianco) | 17:1 |
-| matita su bianco | 8.5:1 |
-| link su foglio bianco | 5.7:1 |
+| inchiostro su giallo | 9.7:1 |
+| bianco su rosso | 5.1:1 |
+| bianco su malva | 6.8:1 |
+| bianco su blu | 6.5:1 |
+| bianco su nero (e inchiostro su bianco) | 14.5:1 |
+| matita su bianco | 7.8:1 |
+| link su foglio bianco | 6.1:1 |
 
 **The Un Cartoncino Rule.** Ogni sezione è un solo cartoncino pieno con il suo testo fisso: inchiostro su giallo e bianco, bianco su rosso, malva, blu e nero. Sui cartoncini scuri i link nudi diventano bianchi; sulla carta chiara incollata sopra (foglio, striscia, post-it) torna l'inchiostro o il rosso link.
 
@@ -205,8 +217,8 @@ Le varianti chiare (`--c-corallo-chiaro`, `--c-malva-chiaro`, `--c-blu-chiaro`, 
 **Character:** un pennarello vero e un testo stampato chiarissimo: il primo dà la mano della scuola, il secondo garantisce che famiglie e scuole leggano tutto da telefono. Entrambi variabili, self-hosted in `static/fonts/` (latin, woff2, `font-display: swap`).
 
 ### Hierarchy
-- **Display** (Shantell 800, `--t-4xl`, interlinea 0.95, -0.025em): solo il titolo dell'apertura home e delle testate di pagina.
-- **Headline** (Shantell 800, `--t-3xl` per h1 e titoli di chiusura, `--t-2xl` per h2 di sezione; interlinea 1.05, -0.01em, `text-wrap: balance`): titoli di sezione, larghezza massima 22ch.
+- **Display** (Shantell `--w-display` 700, `--t-4xl` fino a 5rem, interlinea 0.95, -0.025em): solo il titolo dell'apertura home e delle testate di pagina.
+- **Headline** (Shantell; h1 a `--w-display` 700 in `--f-firma`, h2 a `--w-titolo` 650; `--t-3xl` per h1 e titoli di chiusura, `--t-2xl` per h2 di sezione; interlinea 1.05, -0.01em, `text-wrap: balance`): titoli di sezione, larghezza massima 22ch.
 - **Title** (Shantell 700, `--t-xl`): h3, titoli di card e dei pezzi piccoli; `--t-lg` per h4, titolo del post-it, nomi dei corsi, bottoni.
 - **Didascalia a pennarello** (Shantell 600, `--t-base`, interlinea 1.3): didascalie delle stampe e della lightbox, voci del post-it.
 - **Body** (Atkinson 400, `--t-base`, interlinea 1.6, `text-wrap: pretty`): testo corrente, larghezza `--w-testo` (66ch).
@@ -215,14 +227,14 @@ Le varianti chiare (`--c-corallo-chiaro`, `--c-malva-chiaro`, `--c-blu-chiaro`, 
 
 Scala fluida in `tokens.css` (`--t-sm` … `--t-4xl`); grandezze fuori scala solo come token dedicati e annotati (`--t-nav` per le voci del menu desktop, `--t-frase` per il titolo-frase lungo dell'incipit).
 
-**The Due Mani Rule.** Il pennarello scrive titoli, nomi, didascalie e bottoni; il testo da leggere è sempre Atkinson. Nessuna terza famiglia, nessun font di sistema per i titoli.
+**The Due Mani Rule.** Il pennarello scrive titoli, nomi, didascalie e bottoni; il testo da leggere è sempre Atkinson. Nessuna terza famiglia (salvo il corsivo opzionale della Titoli Rule), nessun font di sistema per i titoli.
 
 **The Sentence Case Rule.** Titoli, bottoni, menu ed etichette si scrivono in sentence case; il sito non usa maiuscolo decorativo.
 
 ## Layout
 
 - **Contenitore:** `--w-max` 78rem centrato, gutter laterale `--s-gutter` (fluido 1rem → 2.5rem).
-- **Sezioni:** ogni sezione è un cartoncino a tutta larghezza; padding verticale `--s-sezione` (fluido 3.5rem → 7rem). Il bordo a zigzag (`--zigzag` 14px di passo) sporge sopra e morde la sezione precedente.
+- **Sezioni:** ogni sezione è un cartoncino a tutta larghezza; padding verticale `--s-sezione` (fluido 3.5rem → 7rem). Il bordo a zigzag (`--zigzag` 9px di passo) sporge sopra e morde la sezione precedente.
 - **Spazi:** scala a base 4px, `--s-1` (4px) … `--s-10` (128px). Mai valori arbitrari.
 - **Apertura e testate:** su telefono colonna unica testo → post-it → immagine; da 64rem due colonne (testo e post-it a sinistra, ritaglio o pila foto+ritaglio a destra). Il post-it con telefono ed email è sempre nel primo schermo.
 - **Composizioni a pezzi diseguali:** "Cosa facciamo" è un pezzo grande più due piccoli (foto accanto al testo a ogni larghezza; da 56rem il grande occupa due righe); la serie dei corsi è una fila di ritagli (2 → 3 → 5 colonne, i pari scalati in basso da 72rem); la galleria è un collage a righe giustificate in cui ogni foto conserva le sue proporzioni.
@@ -232,7 +244,7 @@ Scala fluida in `tokens.css` (`--t-sm` … `--t-4xl`); grandezze fuori scala sol
 
 ## Elevation & Depth
 
-La profondità è carta incollata su carta: ombre corte offset + sfocatura nel tono dell'inchiostro (`--ombra-colore` 30 26 43), più la rotazione leggera di ogni pezzo. Niente ombre nere, niente ombre colorate, niente ombre dure senza sfocatura. I ritagli non hanno ombra rettangolare: `filter: drop-shadow` segue la sagoma.
+La profondità è carta incollata su carta: ombre corte offset + sfocatura nel tono dell'inchiostro (`--ombra-colore` 43 39 53, il tono di `--c-nero`), più la rotazione leggera di ogni pezzo. Niente ombre nere, niente ombre colorate, niente ombre dure senza sfocatura. I ritagli non hanno ombra rettangolare: `filter: drop-shadow` segue la sagoma.
 
 ### Shadow Vocabulary
 - **Incollato** (`--ombra-1`): fogli, strisce, stampe, bottoni e blocchi a riposo.
@@ -247,6 +259,12 @@ La profondità è carta incollata su carta: ombre corte offset + sfocatura nel t
 ## Shapes
 
 Carta tagliata: angoli vivi o appena smussati (`--r-sm` 3px su bottoni e menu; `--r-md`/`--r-lg` disponibili), mai arrotondati morbidi su card, foto e fogli. Le sole forme tonde sono gli adesivi: bollini degli elenchi, bottoni tondi, icone social (`50%`), e il fumetto della citazione (raggio 1.5rem con la codina). Il bordo superiore delle sezioni è tagliato a zigzag. Le stampe hanno il bordo bianco; i ritagli hanno il margine bianco attorno alla sagoma, generato da `tools/ritaglia_illustrazioni.py`.
+
+**The Sobrietà Rule.** Versione sobria (novembre 2026): cartoncini ammorbiditi (~25% meno saturi), ombre più corte, titoli 700/650 invece di 800, inclinazioni dimezzate con un solo token (`--k-storto`), nastro adesivo solo sui pezzi principali (apertura, foto di testata, fogli di testo, foglio dei contatti), mai su ogni foto di una serie.
+
+**The Elementi Rule.** I piccoli disegni vettoriali della brochure 2025 stanno in `assets/img/elementi/` (estratti con `tools/estrai_elementi_brochure.py`) e si inseriscono solo con `_partials/elemento.html`: birilli (footer), monociclo (chiusura contatti, da 56rem), giocoliere (testata di Circus Playground, via front matter `elemento:`), biciclo e clave a linee (accanto ai titoli dei corsi e degli eventi in home, colorati dal cartoncino via `mask`). Al massimo un elemento per sezione; sono decorativi (`alt=""`, `aria-hidden`).
+
+**The Titoli Rule.** I titoli grandi usano `--f-firma`: Shantell Sans (pennarello) di default. `params.titoli = "corsivo"` in `hugo.toml` li passa a Style Script, il corsivo gratuito più vicino a quello della brochure (che è un monolineare commerciale non identificato): vale solo per titoli d'apertura, testate e titoli di sezione, mai per etichette, bottoni e post-it.
 
 **The Texture Rule.** Gli unici gradienti ammessi sono le due texture del cartellone in `componenti/carta.css`: il bordo a zigzag (`conic-gradient`) e le righe e il margine del foglio di quaderno (`linear-gradient` + `repeating-linear-gradient`). Nessun altro gradiente, in nessun file (lo verifica `tools/controlla_design.py`).
 
@@ -318,7 +336,7 @@ Ovunque: contorno inchiostro 3px con offset 3px più anello giallo di 6px (`box-
 - **Do** usare colori, font, misure, ombre e durate solo come variabili di `assets/css/tokens.css`.
 - **Do** dare a ogni sezione un solo cartoncino (`.cartoncino[data-carta]`) e, dopo la prima, il bordo a zigzag.
 - **Do** mettere il testo lungo su un foglio, le frasi brevi su una striscia, i recapiti su un post-it: mai testo direttamente sopra una foto.
-- **Do** ruotare ogni pezzo incollato con `--storto` (da -3° a +4°) e alternare il verso tra pezzi vicini.
+- **Do** ruotare ogni pezzo incollato con `calc(var(--storto) * var(--k-storto))` (effetto da -1.5° a +2°) e alternare il verso tra pezzi vicini.
 - **Do** mostrare ogni immagine raster con `_partials/img.html` e ogni acquerello con `_partials/illustrazione.html`, che preferisce il ritaglio PNG.
 - **Do** attaccare le didascalie alla foto o al ritaglio che nominano.
 - **Do** segnare i fatti mancanti (date, nomi, prezzi, orari) con lo shortcode `da-scrivere`: non si inventano.
@@ -333,6 +351,6 @@ Ovunque: contorno inchiostro 3px con offset 3px più anello giallo di 6px (`box-
 - **Don't** scrivere testo sopra una foto senza un fondo pieno di carta.
 - **Don't** caricare risorse da domini terzi (font, script, CDN, mappe incorporate) né librerie JS/CSS esterne.
 - **Don't** usare ombre nere, colorate o dure senza sfocatura, né angoli morbidi su foto, fogli e card.
-- **Don't** introdurre una terza famiglia di caratteri o il maiuscolo decorativo.
+- **Don't** introdurre una terza famiglia di caratteri (oltre al corsivo opzionale dei titoli) o il maiuscolo decorativo.
 - **Don't** disegnare o generare illustrazioni nuove: si usano solo gli acquerelli del cliente, e se mancano la foto nella stessa cornice.
 - **Don't** usare le varianti chiare (`*-chiaro`) come fondo di sezioni nuove: il fondo è sempre un cartoncino pieno.

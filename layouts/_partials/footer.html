@@ -6,6 +6,7 @@
         {{ partial "img.html" (dict "res" . "alt" "Circo Svago — scuola di circo" "widths" (slice 160 320) "sizes" "9rem" "formato" "png" "class" "footer__logo") }}
       {{- end }}
       <p class="footer__motto">{{ site.Params.motto }}</p>
+      {{ partial "elemento.html" (dict "nome" "birilli" "classe" "footer__elemento") }}
       <p>Scuola di circo educativo e sociale ad Albano Laziale, dal {{ site.Params.fondazione }}.</p>
     </div>
 

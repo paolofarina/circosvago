@@ -7,6 +7,8 @@ disableKinds = ['taxonomy', 'term']
 [params]
   description = "Circo Svago è una scuola di circo educativo e sociale ad Albano Laziale, nei Castelli Romani: corsi, spettacoli, centri estivi e progetti per tutte le età."
   motto = "Be a rebel. Join the circus."
+  # Carattere dei titoli grandi: "pennarello" (Shantell Sans) oppure "corsivo" (Style Script, vicino alla brochure)
+  titoli = "pennarello"
   fondazione = 2015
 
   [params.contatti]

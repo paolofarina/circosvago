@@ -37,7 +37,7 @@ REGOLE_HTML = [
     (re.compile(r"fonts\.googleapis|fonts\.gstatic", re.I), "Google Fonts remoto (GDPR)"),
 ]
 
-IMG_CONSENTITI = {"layouts/_partials/img.html", "layouts/_partials/lightbox.html"}
+IMG_CONSENTITI = {"layouts/_partials/img.html", "layouts/_partials/lightbox.html", "layouts/_partials/elemento.html"}  # elemento: SVG vettoriali
 
 
 def eccezione(rel: str, riga: str) -> bool:

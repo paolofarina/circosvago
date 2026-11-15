@@ -1,6 +1,7 @@
 ---
 title: "Circus Playground"
 description: "Un percorso di giochi in legno costruiti a mano per bambini, famiglie e adulti: sicuri, silenziosi, senza elettricità."
+elemento: "giocoliere"   # disegno della brochure (assets/img/elementi/), mostrato in testata
 copertina: "gioco-01.jpg"
 weight: 20
 resources:

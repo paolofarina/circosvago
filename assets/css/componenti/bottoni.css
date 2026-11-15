@@ -17,7 +17,7 @@
   text-decoration: none;
   cursor: pointer;
   box-shadow: var(--ombra-1);
-  rotate: var(--storto, -1deg);
+  rotate: calc(var(--storto, -1deg) * var(--k-storto));
   transition: rotate var(--durata) var(--curva), translate var(--durata) var(--curva), box-shadow var(--durata) var(--curva), background-color var(--durata);
 }
 .btn:hover,

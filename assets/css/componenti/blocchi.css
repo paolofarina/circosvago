@@ -13,7 +13,7 @@
   background: var(--carta);
   color: var(--c-bianco);
   box-shadow: var(--ombra-1);
-  rotate: var(--storto, -1deg);
+  rotate: calc(var(--storto, -1deg) * var(--k-storto));
 }
 .blocco[data-carta="malva"] { --carta: var(--c-malva); }
 .blocco[data-carta="blu"]   { --carta: var(--c-blu); }

@@ -137,3 +137,30 @@ Nessun verdetto dopo questo giro: le correzioni sono verificate solo da me, con 
 - `.impeccable/` — config (telemetria spenta, un'eccezione del detector), contratto di direzione, report di critique e audit, `design.json`, catture del revisore.
 
   La cartella è ignorata dal `.gitignore` della copia di test: nel commit ho aggiunto solo i file utili al confronto.
+
+---
+
+## 7. Secondo giro, su richiesta dell'utente (15 novembre)
+
+Richiesta: sito più sobrio, colori un po' meno forti, nuova immagine per Corpo e movimento, proposte di font prima di rifare tutto, poi una prova col corsivo dei titoli della brochure e il riuso dei disegni della brochure.
+
+- **Font.** Quattro coppie confrontate sulla stessa testata (`test-screenshot/proposte-font.png`: Shantell più leggero, Bricolage Grotesque, Fredoka, Kalam + Figtree). L'utente ha tenuto **Shantell Sans**, ora a peso 700/650 invece di 800.
+- **Corsivo della brochure.**
+  - Nel PDF i titoli sono tracciati vettoriali (i soli font incorporati sono Avenir Black e Book), quindi il nome non si legge.
+  - Il `font-match` di Impeccable fallisce sui corsivi legati: ha visto 3 "glifi" e ha proposto font a mano libera non pertinenti.
+  - Il confronto a occhio con 16 corsivi gratuiti e una ricerca web dicono che è un corsivo monolineare commerciale, simile ad Akin o Monoline Script, non identificato con certezza.
+  - Il gratuito più vicino è **Style Script**. È attivabile con `titoli = "corsivo"` in `hugo.toml` (default `"pennarello"`); confronto in `test-screenshot/prova-titoli-corsivo.png`.
+- **Colori.** Cartoncini circa il 25% meno saturi: giallo `#F1D06B`, rosso `#AD5344`, malva `#814675`, blu `#3D5E97`, scuro `#2B2735`; post-it e bollini più tenui. Tutti i contrasti restano AA, misurati: 0 coppie sotto soglia.
+- **Sobrietà.**
+  - Inclinazioni dimezzate con un solo token (`--k-storto: .5`).
+  - Ombre più corte, zigzag più fine.
+  - Titoli più piccoli (massimo 5rem).
+  - Nastro adesivo tolto dalle foto in serie (nastro, card, blocchi).
+- **Corpo e movimento.** L'immagine dell'utente è stata ritagliata come gli altri acquerelli: l'etichetta già stampata è stata tolta, e c'è una soglia dedicata nello script per non tenere l'ombra grigia. Ora compare nella serie dei corsi e nella testata della pagina.
+- **Elementi della brochure.** Estratti come SVG vettoriali da `tools/estrai_elementi_brochure.py`, inseriti con `_partials/elemento.html`, al massimo uno per sezione:
+  - birilli nel footer;
+  - monociclo nella chiusura contatti;
+  - giocoliere nella testata di Circus Playground, che non aveva un disegno;
+  - biciclo e clave a linee accanto ai titoli dei corsi e degli eventi in home.
+- **Peso.** Gli SVG aggiungono circa 110 KB non compressi alla home (75 KB solo il biciclo). Con gzip in produzione diventano circa un quarto.
+- **Rilevatore.** Invariato: home 0, playground 0, acrobatica 1 (il post-it "Da scrivere").
