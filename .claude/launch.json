@@ -6,6 +6,12 @@
       "runtimeExecutable": "C:\\Users\\paolo\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Hugo.Hugo.Extended_Microsoft.Winget.Source_8wekyb3d8bbwe\\hugo.exe",
       "runtimeArgs": ["server", "--port", "1313", "--bind", "127.0.0.1"],
       "port": 1313
+    },
+    {
+      "name": "prova-impeccable",
+      "runtimeExecutable": "C:\\Users\\paolo\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Hugo.Hugo.Extended_Microsoft.Winget.Source_8wekyb3d8bbwe\\hugo.exe",
+      "runtimeArgs": ["server", "--source", "C:\\Progetti\\circosvago-impeccable", "--port", "1314", "--bind", "127.0.0.1"],
+      "port": 1314
     }
   ]
 }
