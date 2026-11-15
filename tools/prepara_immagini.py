@@ -22,9 +22,17 @@ MAPPA = RADICE / "tools" / "immagini.toml"
 MAX_DEFAULT = 2400
 
 
-def prepara(src: Path, dest: Path, lato_max: int) -> str:
+def prepara(src: Path, dest: Path, lato_max: int, ritaglio: list[float] | None = None) -> str:
     with Image.open(src) as im:
         im = ImageOps.exif_transpose(im)
+        if ritaglio:
+            # ritaglio = [sinistra, alto, destra, basso] in frazioni dell'immagine (0–1),
+            # poi si tolgono i bordi trasparenti rimasti
+            w, h = im.size
+            l, t, r, b = ritaglio
+            im = im.crop((round(w * l), round(h * t), round(w * r), round(h * b)))
+            if "A" in im.getbands() and (bbox := im.getchannel("A").getbbox()):
+                im = im.crop(bbox)
         im.thumbnail((lato_max, lato_max), Image.Resampling.LANCZOS)
         dest.parent.mkdir(parents=True, exist_ok=True)
         if dest.suffix.lower() == ".png":
@@ -50,7 +58,7 @@ def main() -> int:
         if not forza and dest.exists() and dest.stat().st_mtime >= src.stat().st_mtime:
             print(f"ok      {v['dest']}")
             continue
-        dim = prepara(src, dest, v.get("max", MAX_DEFAULT))
+        dim = prepara(src, dest, v.get("max", MAX_DEFAULT), v.get("ritaglio"))
         kb = dest.stat().st_size // 1024
         print(f"creata  {v['dest']}  ({dim}, {kb} KB)")
     return 1 if errori else 0

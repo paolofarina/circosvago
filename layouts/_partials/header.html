@@ -1,9 +1,17 @@
 <header class="header" data-header>
   <div class="contenitore header__barra">
     <a class="header__logo" href="{{ site.Home.RelPermalink }}" aria-label="Circo Svago — home">
-      {{- with resources.Get "img/logo/logo.png" }}
+      {{- /* Desktop: la fascia centrale del logo (CIRCO SVAGO / scuola di circo), più leggibile.
+             Telefono e tablet: il logo tondo intero. Il browser scarica solo quello che gli serve. */}}
+      <picture>
+        {{- with resources.Get "img/logo/logo-fascia.png" }}
+          {{- $a := .Resize "360x png" }}{{ $b := .Resize "720x png" }}
+        <source media="(min-width: 64rem)" srcset="{{ $a.RelPermalink }} 360w, {{ $b.RelPermalink }} 720w" sizes="11rem" width="{{ $a.Width }}" height="{{ $a.Height }}">
+        {{- end }}
+        {{- with resources.Get "img/logo/logo.png" }}
         {{ partial "img.html" (dict "res" . "alt" "" "widths" (slice 96 192) "sizes" "96px" "formato" "png" "eager" true) }}
-      {{- end }}
+        {{- end }}
+      </picture>
     </a>
 
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principale" data-menu-toggle>

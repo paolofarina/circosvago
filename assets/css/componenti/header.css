@@ -14,7 +14,12 @@
   min-height: var(--h-header);
 }
 .header__logo { display: block; flex-shrink: 0; }
+.header__logo picture { display: block; }
 .header__logo img { width: 4.75rem; height: auto; }
+/* desktop: la fascia del logo, larga e bassa (rapporto ~2.7:1) */
+@media (min-width: 64rem) {
+  .header__logo img { width: auto; height: 3.75rem; }
+}
 
 /* ---------- Bottone menu (mobile) ---------- */
 .menu-toggle {
