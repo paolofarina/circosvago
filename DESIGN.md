@@ -207,6 +207,8 @@ Le varianti chiare (`--c-corallo-chiaro`, `--c-malva-chiaro`, `--c-blu-chiaro`, 
 
 **The Bollino Rule.** I cinque colori del logo sono adesivi: decorano, non portano mai testo.
 
+**The Pagina di Sezione Rule.** Una pagina di sezione (scuola, eventi, progetti, chi siamo) non apre mai con un cartoncino muto a tutto schermo. La testata ha sempre due azioni (`azione_elenco`, che porta all'elenco con una freccia in giù, e "Scrivici"). Su telefono l'illustrazione sola sta accanto al titolo, piccola, così il primo schermo mostra l'inizio della sezione successiva. Con `elenco_in_alto: true` l'elenco delle pagine viene subito dopo la testata, prima del testo; con 5 pagine la griglia ne mette 5 su una riga (`griglia-card--n5`), mai una scheda orfana.
+
 **The Colore di Sezione Rule.** Una sezione del sito dichiara `colore: corallo | malva | blu` nel front matter di `_index.md`; `_partials/colore.html` lo eredita risalendo le pagine e `_partials/carta-sezione.html` lo traduce nel cartoncino (`corallo → rosso`, `malva → malva`, `blu → blu`). Testata e sezione "altro" usano quel cartoncino.
 
 ## Typography
@@ -291,7 +293,7 @@ Ogni componente esiste come partial, shortcode o classe di materiale; non si scr
 - Shortcode `{{</* bottone link="…" stile="pieno|bordo" */>}}` per i contenuti.
 
 ### Cards / Containers
-- **Card** (`_partials/card.html`): foto stampata con nastro (o ritaglio, se la pagina ha solo l'illustrazione), titolo a pennarello sotto; rotazioni a rotazione di 3. Tutta la card è cliccabile dal link del titolo.
+- **Card** (`_partials/card.html`): foto stampata con nastro (o ritaglio, se la pagina ha solo l'illustrazione), titolo a pennarello sotto; rotazioni a rotazione di 3. Tutta la card è cliccabile dal link del titolo. Se la sezione madre ha `schede_illustrate: true` (la scuola) la card mostra sempre il ritaglio ad acquerello del corso: **i corsi si presentano solo con i fumetti**, mai con un misto di foto e fumetti. La foto resta nella pagina del corso.
 - **Blocco** (`.blocco`, solo home "Cosa facciamo"): pezzo di cartoncino del colore della sezione di destinazione con la foto che sborda.
 - **Corsi** (`_partials/corsi.html`): la serie dei ritagli con il nome su una striscia; se un corso non ha illustrazione si usa la foto nella stessa cornice 1:2, mai un disegno inventato.
 
@@ -315,7 +317,7 @@ Ovunque: contorno inchiostro 3px con offset 3px più anello giallo di 6px (`box-
 
 | Componente | File | Scopo |
 |---|---|---|
-| Testata | `_partials/testata.html` | cartoncino di sezione, briciole, titolo display, lead su striscia, pila foto+ritaglio, post-it |
+| Testata | `_partials/testata.html` | cartoncino di sezione, briciole, titolo display, lead su striscia, pila foto+ritaglio, post-it; nelle pagine di sezione due azioni (`azione_elenco` ↓ verso `#elenco`, "Scrivici" verso `#contatti`) |
 | Post-it contatti | `_partials/biglietto.html` | telefono e email giusti (`tipo: corsi | eventi`) nel primo schermo |
 | Chiusura contatti | `_partials/contatti.html` | cartoncino giallo `#contatti` con foglio dei recapiti, in fondo a ogni pagina |
 | Corsi | `_partials/corsi.html` | serie dei ritagli dei corsi |

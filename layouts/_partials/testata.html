@@ -30,6 +30,14 @@ Contesto: la pagina.
       {{- end }}
     </div>
 
+    {{- /* Pagine di sezione: due azioni, così si capisce subito che sotto c'è altro */}}
+    {{- if and .IsSection .Pages }}
+    <div class="testata__azioni">
+      <a class="btn btn--chiaro" href="#elenco">{{ .Params.azione_elenco | default "Scopri le proposte" }} {{ partial "freccia.html" (dict "classe" "freccia--giu") }}</a>
+      <a class="btn btn--bordo" href="#contatti">Scrivici</a>
+    </div>
+    {{- end }}
+
     {{- if or $illu $foto }}
     <div class="testata__media">
       {{- if $foto }}

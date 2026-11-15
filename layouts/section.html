@@ -1,6 +1,20 @@
 {{ define "main" }}
 {{ partial "testata.html" . }}
 
+{{- /* Con `elenco_in_alto: true` l'elenco delle pagine viene subito dopo la testata (scuola, eventi, progetti):
+       è quello che si cerca per primo. Altrimenti prima il testo (chi siamo). */}}
+{{- if .Params.elenco_in_alto }}
+  {{ template "sezione-elenco" . }}
+  {{ template "sezione-testo" . }}
+{{- else }}
+  {{ template "sezione-testo" . }}
+  {{ template "sezione-elenco" . }}
+{{- end }}
+
+{{ partial "contatti.html" . }}
+{{ end }}
+
+{{- define "sezione-testo" }}
 {{- with .Content }}
 <section class="sezione sezione--stretta">
   <div class="contenitore">
@@ -8,17 +22,18 @@
   </div>
 </section>
 {{- end }}
+{{- end }}
 
+{{- define "sezione-elenco" }}
 {{- with .Pages.ByWeight }}
-<section class="sezione sezione--chiara">
+<section class="sezione sezione--chiara" id="elenco">
   <div class="contenitore">
     {{- with $.Params.titolo_elenco }}<h2 class="sezione__titolo">{{ . }}</h2>{{ end }}
-    <div class="griglia-card">
+    {{- with $.Params.intro_elenco }}<p class="sezione__lead">{{ . }}</p>{{ end }}
+    <div class="griglia-card griglia-card--n{{ len . }}">
       {{- range . }}{{ partial "card.html" . }}{{ end }}
     </div>
   </div>
 </section>
 {{- end }}
-
-{{ partial "contatti.html" . }}
-{{ end }}
+{{- end }}

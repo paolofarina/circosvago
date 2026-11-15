@@ -5,6 +5,8 @@ colore: malva
 copertina: "/progetti/citta-circenzse/giocoliere-bolla.jpg"
 titolo_elenco: "I nostri progetti"
 weight: 40
+elenco_in_alto: true
+azione_elenco: "Scopri i progetti"
 ---
 
 Circo Svago ha tessuto una rete capillare di connessioni con l'associazionismo locale, collabora attivamente con la Pubblica Amministrazione, promuove collaborazioni e partenariati con privati e organizzazioni no profit.

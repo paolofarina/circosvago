@@ -5,6 +5,7 @@ colore: malva
 illustrazione: "aerea-cerchio.jpg"
 titolo_elenco: "Conosci la squadra"
 weight: 10
+azione_elenco: "Conosci la squadra"
 ---
 
 ## Il circo, per noi, è iniziato come una passione

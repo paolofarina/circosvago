@@ -1,2 +1,4 @@
-{{- /* Freccia disegnata a mano (icona decorativa). Uso: {{ partial "freccia.html" }} */ -}}
-<svg class="freccia" viewBox="0 0 36 20" aria-hidden="true" focusable="false"><path d="M2 11.5c7-1.6 17-2.4 29-1.2M24.5 4.2c2.6 2.2 4.8 4.1 7 6.2-2.4 1.7-4.6 3.4-7.3 5.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+{{- /* Freccia disegnata a mano (icona decorativa).
+Uso: {{ partial "freccia.html" }} oppure {{ partial "freccia.html" (dict "classe" "freccia--giu") }} per puntare in basso. */ -}}
+{{- $classe := "" }}{{ if reflect.IsMap . }}{{ $classe = .classe }}{{ end -}}
+<svg class="freccia{{ with $classe }} {{ . }}{{ end }}" viewBox="0 0 36 20" aria-hidden="true" focusable="false"><path d="M2 11.5c7-1.6 17-2.4 29-1.2M24.5 4.2c2.6 2.2 4.8 4.1 7 6.2-2.4 1.7-4.6 3.4-7.3 5.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>

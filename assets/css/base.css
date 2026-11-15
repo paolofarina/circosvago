@@ -121,6 +121,8 @@ a:hover { text-decoration-thickness: 3px; }
 }
 @media (min-width: 72rem) {
   .griglia-card--quattro { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  /* cinque pagine (i corsi): tutte su una riga, nessuna scheda orfana */
+  .griglia-card--n5 { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-7) var(--s-5); }
 }
 
 /* ---------- Testo lungo ---------- */

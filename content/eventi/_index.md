@@ -5,6 +5,8 @@ colore: blu
 copertina: "/eventi/spettacoli/piazza-giorno.jpg"
 titolo_elenco: "Cosa possiamo portare"
 weight: 30
+elenco_in_alto: true
+azione_elenco: "Guarda le proposte"
 ---
 
 ## Festeggia con noi

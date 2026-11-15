@@ -47,6 +47,40 @@
 }
 .testata__illustrazione--sola { position: relative; width: min(60%, 14rem); margin-inline: auto; }
 
+/* Azioni nelle pagine di sezione: dicono subito che sotto c'è l'elenco */
+.testata__azioni {
+  grid-area: azioni;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+}
+.testata__griglia:has(> .testata__azioni) {
+  grid-template-areas:
+    "testo"
+    "azioni"
+    "biglietto"
+    "media";
+}
+.freccia--giu { rotate: 90deg; }
+.btn:hover .freccia--giu { translate: 0 4px; }
+
+/* Telefono e tablet: l'illustrazione da sola sta accanto al testo, piccola,
+   così il primo schermo mostra anche l'inizio di quello che viene dopo */
+@media (max-width: 63.99rem) {
+  .testata--media:has(.testata__illustrazione--sola) .testata__griglia {
+    grid-template-columns: minmax(0, 1fr) clamp(5.5rem, 24vw, 9rem);
+    grid-template-areas:
+      "testo media"
+      "azioni azioni"
+      "biglietto biglietto";
+    column-gap: var(--s-4);
+    align-items: start;
+  }
+  .testata--media:has(.testata__illustrazione--sola) .testata__media { padding-bottom: 0; }
+  .testata__illustrazione--sola { width: 100%; }
+  .testata:has(.testata__azioni) { padding-bottom: var(--s-7); }
+}
+
 /* Briciole */
 .briciole ol {
   list-style: none;
@@ -74,6 +108,17 @@
   }
   .testata__biglietto { margin-left: var(--s-7); }
   .testata__media { margin-top: var(--s-4); }
+
+  /* pagine di sezione: testata più bassa, così sotto si vede l'inizio dell'elenco */
+  .testata:has(.testata__azioni) { padding-bottom: var(--s-8); }
+  .testata--media .testata__griglia:has(> .testata__azioni) {
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "testo media"
+      "azioni media"
+      "biglietto media";
+  }
+  .testata__illustrazione--sola { width: min(60%, 11rem); }
 }
 /* disegno della brochure al posto dell'illustrazione (es. Circus Playground: il giocoliere) */
 .testata__elemento {
