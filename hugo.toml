@@ -20,8 +20,8 @@ disableKinds = ['taxonomy', 'term']
     email_segreteria = "segreteria@circosvago.it"
     email_eventi = "eventi@circosvago.it"
     # Link ai profili social: da completare (vuoto = il link non viene mostrato)
-    instagram = ""
-    facebook = ""
+    instagram = "https://www.instagram.com/circosvago/"
+    facebook = "https://www.facebook.com/profile.php?id=100063646507444"
 
   # Modulo contatti: un sito statico ha bisogno di un servizio esterno (Netlify Forms, Formspree...).
   # Finché "azione" è vuota, al posto del modulo si mostrano i link email.
