@@ -15,3 +15,4 @@
 /.claude/settings.local.json
 # File di lavoro di Impeccable (quelli utili sono già versionati)
 /.impeccable/
+/.claude/
