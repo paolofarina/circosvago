@@ -168,3 +168,9 @@ disableKinds = ['taxonomy', 'term']
 [module.hugoVersion]
   extended = true
   min = '0.146.0'
+
+# Pubblica solo le immagini che le pagine usano davvero (le versioni ridimensionate),
+# non gli originali dei page bundle: ~23 MB in meno nella build.
+[[cascade]]
+  [cascade.build]
+    publishResources = false
