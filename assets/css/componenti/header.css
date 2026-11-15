@@ -14,11 +14,51 @@
   min-height: var(--h-header);
 }
 .header__logo { display: block; flex-shrink: 0; }
-.header__logo picture { display: block; }
+.header__logo-finestra { display: block; }
 .header__logo img { width: 4.75rem; height: auto; }
-/* desktop: la fascia del logo, larga e bassa (rapporto ~2.7:1) */
+
+/* Desktop: il logo intero dentro una finestra di carta che mostra la fascia centrale.
+   Al passaggio (o al focus) la finestra scende come una linguetta sopra la pagina,
+   senza spostare il contenuto, e scopre l'85% del logo. */
 @media (min-width: 64rem) {
-  .header__logo img { width: auto; height: 3.75rem; }
+  .header__logo {
+    --logo-l: 11.25rem;                    /* larghezza del logo ingrandito */
+    --logo-a: calc(var(--logo-l) * .929);  /* altezza: rapporto di logo.png (1200 × 1115) */
+    --finestra: 3.75rem;                   /* altezza a riposo: la fascia CIRCO SVAGO */
+    --centro: .48;                         /* centro della fascia, in frazione dell'altezza */
+    --aperta: .85;                         /* quanto logo si vede al passaggio */
+    --logo-l-aperto: 8.25rem;              /* al passaggio il logo si rimpicciolisce: la linguetta resta corta */
+    --logo-a-aperto: calc(var(--logo-l-aperto) * .929);
+    position: relative;
+    width: var(--logo-l);
+    height: var(--finestra);
+  }
+  .header__logo-finestra {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: var(--finestra);
+    overflow: hidden;
+    background: var(--c-foglio);
+    border-radius: 0 0 var(--r-sm) var(--r-sm);
+    transition: height var(--durata) var(--curva), box-shadow var(--durata) var(--curva);
+  }
+  .header__logo img {
+    position: absolute;
+    left: 0;
+    top: calc(var(--finestra) / 2 - var(--logo-a) * var(--centro));
+    width: 100%;
+    max-width: none;
+    transition: top var(--durata) var(--curva), left var(--durata) var(--curva), width var(--durata) var(--curva);
+  }
+  .header__logo:is(:hover, :focus-visible) .header__logo-finestra {
+    height: calc(var(--logo-a-aperto) * var(--aperta));
+    box-shadow: var(--ombra-2);
+  }
+  .header__logo:is(:hover, :focus-visible) img {
+    left: calc((var(--logo-l) - var(--logo-l-aperto)) / 2);
+    top: calc(var(--logo-a-aperto) * (var(--aperta) / 2 - var(--centro)));
+    width: var(--logo-l-aperto);
+  }
 }
 
 /* ---------- Bottone menu (mobile) ---------- */

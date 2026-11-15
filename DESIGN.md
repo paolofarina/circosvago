@@ -301,7 +301,7 @@ Ogni componente esiste come partial, shortcode o classe di materiale; non si scr
 - **Stile** (solo pagina contatti, non ancora ridisegnata): bordo 2px `--c-linea`, `--r-sm`, fondo bianco. Al focus il bordo diventa blu.
 
 ### Navigation
-- **Logo nell'header:** da 64rem in su la fascia centrale del logo (`assets/img/logo/logo-fascia.png`, "CIRCO SVAGO – scuola di circo", alta 3.75rem), ritagliata dall'originale con `tools/prepara_immagini.py` (`ritaglio` in `tools/immagini.toml`); sotto i 64rem il logo tondo intero. Un solo `<picture>`: il browser scarica solo quello che serve.
+- **Logo nell'header:** da 64rem in su il logo intero, ingrandito (11.25rem), dentro una finestra di carta alta 3.75rem che mostra solo la fascia centrale "CIRCO SVAGO – scuola di circo". Al passaggio o al focus la finestra scende come una linguetta sopra la pagina, senza spostare il contenuto. Il logo intanto si rimpicciolisce (8.25rem) e se ne vede l'85%. I parametri sono variabili in `header.css` (`--finestra`, `--centro`, `--aperta`, `--logo-l-aperto`). Sotto i 64rem c'è il logo tondo intero, senza finestra. Il logo non si ritaglia mai come file.
 - **Desktop (≥ 64rem):** voci a pennarello su striscia bianca sticky; hover e pagina corrente sono un tratto di evidenziatore giallo storto che si allunga da sinistra. Sottomenu: foglio bianco storto con nastro, `--ombra-2`. L'ultima voce, Contatti, è un'etichetta nera sempre visibile.
 - **Mobile:** bottone "Menu" nero; il menu è un cartoncino giallo a tutto schermo con voci grandi separate da righe, sottomenu su foglio, e il post-it dei contatti in fondo.
 - **Briciole:** in testata, sopra il titolo, piccole e in grassetto, separate da "/".
